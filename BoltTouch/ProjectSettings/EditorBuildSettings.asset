@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Datafiles/Scenes/TouchScene.unity
+    guid: 14d104147b46e0143bc9b86e7e52007a
+  - enabled: 1
+    path: Assets/Datafiles/Scenes/MenuSceneMain-Virtual.unity
+    guid: 4b964f84103b5ef4cbbbf55a59e4e4aa
+  - enabled: 1
+    path: Assets/Datafiles/Scenes/MenuScenePlay-RA.unity
+    guid: 7efdf9ec0c94bd64085b3d87244fbcd8
+  m_configObjects: {}
