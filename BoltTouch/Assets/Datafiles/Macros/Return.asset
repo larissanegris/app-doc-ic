@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1893448595, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
+  m_Name: Return
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":"Button
+      Click - Return","summary":"Return to virtual scene when click return","pan":{"x":106.293,"y":-8.241801},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{"target":null},"position":{"x":-70.0,"y":-85.0},"guid":"62f9481a-be98-4abe-a196-dda2b312bfe7","$version":"A","$type":"Bolt.OnButtonClick","$id":"9"},{"specifyFallback":false,"kind":"Scene","defaultValues":{"name":{"$content":"Btn_Return","$type":"System.String"}},"position":{"x":-271.0,"y":-79.0},"guid":"f8f672f4-1159-47c6-916f-1f61351f24b1","$version":"A","$type":"Bolt.GetVariable","$id":"11"},{"chainable":false,"member":{"name":"LoadScene","parameterTypes":["System.String"],"targetType":"UnityEngine.SceneManagement.SceneManager","targetTypeName":"UnityEngine.SceneManagement.SceneManager","$version":"A"},"defaultValues":{"%sceneName":{"$content":"","$type":"System.String"}},"position":{"x":172.0,"y":-89.0},"guid":"7e6ff3e1-9c81-465e-8143-cd4d0afc7bf8","$version":"A","$type":"Bolt.InvokeMember","$id":"13"},{"type":"System.String","value":{"$content":"MenuSceneMain-Virtual","$type":"System.String"},"defaultValues":{},"position":{"x":-96.0,"y":28.0},"guid":"f7c191af-8f96-475c-93fe-3193a4cb0307","$version":"A","$type":"Bolt.Literal","$id":"16"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"fd137b6d-7411-40ae-93fa-c38a0a623f67","$type":"Bolt.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"value","destinationUnit":{"$ref":"9"},"destinationKey":"target","guid":"42cbd2e6-4998-43b8-8213-880e5ccbdd72","$type":"Bolt.ValueConnection"},{"sourceUnit":{"$ref":"16"},"sourceKey":"output","destinationUnit":{"$ref":"13"},"destinationKey":"%sceneName","guid":"4a17bec7-1896-4d25-aeb7-39588c4a2471","$type":"Bolt.ValueConnection"}],"$version":"A"}}'
+    _objectReferences: []
