@@ -72,3 +72,4 @@ crashlytics-build.properties
 
 #Vuforia
 com.ptc.vuforia.engine-10.1.4.tgz
+com.ptc.vuforia.engine*
