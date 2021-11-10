@@ -171,7 +171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1612090379}
+  - {fileID: 2133355608}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -501,10 +501,10 @@ MonoBehaviour:
   OnTargetLost:
     m_PersistentCalls:
       m_Calls: []
+  gameManager: {fileID: 1269835863}
   cubePrefab: {fileID: 3793351226083502663, guid: 80a32d85e7822ee49ad4155283b2ea8c, type: 3}
   spherePrefab: {fileID: 3157072259384202465, guid: 3897f2507da739049a9d6ae7d801504a, type: 3}
   imageTarget: {fileID: 565824342}
-  formasCriadas: []
   forma: {fileID: 0}
 --- !u!4 &1269835861
 Transform:
@@ -547,35 +547,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabInstantiator: {fileID: 1269835860}
   selectedObject: {fileID: 0}
---- !u!21 &1612090379
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'arbookhouseMaterial
-
-    17226'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 084048031bcd42a0828ec75b48992fd0, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
+  formasCriadas: []
+  number: 0
+  numberCube: 0
+  numberSphere: 0
 --- !u!43 &1801855472
 Mesh:
   m_ObjectHideFlags: 0
@@ -740,3 +715,32 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!21 &2133355608
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'arbookhouseMaterial
+
+    17232'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 084048031bcd42a0828ec75b48992fd0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []

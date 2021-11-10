@@ -2,21 +2,18 @@ using UnityEngine;
 using Vuforia;
 using System.Collections.Generic;
 
-public class PrefabInstantiator : DefaultObserverEventHandler
+public class PrefabInstantiator : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public GameObject cubePrefab;
     public GameObject spherePrefab;
     public GameObject imageTarget;
+    private GameObject mMyModelObject;
 
-
-    public List<Form> formasCriadas = new List<Form>();
     public Form forma;
 
-    public static int number = 0;
-    public static int numberCube = 0;
-    public static int numberSphere = 0;
-
-    private GameObject mMyModelObject;
+    
 
     public GameObject SpawnCube()
     {
@@ -26,20 +23,19 @@ public class PrefabInstantiator : DefaultObserverEventHandler
             
             mMyModelObject = Instantiate(cubePrefab, imageTarget.transform);
             mMyModelObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            mMyModelObject.transform.position = mMyModelObject.transform.position + new Vector3(numberCube, 0, 0);
+            mMyModelObject.transform.position = mMyModelObject.transform.position + new Vector3(gameManager.numberCube, 0, 0);
             mMyModelObject.SetActive(true);
-            //mMyModelObject.GetComponent<Renderer>().material.color = Color.blue;
-            mMyModelObject.name = "Cube" + numberCube;
-            Debug.Log(mMyModelObject.transform.position);
+            mMyModelObject.name = "Cube" + gameManager.numberCube;
 
             forma = mMyModelObject.GetComponent<Form>();
+            forma = mMyModelObject.GetComponent<Form>();
             forma.tipo = 0;
-            forma.id = number;
-            formasCriadas.Add(forma);
+            forma.id = gameManager.number;
+            gameManager.createdForms.Add(forma);
             forma.SetForm(mMyModelObject);
 
-            number++;
-            numberCube++;
+            gameManager.number++;
+            gameManager.numberCube++;
 
             return mMyModelObject;
         }
@@ -54,17 +50,18 @@ public class PrefabInstantiator : DefaultObserverEventHandler
 
             mMyModelObject = Instantiate(spherePrefab, imageTarget.transform);
             mMyModelObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            mMyModelObject.transform.position = mMyModelObject.transform.position + new Vector3(0, 0, numberSphere);
+            mMyModelObject.transform.position = mMyModelObject.transform.position + new Vector3(0, 0, gameManager.numberSphere);
             mMyModelObject.SetActive(true);
-            mMyModelObject.name = "Sphere" + numberSphere;
+            mMyModelObject.name = "Sphere" + gameManager.numberSphere;
             Debug.Log(mMyModelObject.transform.position);
-
+            
+            forma = mMyModelObject.GetComponent<Form>();
             forma.tipo = 1;
-            forma.id = number;
-            formasCriadas.Add(forma);
+            forma.id = gameManager.number;
+            gameManager.createdForms.Add(forma);
 
-            number++;
-            numberSphere++;
+            gameManager.number++;
+            gameManager.numberSphere++;
 
             return mMyModelObject;
         }
