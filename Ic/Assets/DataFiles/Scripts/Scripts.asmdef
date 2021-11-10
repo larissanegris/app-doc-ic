@@ -1,0 +1,22 @@
+{
+    "name": "Scripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4aa734a563557450591d3fe58a62a120",
+        "GUID:1e62516da8820481ca27afa854980a20",
+        "GUID:bc72f8689eefa484699b4ed79b36553d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "Vuforia.Unity.Editor.dll",
+        "Vuforia.Unity.Wrapper.dll",
+        "Vuforia.Unity.Engine.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
