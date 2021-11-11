@@ -13,4 +13,5 @@ public class GameManager : MonoBehaviour
     public int numberCube = 0;
     public int numberSphere = 0;
 
+    public int tipoInteracao;
 }

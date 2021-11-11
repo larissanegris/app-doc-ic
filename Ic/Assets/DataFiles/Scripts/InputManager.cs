@@ -26,41 +26,38 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Debug.Log("Esquerda: Mudando Cor Laranja");
-            gameManager.selectedObject.GetComponent<Form>().ChangeColor(Colors.Orange);
+            gameManager.selectedObject.GetComponent<Interactions>().ChangeColor(Colors.Orange);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             Debug.Log("Esquerda: Mudando Cor Laranja");
-            gameManager.selectedObject.GetComponent<Form>().ChangeColor(Colors.Yellow);
+            gameManager.selectedObject.GetComponent<Interactions>().ChangeColor(Colors.Yellow);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log("Esquerda: Mudando Cor Laranja");
-            gameManager.selectedObject.GetComponent<Form>().ChangeColor(Colors.Red);
+            gameManager.selectedObject.GetComponent<Interactions>().ChangeColor(Colors.Red);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Debug.Log("Esquerda: Mudando Cor Laranja");
-            gameManager.selectedObject.GetComponent<Form>().ChangeColor(Colors.Pink);
+            gameManager.selectedObject.GetComponent<Interactions>().ChangeColor(Colors.Pink);
         }
 
         //teclas para selecionar os objetos
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            Debug.Log("Selecionando: Objeto 0");
-            if(gameManager.createdForms.Capacity >= 0 )
-            {
-                gameManager.selectedObject = gameManager.createdForms[0].form;
-            }
-            
+            gameManager.tipoInteracao = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Selecionando: Objeto 1");
-            if (gameManager.createdForms.Capacity >= 1)
-            {
-                gameManager.selectedObject = gameManager.createdForms[1].form;
-            }
+            gameManager.tipoInteracao = 1;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            gameManager.tipoInteracao = 2;
+        }
+
+
     }
 }

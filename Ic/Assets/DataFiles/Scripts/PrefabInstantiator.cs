@@ -22,17 +22,16 @@ public class PrefabInstantiator : MonoBehaviour
             Debug.Log("Target found, adding content");
             
             mMyModelObject = Instantiate(cubePrefab, imageTarget.transform);
-            mMyModelObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            mMyModelObject.transform.position = mMyModelObject.transform.position + new Vector3(gameManager.numberCube, 0, 0);
+            mMyModelObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            mMyModelObject.transform.position = mMyModelObject.transform.position + new Vector3(0, 4, 0);
             mMyModelObject.SetActive(true);
             mMyModelObject.name = "Cube" + gameManager.numberCube;
 
             forma = mMyModelObject.GetComponent<Form>();
-            forma = mMyModelObject.GetComponent<Form>();
-            forma.tipo = 0;
+            forma.tipo = Type.Cube;
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
-            forma.SetForm(mMyModelObject);
+            mMyModelObject.GetComponent<Interactions>().SetForm(mMyModelObject);
 
             gameManager.number++;
             gameManager.numberCube++;
@@ -50,13 +49,13 @@ public class PrefabInstantiator : MonoBehaviour
 
             mMyModelObject = Instantiate(spherePrefab, imageTarget.transform);
             mMyModelObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            mMyModelObject.transform.position = mMyModelObject.transform.position + new Vector3(0, 0, gameManager.numberSphere);
+            //mMyModelObject.transform.position = mMyModelObject.transform.position + new Vector3(0, 0, gameManager.numberSphere);
             mMyModelObject.SetActive(true);
             mMyModelObject.name = "Sphere" + gameManager.numberSphere;
             Debug.Log(mMyModelObject.transform.position);
             
             forma = mMyModelObject.GetComponent<Form>();
-            forma.tipo = 1;
+            forma.tipo = Type.Sphere;
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
 

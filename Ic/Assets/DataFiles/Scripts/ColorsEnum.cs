@@ -3,3 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Colors { Orange, Pink, Yellow, Red };
+
+public enum Type { Cube, Sphere };
