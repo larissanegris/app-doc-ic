@@ -7,7 +7,8 @@ public class Form : MonoBehaviour
 
     public int id;
     public Type tipo;
-    public Colors cor;
+    public Colors cor = Colors.White;
+    public Colors previousCor = Colors.White;
 
     public GameManager gameManager;
 

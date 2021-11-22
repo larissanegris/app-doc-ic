@@ -20,7 +20,7 @@ public class Interactions : MonoBehaviour
 
     void OnMouseDown()
     {
-        gameManager.selectedObject = gameObjectForm;
+        gameManager.ChangeSelectedObject(gameObjectForm);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
         // Store offset = gameobject world pos - mouse world pos
@@ -68,24 +68,33 @@ public class Interactions : MonoBehaviour
         this.gameObjectForm = gameObjectForm;
     }
 
-    public void ChangeColor(Colors cor)
+    public void ChangeColor(Colors newColor)
     {
-        if (cor == Colors.Yellow)
+        gameObjectForm.GetComponent<Form>().previousCor = gameObjectForm.GetComponent<Form>().cor;
+        if (newColor == Colors.Yellow)
         {
             gameObjectForm.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (cor == Colors.Orange)
+        else if (newColor == Colors.Orange)
         {
             gameObjectForm.GetComponent<Renderer>().material.color = new Color(1, 0.37f, 0.1f, 1);
         }
-        else if (cor == Colors.Red)
+        else if (newColor == Colors.Red)
         {
             gameObjectForm.GetComponent<Renderer>().material.color = Color.red;
         }
-        else if (cor == Colors.Pink)
+        else if (newColor == Colors.Pink)
         {
             gameObjectForm.GetComponent<Renderer>().material.color = new Color(0.9f, 0, 0.9f, 1);
         }
-        gameObjectForm.GetComponent<Form>().cor = cor;
+        else if (newColor == Colors.Grey)
+        {
+            gameObjectForm.GetComponent<Renderer>().material.color = Color.gray;
+        }
+        else if (newColor == Colors.White)
+        {
+            gameObjectForm.GetComponent<Renderer>().material.color = Color.white;
+        }
+        gameObjectForm.GetComponent<Form>().cor = newColor;
     }
 }
