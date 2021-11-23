@@ -13,54 +13,59 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Espaço: Criando Instancia de Cubo");
-            gameManager.selectedObject = gameManager.prefabInstantiator.SpawnCube();
+            gameManager.prefabInstantiator.SpawnCube();
         }
         //criar esfera
         if (Input.GetKeyDown(KeyCode.A))
         {
             Debug.Log("Espaço: Criando Instancia de Esfera");
-            gameManager.selectedObject = gameManager.prefabInstantiator.SpawnSphere();
+            gameManager.prefabInstantiator.SpawnSphere();
         }
 
         //Mudar Cores
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Debug.Log("Esquerda: Mudando Cor Laranja");
-            gameManager.selectedObject.GetComponent<Form>().ChangeColor(Colors.Orange);
+            gameManager.selectedObject.GetComponent<Interactions>().ChangeColor(Colors.Orange);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Debug.Log("Esquerda: Mudando Cor Laranja");
-            gameManager.selectedObject.GetComponent<Form>().ChangeColor(Colors.Yellow);
+            Debug.Log("Esquerda: Mudando Cor Amarelo");
+            gameManager.selectedObject.GetComponent<Interactions>().ChangeColor(Colors.Yellow);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log("Esquerda: Mudando Cor Laranja");
-            gameManager.selectedObject.GetComponent<Form>().ChangeColor(Colors.Red);
+            Debug.Log("Esquerda: Mudando Cor Vermelho");
+            gameManager.selectedObject.GetComponent<Interactions>().ChangeColor(Colors.Red);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Debug.Log("Esquerda: Mudando Cor Laranja");
-            gameManager.selectedObject.GetComponent<Form>().ChangeColor(Colors.Pink);
+            Debug.Log("Esquerda: Mudando Cor Pink");
+            gameManager.selectedObject.GetComponent<Interactions>().ChangeColor(Colors.Pink);
         }
+        /*if(gameManager.selectedObject != null)
+        {
+            gameManager.selectedObject.GetComponent<Form>().cor = Colors.Grey;
+        }*/
 
         //teclas para selecionar os objetos
+        //Mover
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            Debug.Log("Selecionando: Objeto 0");
-            if(gameManager.createdForms.Capacity >= 0 )
-            {
-                gameManager.selectedObject = gameManager.createdForms[0].form;
-            }
-            
+            gameManager.tipoInteracao = 0;
         }
+        //Rotacionar
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Selecionando: Objeto 1");
-            if (gameManager.createdForms.Capacity >= 1)
-            {
-                gameManager.selectedObject = gameManager.createdForms[1].form;
-            }
+            gameManager.tipoInteracao = 1;
         }
+        //escalar
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            gameManager.tipoInteracao = 2;
+        }
+
+
     }
 }
