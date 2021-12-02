@@ -9,10 +9,6 @@ public class TextManager : MonoBehaviour
     // Start is called before the first frame update
     public Text textObject;
     public GameManager gameManager;
-    public string text;
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()

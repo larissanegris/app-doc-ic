@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public PrefabInstantiator prefabInstantiator;
+    public ColorManager colorManager;
     public GameObject selectedObject;
 
     public List<Form> createdForms = new List<Form>();
@@ -15,17 +16,30 @@ public class GameManager : MonoBehaviour
 
     public int tipoInteracao;
 
+    private void Start()
+    {
+        colorManager = this.gameObject.GetComponent<ColorManager>();
+        //selectedObject = null;
+    }
+
     public void Update()
     {
         
     }
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
     {
+        if(number == 0)
+        {
+            selectedObject = newSelectedGameObject;
+            selectedObject.GetComponent<Form>().SetToSelected();
+            colorManager.DarkerColor(selectedObject);
+            return;
+        }
+        selectedObject.GetComponent<Form>().SetToUnselected();
+        colorManager.ChangeColor(selectedObject.GetComponent<Form>().cor, selectedObject);
+        
         selectedObject = newSelectedGameObject;
-        /*
-        Colors cor = selectedObject.GetComponent<Form>().previousCor;
-        selectedObject.GetComponent<Interactions>().ChangeColor(cor);
-        newSelectedGameObject.GetComponent<Interactions>().ChangeColor(Colors.Grey);
-        */
+        selectedObject.GetComponent<Form>().SetToSelected();
+        colorManager.DarkerColor(selectedObject);
     }
 }

@@ -31,12 +31,11 @@ public class PrefabInstantiator : MonoBehaviour
             forma.tipo = Type.Cube;
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
-            myModelObject.GetComponent<Interactions>().SetForm(myModelObject);
+
+            gameManager.ChangeSelectedObject(myModelObject);
 
             gameManager.number++;
             gameManager.numberCube++;
-
-            gameManager.ChangeSelectedObject(myModelObject);
 
             return myModelObject;
         }
@@ -60,12 +59,10 @@ public class PrefabInstantiator : MonoBehaviour
             forma.tipo = Type.Sphere;
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
-            myModelObject.GetComponent<Interactions>().SetForm(myModelObject);
-
-            gameManager.number++;
-            gameManager.numberSphere++;
 
             gameManager.ChangeSelectedObject(myModelObject);
+            gameManager.number++;
+            gameManager.numberSphere++;
 
             return myModelObject;
         }
