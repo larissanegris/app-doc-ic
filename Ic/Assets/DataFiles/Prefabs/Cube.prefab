@@ -113,10 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   tipo: 0
-  cor: 0
-  previousCor: 0
+  cor: 5
+  previousCor: 5
   isSelected: 0
-  gameManager: {fileID: 0}
   interactions: []
 --- !u!114 &3242064708437430030
 MonoBehaviour:

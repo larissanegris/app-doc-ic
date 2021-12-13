@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public PrefabInstantiator prefabInstantiator;
     public ColorManager colorManager;
     public GameObject selectedObject;
+    public Form selectedObjectForm;
 
     public List<Form> createdForms = new List<Form>();
 
@@ -37,9 +38,11 @@ public class GameManager : MonoBehaviour
         }
         selectedObject.GetComponent<Form>().SetToUnselected();
         colorManager.ChangeColor(selectedObject.GetComponent<Form>().cor, selectedObject);
-        
+
+        selectedObjectForm = selectedObject.GetComponent<Form>();
         selectedObject = newSelectedGameObject;
-        selectedObject.GetComponent<Form>().SetToSelected();
+        selectedObjectForm.saveColor();
+        selectedObjectForm.SetToSelected();
         colorManager.DarkerColor(selectedObject);
     }
 }

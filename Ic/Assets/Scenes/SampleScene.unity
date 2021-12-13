@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -663,7 +663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -284, y: 188}
+  m_AnchoredPosition: {x: -284, y: 177}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830388385
@@ -820,6 +820,7 @@ MonoBehaviour:
   prefabInstantiator: {fileID: 1269835860}
   colorManager: {fileID: 0}
   selectedObject: {fileID: 0}
+  selectedObjectForm: {fileID: 0}
   createdForms: []
   number: 0
   numberCube: 0
@@ -852,8 +853,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectableTag: Selectable
-  highlightMaterial: {fileID: 2100000, guid: 0ad5f022f8d4ade4390033db66211c7f, type: 2}
-  defaultMaterial: {fileID: 2100000, guid: 4aeeb9ce0be126d42a89f218d4c3ff76, type: 2}
   gameManager: {fileID: 0}
   form: {fileID: 0}
   colorManager: {fileID: 0}
