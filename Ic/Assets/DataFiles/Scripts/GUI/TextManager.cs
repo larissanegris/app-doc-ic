@@ -7,24 +7,34 @@ using UnityEngine.UI;
 public class TextManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Text textObject;
+    public Text textObjectMode;
+    public Text selectedObject;
     public GameManager gameManager;
 
     // Update is called once per frame
     void Update()
     {
-        textObject.text = "Modo: ";
+        textObjectMode.text = "Modo: ";
         if(gameManager.tipoInteracao == 0)
         {
-            textObject.text = "Modo: Mover";
+            textObjectMode.text = "Modo: Mover";
         }
         else if (gameManager.tipoInteracao == 1)
         {
-            textObject.text = "Modo: Rotacao";
+            textObjectMode.text = "Modo: Rotacao";
         }
         else if (gameManager.tipoInteracao == 2)
         {
-            textObject.text = "Modo: Tamanho";
+            textObjectMode.text = "Modo: Tamanho";
         }
+        if (gameManager.selectedObject != null)
+        {
+            selectedObject.text = "Objeto Selecionado: " + gameManager.selectedObject.name.ToString();
+        }
+        else
+        {
+            selectedObject.text = "Objeto Selecionado: Nenhum";
+        }
+
     }
 }

@@ -7,6 +7,7 @@ public class ColorManager : MonoBehaviour
     public GameManager gameManager;
 
     private float darkeninFactor = 0.6f;
+    private float lighteningFactor = 1.6666f;
 
     void Start()
     {
@@ -16,10 +17,11 @@ public class ColorManager : MonoBehaviour
     
     public void ChangeColor(Colors newColor, GameObject target)
     {
+        if(target == null)
+            return;
 
+        
         target.GetComponent<Form>().saveColor(newColor);
-        
-        
         
         
         if (newColor == Colors.Yellow)
@@ -54,8 +56,18 @@ public class ColorManager : MonoBehaviour
 
     }
 
+    public void ResetColor(GameObject target)
+    {
+        target.GetComponent<Renderer>().material.color = target.GetComponent<Renderer>().material.color;
+    }
     public void DarkerColor(GameObject target)
     {
         target.GetComponent<Renderer>().material.color = target.GetComponent<Renderer>().material.color * darkeninFactor;
     }
+
+    public void LigtherColor(GameObject target)
+    {
+        target.GetComponent<Renderer>().material.color = target.GetComponent<Renderer>().material.color * lighteningFactor;
+    }
 }
+
