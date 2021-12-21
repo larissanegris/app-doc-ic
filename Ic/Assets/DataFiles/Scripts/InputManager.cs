@@ -22,36 +22,36 @@ public class InputManager : MonoBehaviour
         //Criar cubo
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("Espaço: Criando Instancia de Cubo");
+            //Debug.Log("Espaço: Criando Instancia de Cubo");
             gameManager.prefabInstantiator.SpawnCube();
         }
         //criar esfera
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Espaço: Criando Instancia de Esfera");
+            //Debug.Log("Espaço: Criando Instancia de Esfera");
             gameManager.prefabInstantiator.SpawnSphere();
         }
 
         //Mudar Cores
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("W: Mudando Cor Laranja");
+            //Debug.Log("W: Mudando Cor Laranja");
             colorManager.ChangeColor(Colors.Orange, target);
 
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("A: Mudando Cor Vermelho");
+            //Debug.Log("A: Mudando Cor Vermelho");
             colorManager.ChangeColor(Colors.Red, target);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Debug.Log("S: Mudando Cor Rosa");
+            //Debug.Log("S: Mudando Cor Rosa");
             colorManager.ChangeColor(Colors.Pink, target);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("D: Mudando Cor Amarelo");
+            //Debug.Log("D: Mudando Cor Amarelo");
             colorManager.ChangeColor(Colors.Yellow, target);
         }
 
@@ -79,17 +79,17 @@ public class InputManager : MonoBehaviour
         {
             if(tipoInteracao == 0)
             {
-                Debug.Log("Move UP");
+                //Debug.Log("Move UP");
                 target.GetComponent<MoveObject>().MoveUp();
             }
             else if(tipoInteracao == 1)
             {
-                Debug.Log("Rotate UP");
+                //Debug.Log("Rotate UP");
                 target.GetComponent<RotateObject>().RotateUp();
             }
             else if (tipoInteracao == 2)
             {
-                Debug.Log("Scale UP");
+                //Debug.Log("Scale UP");
                 target.GetComponent<ResizeObject>().ScaleUp();
             }
 
@@ -98,17 +98,17 @@ public class InputManager : MonoBehaviour
         {
             if (tipoInteracao == 0)
             {
-                Debug.Log("Move Down");
+                //Debug.Log("Move Down");
                 target.GetComponent<MoveObject>().MoveDown();
             }
             else if (tipoInteracao == 1)
             {
-                Debug.Log("Rotate Down");
+                //Debug.Log("Rotate Down");
                 target.GetComponent<RotateObject>().RotateDown();
             }
             else if (tipoInteracao == 2)
             {
-                Debug.Log("Scale Down");
+                //Debug.Log("Scale Down");
                 target.GetComponent<ResizeObject>().ScaleDown();
             }
         }
@@ -116,17 +116,17 @@ public class InputManager : MonoBehaviour
         {
             if (tipoInteracao == 0)
             {
-                Debug.Log("Move Right");
+                //Debug.Log("Move Right");
                 target.GetComponent<MoveObject>().MoveRight();
             }
             else if (tipoInteracao == 1)
             {
-                Debug.Log("Rotate Right");
+                //Debug.Log("Rotate Right");
                 target.GetComponent<RotateObject>().RotateRight();
             }
             else if (tipoInteracao == 2)
             {
-                Debug.Log("Scale Right");
+                //Debug.Log("Scale Right");
                 target.GetComponent<ResizeObject>().ScaleRight();
             }
         }
@@ -134,17 +134,17 @@ public class InputManager : MonoBehaviour
         {
             if (tipoInteracao == 0)
             {
-                Debug.Log("Move Left");
+                //Debug.Log("Move Left");
                 target.GetComponent<MoveObject>().MoveLeft();
             }
             else if (tipoInteracao == 1)
             {
-                Debug.Log("Rotate Left");
+                //Debug.Log("Rotate Left");
                 target.GetComponent<RotateObject>().RotateLeft();
             }
             else if (tipoInteracao == 2)
             {
-                Debug.Log("Scale Left");
+                //Debug.Log("Scale Left");
                 target.GetComponent<ResizeObject>().ScaleLeft();
             }
         }
@@ -152,17 +152,17 @@ public class InputManager : MonoBehaviour
         {
             if (tipoInteracao == 0)
             {
-                Debug.Log("Move Forward");
+                //Debug.Log("Move Forward");
                 target.GetComponent<MoveObject>().MoveForward();
             }
             else if (tipoInteracao == 1)
             {
-                Debug.Log("Rotate Forward");
+                //Debug.Log("Rotate Forward");
                 target.GetComponent<RotateObject>().RotateForward();
             }
             else if (tipoInteracao == 2)
             {
-                Debug.Log("Scale Forward");
+                //Debug.Log("Scale Forward");
                 target.GetComponent<ResizeObject>().ScaleForward();
             }
         }
@@ -170,17 +170,17 @@ public class InputManager : MonoBehaviour
         {
             if (tipoInteracao == 0)
             {
-                Debug.Log("Move Backward");
+                //Debug.Log("Move Backward");
                 target.GetComponent<MoveObject>().MoveBackward();
             }
             else if (tipoInteracao == 1)
             {
-                Debug.Log("Rotate Backward");
+                //Debug.Log("Rotate Backward");
                 target.GetComponent<RotateObject>().RotateBackward();
             }
             else if (tipoInteracao == 2)
             {
-                Debug.Log("Scale Backward");
+                //Debug.Log("Scale Backward");
                 target.GetComponent<ResizeObject>().ScaleBackward();
             }
         }
