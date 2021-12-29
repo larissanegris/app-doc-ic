@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4607015442397708442}
   - component: {fileID: -245878665370236038}
   - component: {fileID: -7131802961262153357}
+  - component: {fileID: 1436022637913850413}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Selectable
@@ -112,10 +113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a95d4ee33c7df4ebfcd326d645edf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorManager: {fileID: 0}
   id: 0
-  tipo: 0
+  type: 0
   cor: 5
-  previousCor: 5
   isSelected: 0
   interactions: []
 --- !u!114 &156405384603034726
@@ -167,3 +168,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967710c7c5a062a4d8ceea6ad522da98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1436022637913850413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157072259384202465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc322cbd3a94ba84884a9225d1f396f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  form: {fileID: 0}

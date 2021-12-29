@@ -8,7 +8,7 @@ public class Form : MonoBehaviour
     public ColorManager colorManager;
 
     public int id;
-    public Type tipo;
+    public Type type;
     public Colors cor = Colors.White;
     private Colors previousCor = Colors.White;
     public bool isSelected = false;

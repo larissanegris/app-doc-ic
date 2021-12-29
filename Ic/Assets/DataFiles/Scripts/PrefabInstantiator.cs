@@ -28,7 +28,7 @@ public class PrefabInstantiator : MonoBehaviour
             myModelObject.name = "Cube" + gameManager.numberCube;
 
             forma = myModelObject.GetComponent<Form>();
-            forma.tipo = Type.Cube;
+            forma.type = Type.Cube;
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
 
@@ -56,7 +56,7 @@ public class PrefabInstantiator : MonoBehaviour
             Debug.Log(myModelObject.transform.position);
 
             forma = myModelObject.GetComponent<Form>();
-            forma.tipo = Type.Sphere;
+            forma.type = Type.Sphere;
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
 
