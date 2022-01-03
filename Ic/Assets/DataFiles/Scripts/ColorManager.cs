@@ -20,7 +20,8 @@ public class ColorManager : MonoBehaviour
         if(target == null)
             return;
 
-        
+        Debug.Log("Cor: " + target.name + newColor);
+
         target.GetComponent<Form>().saveColor(newColor);
         
         

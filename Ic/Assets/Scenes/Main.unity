@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 1269835864}
   - component: {fileID: 1269835865}
   - component: {fileID: 1269835866}
+  - component: {fileID: 1269835867}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -623,10 +624,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabInstantiator: {fileID: 1269835860}
   colorManager: {fileID: 0}
+  highlightManager: {fileID: 0}
   selectedObject: {fileID: 0}
   selectedObjectForm: {fileID: 0}
   rigidbodiComponent: {fileID: 0}
   boxCollider: {fileID: 0}
+  sphereCollider: {fileID: 0}
   createdForms: []
   number: 0
   numberCube: 0
@@ -676,6 +679,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+--- !u!114 &1269835867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269835859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e15ac2f68901143abc6551d462e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  colorManager: {fileID: 1269835866}
+  baseMaterial: {fileID: 2100000, guid: 4aeeb9ce0be126d42a89f218d4c3ff76, type: 2}
+  highlightMat: {fileID: 2100000, guid: bed481b76173c294b89efa0a1a73cb2a, type: 2}
 --- !u!1 &1470182494
 GameObject:
   m_ObjectHideFlags: 0

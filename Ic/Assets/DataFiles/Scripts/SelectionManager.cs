@@ -34,8 +34,6 @@ public class SelectionManager : MonoBehaviour
                 
                 if(selection.gameObject != gameManager.selectedObject)
                 {
-                    var previousSelect = gameManager.selectedObject;
-
                     gameManager.ChangeSelectedObject(selection.gameObject);
                 }
                 

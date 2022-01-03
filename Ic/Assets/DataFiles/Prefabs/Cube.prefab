@@ -112,10 +112,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a95d4ee33c7df4ebfcd326d645edf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorManager: {fileID: 0}
+  highlightManager: {fileID: 0}
   id: 0
-  tipo: 0
+  type: 0
   cor: 5
-  previousCor: 5
   isSelected: 0
   interactions: []
 --- !u!114 &3242064708437430030
@@ -166,3 +167,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc322cbd3a94ba84884a9225d1f396f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  form: {fileID: 0}

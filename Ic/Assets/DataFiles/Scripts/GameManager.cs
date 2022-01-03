@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public PrefabInstantiator prefabInstantiator;
     public ColorManager colorManager;
+    public HighlightManager highlightManager;
     public GameObject selectedObject;
     public Form selectedObjectForm;
 
@@ -22,19 +23,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        colorManager = this.gameObject.GetComponent<ColorManager>();
+        colorManager = GetComponent<ColorManager>();
+        highlightManager = GetComponent<HighlightManager>();
     }
 
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
     {
         //se for o unico objeto, nao precisa modificar o antigo selecionado
-        if(number == 0)
+        if(number == 1)
         {
             //seleciona novo objeto
             selectedObject = newSelectedGameObject;
             selectedObjectForm = selectedObject.GetComponent<Form>();
             selectedObject.GetComponent<Form>().SetToSelected();
-            colorManager.DarkerColor(selectedObject);
+
+            //colorManager.DarkerColor(selectedObject);
+            highlightManager.HighlightObject(selectedObject);
 
             //adiciona rigidbody
             selectedObject.AddComponent(typeof(Rigidbody));
@@ -63,9 +67,13 @@ public class GameManager : MonoBehaviour
         //deseleciona forma antiga
         selectedObjectForm = selectedObject.GetComponent<Form>();
         selectedObjectForm.SetToUnselected();
-        colorManager.ChangeColor(selectedObjectForm.cor, selectedObject);
         Destroy(selectedObject.GetComponent<Rigidbody>());
-        
+
+        //colorManager.ChangeColor(selectedObjectForm.cor, selectedObject);
+        highlightManager.UnhighlightObject(selectedObject);
+
+
+
         //verifica o tipo
         if (selectedObjectForm.type == Type.Cube)
         {
@@ -83,7 +91,9 @@ public class GameManager : MonoBehaviour
         selectedObjectForm = selectedObject.GetComponent<Form>();
         selectedObjectForm.saveColor();
         selectedObjectForm.SetToSelected();
-        colorManager.DarkerColor(selectedObject);
+
+        //colorManager.DarkerColor(selectedObject);
+        highlightManager.HighlightObject(selectedObject);
 
         selectedObject.AddComponent(typeof(Rigidbody));
         rigidbodiComponent = selectedObject.GetComponent<Rigidbody>();

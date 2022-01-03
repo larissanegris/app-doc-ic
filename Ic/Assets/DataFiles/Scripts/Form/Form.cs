@@ -6,6 +6,7 @@ public class Form : MonoBehaviour
 {
     private GameManager gameManager;
     public ColorManager colorManager;
+    public HighlightManager highlightManager;
 
     public int id;
     public Type type;
@@ -16,6 +17,12 @@ public class Form : MonoBehaviour
 
     public List<Form> interactions = new List<Form>();
 
+    void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        colorManager = gameManager.colorManager;
+        highlightManager = gameManager.highlightManager;
+    }
 
     public void saveColor()
     {
@@ -61,9 +68,5 @@ public class Form : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        colorManager = gameManager.colorManager;
-    }
+    
 }
