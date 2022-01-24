@@ -26,7 +26,7 @@ public class HighlightManager : MonoBehaviour
         Form form = target.GetComponent<Form>();
 
         //muda material e deixa da mesma cor
-        render.material = highlightMat;
+        // render.material = highlightMat;
         colorManager.ChangeColor(form.cor, target);
     }
 
@@ -37,7 +37,6 @@ public class HighlightManager : MonoBehaviour
         Form form = target.GetComponent<Form>();
 
         //muda material e deixa da mesma cor
-        render.material = baseMaterial;
         colorManager.ChangeColor(form.cor, target);
     }
 }

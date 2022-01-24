@@ -6,8 +6,8 @@ public class ColorManager : MonoBehaviour
 {
     public GameManager gameManager;
 
-    private float darkeninFactor = 0.6f;
-    private float lighteningFactor = 1.6666f;
+    private float darkeninFactor = 0.8f;
+    private float lighteningFactor = 1.25f;
 
     void Start()
     {
@@ -50,6 +50,8 @@ public class ColorManager : MonoBehaviour
             target.GetComponent<Renderer>().material.color = Color.white;
         }
 
+        target.GetComponent<Renderer>().material.SetFloat("_Brightness", 0.8f);
+
         if (target.GetComponent<Form>().isSelected)
         {
             DarkerColor(target);
@@ -63,12 +65,15 @@ public class ColorManager : MonoBehaviour
     }
     public void DarkerColor(GameObject target)
     {
-        target.GetComponent<Renderer>().material.color = target.GetComponent<Renderer>().material.color * darkeninFactor;
+        //target.GetComponent<Renderer>().material.brightness = 0.7;
+        target.GetComponent<Renderer>().material.SetFloat("_Brightness",
+            target.GetComponent<Renderer>().material.GetFloat("_Brightness") * darkeninFactor);
     }
 
     public void LigtherColor(GameObject target)
     {
-        target.GetComponent<Renderer>().material.color = target.GetComponent<Renderer>().material.color * lighteningFactor;
+        target.GetComponent<Renderer>().material.SetFloat("_Brightness",
+            target.GetComponent<Renderer>().material.GetFloat("_Brightness") * lighteningFactor);
     }
 }
 
