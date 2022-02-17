@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public PrefabInstantiator prefabInstantiator;
     public ColorManager colorManager;
     public HighlightManager highlightManager;
+    public InteractionManager interactionManager;
     public GameObject selectedObject;
     public Form selectedObjectForm;
 
@@ -18,13 +19,16 @@ public class GameManager : MonoBehaviour
     public int number = 0;
     public int numberCube = 0;
     public int numberSphere = 0;
+    public bool hasSelectedObject = false;
 
     public int tipoInteracao;
+    public bool blockInteraction = false;
 
     private void Start()
     {
         colorManager = GetComponent<ColorManager>();
         highlightManager = GetComponent<HighlightManager>();
+        interactionManager = GetComponent<InteractionManager>();
     }
 
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
@@ -36,6 +40,9 @@ public class GameManager : MonoBehaviour
             selectedObject = newSelectedGameObject;
             selectedObjectForm = selectedObject.GetComponent<Form>();
             selectedObject.GetComponent<Form>().SetToSelected();
+
+            //muda tag
+            selectedObject.tag = "Selected";
 
             //colorManager.DarkerColor(selectedObject);
             highlightManager.HighlightObject(selectedObject);
@@ -56,13 +63,17 @@ public class GameManager : MonoBehaviour
                 sphereCollider = selectedObject.GetComponent<SphereCollider>();
                 sphereCollider.isTrigger = false;
             }
-            
+
+            hasSelectedObject = true;
             
 
             return;
         }
 
         //tem outras formas criadas
+
+        //muda tag da antiga
+        selectedObject.tag = "Selectable";
 
         //deseleciona forma antiga
         selectedObjectForm = selectedObject.GetComponent<Form>();
@@ -71,7 +82,6 @@ public class GameManager : MonoBehaviour
 
         //colorManager.ChangeColor(selectedObjectForm.cor, selectedObject);
         highlightManager.UnhighlightObject(selectedObject);
-
 
 
         //verifica o tipo
@@ -98,7 +108,10 @@ public class GameManager : MonoBehaviour
         selectedObject.AddComponent(typeof(Rigidbody));
         rigidbodiComponent = selectedObject.GetComponent<Rigidbody>();
         rigidbodiComponent.useGravity = false;
-        
+
+        //muda tag
+        selectedObject.tag = "Selected";
+
         //verifica se é cubo ou esfera
         if (selectedObjectForm.type == Type.Cube)
         {
@@ -110,5 +123,10 @@ public class GameManager : MonoBehaviour
             sphereCollider = selectedObject.GetComponent<SphereCollider>();
             sphereCollider.isTrigger = false;
         }
+    }
+
+    public void changeBlockInteraction()
+    {
+        blockInteraction = !blockInteraction;
     }
 }

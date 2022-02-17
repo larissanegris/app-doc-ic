@@ -8,18 +8,23 @@ public class PrefabInstantiator : MonoBehaviour
 
     public GameObject cubePrefab;
     public GameObject spherePrefab;
+    public GameObject interactionBlock;
     public GameObject imageTarget;
     private GameObject myModelObject;
 
     public Form forma;
+    public GameObject floor;
 
-    
+    private void Awake()
+    {
+        floor = GameObject.Find("Floor");
+    }
 
     public GameObject SpawnCube()
     {
         if (cubePrefab != null)
         {
-            myModelObject = Instantiate(cubePrefab, imageTarget.transform);
+            myModelObject = Instantiate(cubePrefab, floor.transform);
             myModelObject.transform.localScale = new Vector3(1f, 1f, 1f);
             myModelObject.transform.position = myModelObject.transform.position + new Vector3(0, 4, 0);
             myModelObject.SetActive(true);
@@ -32,9 +37,15 @@ public class PrefabInstantiator : MonoBehaviour
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
 
+            //Criar pai
+            GameObject newParent = Instantiate(interactionBlock, floor.transform);
+            newParent.transform.SetParent(floor.transform, true);
+            myModelObject.transform.SetParent(newParent.transform, true);
+            newParent.GetComponent<InteractionBlock>().AddInteraction(forma);
+            newParent.name = "InsteractionBlock" + forma.id;
+
             gameManager.number++;
             gameManager.numberCube++;
-
             gameManager.ChangeSelectedObject(myModelObject);
 
             return myModelObject;
@@ -61,9 +72,16 @@ public class PrefabInstantiator : MonoBehaviour
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
 
-            gameManager.ChangeSelectedObject(myModelObject);
+            //Criar pai
+            GameObject newParent = new GameObject("InteractionBlock" + gameManager.number);
+            newParent.transform.parent = floor.transform;
+            myModelObject.transform.parent = newParent.transform;
+            newParent.AddComponent<InteractionBlock>();
+
             gameManager.number++;
             gameManager.numberSphere++;
+            gameManager.ChangeSelectedObject(myModelObject);
+
 
             return myModelObject;
         }
