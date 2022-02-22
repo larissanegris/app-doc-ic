@@ -8,34 +8,45 @@ public class PrefabInstantiator : MonoBehaviour
 
     public GameObject cubePrefab;
     public GameObject spherePrefab;
+    public GameObject interactionBlock;
     public GameObject imageTarget;
     private GameObject myModelObject;
 
     public Form forma;
+    public GameObject floor;
 
-    
+    private void Awake()
+    {
+        floor = GameObject.Find("Floor");
+    }
 
     public GameObject SpawnCube()
     {
         if (cubePrefab != null)
         {
-            Debug.Log("Target found, adding content");
-            
-            myModelObject = Instantiate(cubePrefab, imageTarget.transform);
+            myModelObject = Instantiate(cubePrefab, floor.transform);
             myModelObject.transform.localScale = new Vector3(1f, 1f, 1f);
             myModelObject.transform.position = myModelObject.transform.position + new Vector3(0, 4, 0);
             myModelObject.SetActive(true);
             myModelObject.name = "Cube" + gameManager.numberCube;
 
+            Debug.Log("Criando " + myModelObject.name);
+
             forma = myModelObject.GetComponent<Form>();
-            forma.tipo = Type.Cube;
+            forma.type = Type.Cube;
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
 
-            gameManager.ChangeSelectedObject(myModelObject);
+            //Criar pai
+            GameObject newParent = Instantiate(interactionBlock, floor.transform);
+            newParent.transform.SetParent(floor.transform, true);
+            myModelObject.transform.SetParent(newParent.transform, true);
+            newParent.GetComponent<InteractionBlock>().AddInteraction(forma);
+            newParent.name = "InsteractionBlock" + forma.id;
 
             gameManager.number++;
             gameManager.numberCube++;
+            gameManager.ChangeSelectedObject(myModelObject);
 
             return myModelObject;
         }
@@ -46,7 +57,6 @@ public class PrefabInstantiator : MonoBehaviour
     {
         if (spherePrefab != null)
         {
-            Debug.Log("Target found, adding content");
 
             myModelObject = Instantiate(spherePrefab, imageTarget.transform);
             myModelObject.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -55,14 +65,23 @@ public class PrefabInstantiator : MonoBehaviour
             myModelObject.name = "Sphere" + gameManager.numberSphere;
             Debug.Log(myModelObject.transform.position);
 
+            Debug.Log("Criando " + myModelObject.name);
+
             forma = myModelObject.GetComponent<Form>();
-            forma.tipo = Type.Sphere;
+            forma.type = Type.Sphere;
             forma.id = gameManager.number;
             gameManager.createdForms.Add(forma);
 
-            gameManager.ChangeSelectedObject(myModelObject);
+            //Criar pai
+            GameObject newParent = new GameObject("InteractionBlock" + gameManager.number);
+            newParent.transform.parent = floor.transform;
+            myModelObject.transform.parent = newParent.transform;
+            newParent.AddComponent<InteractionBlock>();
+
             gameManager.number++;
             gameManager.numberSphere++;
+            gameManager.ChangeSelectedObject(myModelObject);
+
 
             return myModelObject;
         }

@@ -9,6 +9,7 @@ public class TextManager : MonoBehaviour
     // Start is called before the first frame update
     public Text textObjectMode;
     public Text selectedObject;
+    public Text interactionBlock;
     public GameManager gameManager;
 
     // Update is called once per frame
@@ -27,6 +28,8 @@ public class TextManager : MonoBehaviour
         {
             textObjectMode.text = "Modo: Tamanho";
         }
+
+
         if (gameManager.selectedObject != null)
         {
             selectedObject.text = "Objeto Selecionado: " + gameManager.selectedObject.name.ToString();
@@ -34,6 +37,15 @@ public class TextManager : MonoBehaviour
         else
         {
             selectedObject.text = "Objeto Selecionado: Nenhum";
+        }
+
+        if (gameManager.blockInteraction)
+        {
+            interactionBlock.text = "Bloco";
+        }
+        else
+        {
+            interactionBlock.text = "Individual";
         }
 
     }

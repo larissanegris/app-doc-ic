@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b6b92bdbea4ae70469554f3a3498ff5b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - floor: {instanceID: 0}
+  - block: {instanceID: 0}
+  - interactionBlockPrefab: {fileID: 1609678129853975907, guid: 6857c8f3e85db794eb81915e7f51740c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
