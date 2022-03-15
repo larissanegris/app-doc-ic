@@ -53,19 +53,19 @@ public class InputManager : MonoBehaviour
         }
 
         //Movimentacao
-        if (gameManager.selectedObject)
+        if (gameManager.GetSelectedObject())
         {
 
-            target = gameManager.selectedObject;
+            target = gameManager.GetSelectedObject();
             Form form = target.GetComponent<Form>();
 
-            if (form.isInBlock && gameManager.blockInteraction)
+            if (form.GetIsInBlock() && gameManager.blockInteraction)
             {
                 target = target.transform.parent.gameObject;
             }
 
 
-            if (Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftShift))
             {
                 if (tipoInteracao == 0)
                 {
@@ -84,7 +84,7 @@ public class InputManager : MonoBehaviour
                 }
 
             }
-            if (Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.LeftShift))
             {
                 if (tipoInteracao == 0)
                 {
@@ -102,7 +102,7 @@ public class InputManager : MonoBehaviour
                     target.GetComponent<ResizeObject>().ScaleDown();
                 }
             }
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.D))
             {
                 if (tipoInteracao == 0)
                 {
@@ -120,7 +120,7 @@ public class InputManager : MonoBehaviour
                     target.GetComponent<ResizeObject>().ScaleRight();
                 }
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.A))
             {
                 if (tipoInteracao == 0)
                 {
@@ -138,7 +138,7 @@ public class InputManager : MonoBehaviour
                     target.GetComponent<ResizeObject>().ScaleLeft();
                 }
             }
-            if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
             {
                 if (tipoInteracao == 0)
                 {
@@ -156,7 +156,7 @@ public class InputManager : MonoBehaviour
                     target.GetComponent<ResizeObject>().ScaleForward();
                 }
             }
-            if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.LeftShift))
             {
                 if (tipoInteracao == 0)
                 {
@@ -178,23 +178,23 @@ public class InputManager : MonoBehaviour
             if (!_blockInteraction)
             {
                 //Mudar Cor
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.H))
                 {
                     //Debug.Log("W: Mudando Cor Laranja");
                     colorManager.ChangeColor(Colors.Orange, target);
 
                 }
-                if (Input.GetKeyDown(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.J))
                 {
                     //Debug.Log("A: Mudando Cor Vermelho");
                     colorManager.ChangeColor(Colors.Red, target);
                 }
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.K))
                 {
                     //Debug.Log("S: Mudando Cor Rosa");
                     colorManager.ChangeColor(Colors.Pink, target);
                 }
-                if (Input.GetKeyDown(KeyCode.D))
+                if (Input.GetKeyDown(KeyCode.L))
                 {
                     //Debug.Log("D: Mudando Cor Amarelo");
                     colorManager.ChangeColor(Colors.Yellow, target);
@@ -208,6 +208,19 @@ public class InputManager : MonoBehaviour
         {
             gameManager.changeBlockInteraction();
         }
-        
+        if( Input.GetKeyDown(KeyCode.Space))
+        {
+            int aux = gameManager.GetTipoConecao();
+            if (aux == 3) gameManager.SetTipoConecao(0);
+            else gameManager.SetTipoConecao(++aux);
+        }
+        if ( Input.GetKeyDown( KeyCode.Z ) )
+        {
+            int aux = gameManager.GetTipoConecao();
+            if(aux == 2 )
+            {
+                //gameManager.FaceToFace();
+            }
+        }
     }
 }

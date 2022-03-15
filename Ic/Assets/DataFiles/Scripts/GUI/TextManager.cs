@@ -10,6 +10,7 @@ public class TextManager : MonoBehaviour
     public Text textObjectMode;
     public Text selectedObject;
     public Text interactionBlock;
+    public Text conectionType;
     public GameManager gameManager;
 
     // Update is called once per frame
@@ -30,9 +31,9 @@ public class TextManager : MonoBehaviour
         }
 
 
-        if (gameManager.selectedObject != null)
+        if (gameManager.GetSelectedObject() != null)
         {
-            selectedObject.text = "Objeto Selecionado: " + gameManager.selectedObject.name.ToString();
+            selectedObject.text = "Objeto Selecionado: " + gameManager.GetSelectedObject().name.ToString();
         }
         else
         {
@@ -46,6 +47,24 @@ public class TextManager : MonoBehaviour
         else
         {
             interactionBlock.text = "Individual";
+        }
+
+        conectionType.text = "Conecao: ";
+        if (gameManager.tipoConecao == 0)
+        {
+            conectionType.text = "Conecao: Nenhuma";
+        }
+        else if (gameManager.tipoConecao == 1)
+        {
+            conectionType.text = "Conecao: Colisao";
+        }
+        else if (gameManager.tipoConecao == 2)
+        {
+            conectionType.text = "Conecao: Face a Face";
+        }
+        else if (gameManager.tipoConecao == 3)
+        {
+            conectionType.text = "Conecao: Proximidade";
         }
 
     }

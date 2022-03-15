@@ -5,25 +5,31 @@ using UnityEngine;
 public class Form : MonoBehaviour
 {
     private GameManager gameManager;
-    public ColorManager colorManager;
-    public HighlightManager highlightManager;
+    private ColorManager colorManager;
+    private HighlightManager highlightManager;
 
-    public int id;
-    public Type type;
-    public Colors cor = Colors.White;
-    private Colors previousCor = Colors.White;
-    public bool isSelected = false;
-    public bool isInBlock = false;
+    [SerializeField] private int id;
+    [SerializeField] private Type type;
+    [SerializeField] private Colors cor = Colors.White;
+    [SerializeField] private Colors previousCor = Colors.White;
+    [SerializeField] private bool isSelected = false;
+    [SerializeField] private bool isInBlock = false;
 
 
-    public List<Form> interactions = new List<Form>();
+    [SerializeField] private List<Form> interactions = new List<Form>();
+    [SerializeField] private List<float> distances = new List<float>();
 
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         colorManager = gameManager.colorManager;
         highlightManager = gameManager.highlightManager;
-        //Debug.Log(gameObject);
+    }
+
+    public void CreateForm(int id, Type type)
+    {
+        this.id = id;
+        this.type = type;
     }
 
     public void saveColor()
@@ -45,16 +51,18 @@ public class Form : MonoBehaviour
         isSelected = false;
     }
 
-    public void AddInteraction(GameObject interaction)
+    public void AddInteraction(Form interaction)
     {
-        foreach(Form form in interaction.transform.parent.GetComponent<InteractionBlock>().interactionList)
+        foreach(GameObject gm in interaction.transform.parent.GetComponent<InteractionBlock>().interactionList)
         {
+            Form form = gm.GetComponent<Form>();
             if (!this.interactions.Contains(form) && form != this)
             {
                 interactions.Add(form);
                 if (!form.interactions.Contains(this) && form.gameObject != interaction)
                 {
                     form.interactions.Add(this);
+                    form.SetIsInBlock(true);
                 }
                 
                 //form.AddSingleInteraction(this);
@@ -91,12 +99,48 @@ public class Form : MonoBehaviour
         {
             interactions.Remove(interation);
         }
-        Debug.Log("Capacidade: " + interactions.Count);
         if (interactions.Count <= 0)
         {
             colorManager.DarkerColor(this.gameObject);
         }
     }
 
-    
+    public bool GetIsInBlock()
+    {
+        return isInBlock;
+    }
+
+    public void SetIsInBlock(bool isInBlock)
+    {
+        this.isInBlock = isInBlock;
+    }
+
+    public int GetId()
+    {
+        return id;
+    }
+
+    public bool InteractionsContains(Form form)
+    {
+        return interactions.Contains(form);
+    }
+
+    public List<Form> GetInteractions()
+    {
+        return interactions;
+    }
+
+    public bool GetIsSelected()
+    {
+        return isSelected;
+    }
+
+    public Colors GetCor()
+    {
+        return cor;
+    }
+    public Type GetFormType()
+    {
+        return type;
+    }
 }

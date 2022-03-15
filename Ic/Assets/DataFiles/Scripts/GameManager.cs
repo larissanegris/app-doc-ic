@@ -7,28 +7,25 @@ public class GameManager : MonoBehaviour
     public PrefabInstantiator prefabInstantiator;
     public ColorManager colorManager;
     public HighlightManager highlightManager;
-    public InteractionManager interactionManager;
-    public GameObject selectedObject;
-    public Form selectedObjectForm;
 
-    public Rigidbody rigidbodiComponent;
-    public BoxCollider boxCollider;
-    public SphereCollider sphereCollider;
+    [SerializeField] private GameObject selectedObject;
+    [SerializeField] private Form selectedObjectForm;
+
     public List<Form> createdForms = new List<Form>();
 
-    public int number = 0;
-    public int numberCube = 0;
-    public int numberSphere = 0;
-    public bool hasSelectedObject = false;
+    [SerializeField] private int number = 0;
+    [SerializeField] private int numberCube = 0;
+    [SerializeField] private int numberSphere = 0;
+    //[SerializeField] private bool hasSelectedObject = false;
 
-    public int tipoInteracao;
+    public int tipoInteracao = 0;
     public bool blockInteraction = false;
+    public int tipoConecao = 0;
 
     private void Start()
     {
         colorManager = GetComponent<ColorManager>();
         highlightManager = GetComponent<HighlightManager>();
-        interactionManager = GetComponent<InteractionManager>();
     }
 
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
@@ -47,26 +44,8 @@ public class GameManager : MonoBehaviour
             //colorManager.DarkerColor(selectedObject);
             highlightManager.HighlightObject(selectedObject);
 
-            //adiciona rigidbody
-            selectedObject.AddComponent(typeof(Rigidbody));
-            rigidbodiComponent = selectedObject.GetComponent<Rigidbody>();
-            rigidbodiComponent.useGravity = false;
+            //hasSelectedObject = true;
             
-            //verifica se é cubo ou esfera
-            if(selectedObjectForm.type == Type.Cube)
-            {
-                boxCollider = selectedObject.GetComponent<BoxCollider>();
-                boxCollider.isTrigger = false;
-            }
-            else if(selectedObjectForm.type == Type.Sphere)
-            {
-                sphereCollider = selectedObject.GetComponent<SphereCollider>();
-                sphereCollider.isTrigger = false;
-            }
-
-            hasSelectedObject = true;
-            
-
             return;
         }
 
@@ -78,23 +57,10 @@ public class GameManager : MonoBehaviour
         //deseleciona forma antiga
         selectedObjectForm = selectedObject.GetComponent<Form>();
         selectedObjectForm.SetToUnselected();
-        Destroy(selectedObject.GetComponent<Rigidbody>());
 
         //colorManager.ChangeColor(selectedObjectForm.cor, selectedObject);
         highlightManager.UnhighlightObject(selectedObject);
 
-
-        //verifica o tipo
-        if (selectedObjectForm.type == Type.Cube)
-        {
-            boxCollider = selectedObject.GetComponent<BoxCollider>();
-            boxCollider.isTrigger = true;
-        }
-        else if (selectedObjectForm.type == Type.Sphere)
-        {
-            sphereCollider = selectedObject.GetComponent<SphereCollider>();
-            sphereCollider.isTrigger = true;
-        }
 
         //seleciona forma nova
         selectedObject = newSelectedGameObject;
@@ -105,28 +71,90 @@ public class GameManager : MonoBehaviour
         //colorManager.DarkerColor(selectedObject);
         highlightManager.HighlightObject(selectedObject);
 
-        selectedObject.AddComponent(typeof(Rigidbody));
-        rigidbodiComponent = selectedObject.GetComponent<Rigidbody>();
-        rigidbodiComponent.useGravity = false;
-
         //muda tag
         selectedObject.tag = "Selected";
-
-        //verifica se é cubo ou esfera
-        if (selectedObjectForm.type == Type.Cube)
-        {
-            boxCollider = selectedObject.GetComponent<BoxCollider>();
-            boxCollider.isTrigger = false;
-        }
-        else if (selectedObjectForm.type == Type.Sphere)
-        {
-            sphereCollider = selectedObject.GetComponent<SphereCollider>();
-            sphereCollider.isTrigger = false;
-        }
+        Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
     }
 
     public void changeBlockInteraction()
     {
         blockInteraction = !blockInteraction;
     }
+
+    public int GetNumber()
+    {
+        return number;
+    }
+    public void IncreaseNumber()
+    {
+        number++;
+    }
+    public void DecreaseNumber()
+    {
+        number--;
+    }
+
+    public int GetNumberCube()
+    {
+        return numberCube;
+    }
+    public void IncreaseNumberCube()
+    {
+        numberCube++;
+    }
+    public void DecreaseNumberCube()
+    {
+        numberCube--;
+    }
+
+    public int GetNumberSphere()
+    {
+        return numberSphere;
+    }
+    public void IncreaseNumberSphere()
+    {
+        numberSphere++;
+    }
+    public void DecreaseNumberSphere()
+    {
+        numberSphere--;
+    }
+    public GameObject GetSelectedObject()
+    {
+        return selectedObject;
+    }
+
+    public int GetTipoConecao()
+    {
+        return tipoConecao;
+    }
+    public void SetTipoConecao( int value )
+    {
+        tipoConecao = value;
+    }
+
+    public void RestrainPoint( Vector3 point )
+    {
+        selectedObject.GetComponent<MoveObject>().SetRestraintPoint( point );
+    }
+    public void RestrainMaxDistance( Vector3 dis )
+    {
+        selectedObject.GetComponent<MoveObject>().SetMaxDistance( dis );
+    }
+
+    public void RestrainMinDistance( Vector3 dis )
+    {
+        selectedObject.GetComponent<MoveObject>().SetMinDistance( dis );
+    }
+
+    /*
+    public void FaceToFace()
+    {
+        MoveObject mv = mover.GetComponent<MoveObject>();
+        Vector3 pointOnFace = mv.clo
+        if ( mv != null )
+        {
+            mv.MoveToPosition(pointOnFace + dst);
+        }
+    }*/
 }
