@@ -17,197 +17,219 @@ public class InputManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {      
-        
+    {
+
         tipoInteracao = gameManager.tipoInteracao;
         _blockInteraction = gameManager.blockInteraction;
-        //Criar cubo
-        if (Input.GetKeyDown(KeyCode.Q))
+        //Criar cubo opaco
+        if ( Input.GetKeyDown( KeyCode.Q ) && !Input.GetKey( KeyCode.LeftShift ) )
         {
-            //Debug.Log("Espaço: Criando Instancia de Cubo");
-            gameManager.prefabInstantiator.SpawnCube();
+            gameManager.prefabInstantiator.SpawnCube( false );
         }
-        //criar esfera
-        if (Input.GetKeyDown(KeyCode.E))
+        //cria cubo transparente
+        if ( Input.GetKeyDown( KeyCode.Q ) && Input.GetKey( KeyCode.LeftShift ) )
         {
-            //Debug.Log("Espaço: Criando Instancia de Esfera");
-            gameManager.prefabInstantiator.SpawnSphere();
+            gameManager.prefabInstantiator.SpawnCube( true );
         }
+        //criar esfera opaca
+        if ( Input.GetKeyDown( KeyCode.E ) && !Input.GetKey( KeyCode.LeftShift ))
+        {
+            gameManager.prefabInstantiator.SpawnSphere( false );
+        }
+        //cria esfera transparente
+        if ( Input.GetKeyDown( KeyCode.E ) && Input.GetKey( KeyCode.LeftShift ) )
+        {
+            gameManager.prefabInstantiator.SpawnSphere( true );
+        }
+
 
 
         //teclas para selecionar os objetos
         //Mover
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if ( Input.GetKeyDown( KeyCode.Alpha0 ) )
         {
             gameManager.tipoInteracao = 0;
         }
         //Rotacionar
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if ( Input.GetKeyDown( KeyCode.Alpha1 ) )
         {
             gameManager.tipoInteracao = 1;
         }
         //escalar
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if ( Input.GetKeyDown( KeyCode.Alpha2 ) )
         {
             gameManager.tipoInteracao = 2;
         }
 
         //Movimentacao
-        if (gameManager.selectedObject)
+        if ( gameManager.GetSelectedObject() )
         {
 
-            target = gameManager.selectedObject;
+            target = gameManager.GetSelectedObject();
             Form form = target.GetComponent<Form>();
 
-            if (form.isInBlock && gameManager.blockInteraction)
+            if ( form.GetIsInBlock() && gameManager.blockInteraction )
             {
                 target = target.transform.parent.gameObject;
             }
 
 
-            if (Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftShift))
+            if ( Input.GetKey( KeyCode.W ) && !Input.GetKey( KeyCode.LeftShift ) )
             {
-                if (tipoInteracao == 0)
+                if ( tipoInteracao == 0 )
                 {
                     //Debug.Log("Move UP");
                     target.GetComponent<MoveObject>().MoveUp();
                 }
-                else if (tipoInteracao == 1)
+                else if ( tipoInteracao == 1 )
                 {
                     //Debug.Log("Rotate UP");
                     target.GetComponent<RotateObject>().RotateUp();
                 }
-                else if (tipoInteracao == 2)
+                else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale UP");
                     target.GetComponent<ResizeObject>().ScaleUp();
                 }
 
             }
-            if (Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftShift))
+            if ( Input.GetKey( KeyCode.S ) && !Input.GetKey( KeyCode.LeftShift ) )
             {
-                if (tipoInteracao == 0)
+                if ( tipoInteracao == 0 )
                 {
                     //Debug.Log("Move Down");
                     target.GetComponent<MoveObject>().MoveDown();
                 }
-                else if (tipoInteracao == 1)
+                else if ( tipoInteracao == 1 )
                 {
                     //Debug.Log("Rotate Down");
                     target.GetComponent<RotateObject>().RotateDown();
                 }
-                else if (tipoInteracao == 2)
+                else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale Down");
                     target.GetComponent<ResizeObject>().ScaleDown();
                 }
             }
-            if (Input.GetKey(KeyCode.RightArrow))
+            if ( Input.GetKey( KeyCode.D ) )
             {
-                if (tipoInteracao == 0)
+                if ( tipoInteracao == 0 )
                 {
                     //Debug.Log("Move Right");
                     target.GetComponent<MoveObject>().MoveRight();
                 }
-                else if (tipoInteracao == 1)
+                else if ( tipoInteracao == 1 )
                 {
                     //Debug.Log("Rotate Right");
                     target.GetComponent<RotateObject>().RotateRight();
                 }
-                else if (tipoInteracao == 2)
+                else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale Right");
                     target.GetComponent<ResizeObject>().ScaleRight();
                 }
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if ( Input.GetKey( KeyCode.A ) )
             {
-                if (tipoInteracao == 0)
+                if ( tipoInteracao == 0 )
                 {
                     //Debug.Log("Move Left");
                     target.GetComponent<MoveObject>().MoveLeft();
                 }
-                else if (tipoInteracao == 1)
+                else if ( tipoInteracao == 1 )
                 {
                     //Debug.Log("Rotate Left");
                     target.GetComponent<RotateObject>().RotateLeft();
                 }
-                else if (tipoInteracao == 2)
+                else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale Left");
                     target.GetComponent<ResizeObject>().ScaleLeft();
                 }
             }
-            if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftShift))
+            if ( Input.GetKey( KeyCode.W ) && Input.GetKey( KeyCode.LeftShift ) )
             {
-                if (tipoInteracao == 0)
+                if ( tipoInteracao == 0 )
                 {
                     //Debug.Log("Move Forward");
                     target.GetComponent<MoveObject>().MoveForward();
                 }
-                else if (tipoInteracao == 1)
+                else if ( tipoInteracao == 1 )
                 {
                     //Debug.Log("Rotate Forward");
                     target.GetComponent<RotateObject>().RotateForward();
                 }
-                else if (tipoInteracao == 2)
+                else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale Forward");
                     target.GetComponent<ResizeObject>().ScaleForward();
                 }
             }
-            if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftShift))
+            if ( Input.GetKey( KeyCode.S ) && Input.GetKey( KeyCode.LeftShift ) )
             {
-                if (tipoInteracao == 0)
+                if ( tipoInteracao == 0 )
                 {
                     //Debug.Log("Move Backward");
                     target.GetComponent<MoveObject>().MoveBackward();
                 }
-                else if (tipoInteracao == 1)
+                else if ( tipoInteracao == 1 )
                 {
                     //Debug.Log("Rotate Backward");
                     target.GetComponent<RotateObject>().RotateBackward();
                 }
-                else if (tipoInteracao == 2)
+                else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale Backward");
                     target.GetComponent<ResizeObject>().ScaleBackward();
                 }
             }
 
-            if (!_blockInteraction)
+            if ( !_blockInteraction )
             {
                 //Mudar Cor
-                if (Input.GetKeyDown(KeyCode.W))
+                if ( Input.GetKeyDown( KeyCode.H ) )
                 {
                     //Debug.Log("W: Mudando Cor Laranja");
-                    colorManager.ChangeColor(Colors.Orange, target);
+                    colorManager.ChangeColor( Colors.Orange, target );
 
                 }
-                if (Input.GetKeyDown(KeyCode.A))
+                if ( Input.GetKeyDown( KeyCode.J ) )
                 {
                     //Debug.Log("A: Mudando Cor Vermelho");
-                    colorManager.ChangeColor(Colors.Red, target);
+                    colorManager.ChangeColor( Colors.Red, target );
                 }
-                if (Input.GetKeyDown(KeyCode.S))
+                if ( Input.GetKeyDown( KeyCode.K ) )
                 {
                     //Debug.Log("S: Mudando Cor Rosa");
-                    colorManager.ChangeColor(Colors.Pink, target);
+                    colorManager.ChangeColor( Colors.Pink, target );
                 }
-                if (Input.GetKeyDown(KeyCode.D))
+                if ( Input.GetKeyDown( KeyCode.L ) )
                 {
                     //Debug.Log("D: Mudando Cor Amarelo");
-                    colorManager.ChangeColor(Colors.Yellow, target);
+                    colorManager.ChangeColor( Colors.Yellow, target );
                 }
             }
 
-            
+
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if ( Input.GetKeyDown( KeyCode.R ) )
         {
             gameManager.changeBlockInteraction();
         }
-        
+        if ( Input.GetKeyDown( KeyCode.Space ) )
+        {
+            int aux = gameManager.GetTipoConecao();
+            if ( aux == 3 ) gameManager.SetTipoConecao( 0 );
+            else gameManager.SetTipoConecao( ++aux );
+        }
+        if ( Input.GetKeyDown( KeyCode.Z ) )
+        {
+            int aux = gameManager.GetTipoConecao();
+            if ( aux == 2 )
+            {
+                //gameManager.FaceToFace();
+            }
+        }
     }
 }

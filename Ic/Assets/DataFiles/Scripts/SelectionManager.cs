@@ -32,7 +32,7 @@ public class SelectionManager : MonoBehaviour
             if (selection.CompareTag(selectableTag))
             {
                 
-                if(selection.gameObject != gameManager.selectedObject)
+                if(selection.gameObject != gameManager.GetSelectedObject())
                 {
                     gameManager.ChangeSelectedObject(selection.gameObject);
                 }

@@ -52,7 +52,7 @@ public class ColorManager : MonoBehaviour
 
         target.GetComponent<Renderer>().material.SetFloat("_Brightness", 0.8f);
 
-        if (target.GetComponent<Form>().isSelected)
+        if (target.GetComponent<Form>().GetIsSelected())
         {
             DarkerColor(target);
         }

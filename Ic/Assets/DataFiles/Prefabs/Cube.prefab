@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c5f6e22a6e3d659448af265afdf89e2c, type: 2}
+  - {fileID: 2100000, guid: 71b099a1fe1abd0448d5fc0903f27cd5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,13 +112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a95d4ee33c7df4ebfcd326d645edf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorManager: {fileID: 0}
-  highlightManager: {fileID: 0}
   id: 0
   type: 0
   cor: 5
+  previousCor: 5
   isSelected: 0
+  isInBlock: 0
   interactions: []
+  distances: []
 --- !u!114 &3242064708437430030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100b67869b7f0684292895c74489d7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementSpeed: 10
+  restrainPoint: {x: 0, y: 0, z: 0}
+  distance: 0
 --- !u!114 &9093416043701014816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,4 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc322cbd3a94ba84884a9225d1f396f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  form: {fileID: 0}
+  halfBox: {x: 0, y: 0, z: 0}
+  radius: 0
+  closestObject: {fileID: 0}
+  distToClosest: 0
+  a: {x: 0, y: 0, z: 0}
+  distance: {x: 0, y: 0, z: 0}
+  n: {x: 0, y: 0, z: 0}
