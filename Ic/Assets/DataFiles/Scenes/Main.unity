@@ -791,6 +791,8 @@ MonoBehaviour:
   spherePrefab: {fileID: 3157072259384202465, guid: 3897f2507da739049a9d6ae7d801504a, type: 3}
   interactionBlock: {fileID: 1609678129853975907, guid: 6857c8f3e85db794eb81915e7f51740c, type: 3}
   imageTarget: {fileID: 1695194466}
+  unlit: {fileID: 2100000, guid: 92ab7ef1d11e7ee4cb0e2caa56d1e339, type: 2}
+  transparent: {fileID: 2100000, guid: 61fe6bf2fd82ce446a88095fc97f11f1, type: 2}
   forma: {fileID: 0}
   floor: {fileID: 1695194466}
 --- !u!4 &1269835861

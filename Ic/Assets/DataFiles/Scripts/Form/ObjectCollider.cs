@@ -48,7 +48,10 @@ public class ObjectCollider : MonoBehaviour
                 Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
 
                 GameObject closestObject = nearbyObjects();
-                MakeInteraction(closestObject);
+                if( closestObject != null )
+                {
+                    MakeInteraction( closestObject );
+                }
             }
             
         }

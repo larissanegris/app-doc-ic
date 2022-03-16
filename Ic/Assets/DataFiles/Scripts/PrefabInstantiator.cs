@@ -10,7 +10,11 @@ public class PrefabInstantiator : MonoBehaviour
     public GameObject spherePrefab;
     public GameObject interactionBlock;
     public GameObject imageTarget;
-    private GameObject myModelObject;
+
+    [SerializeField]
+    private Material transparentCube;
+    [SerializeField]
+    private Material transparentSphere;
 
     public Form forma;
     public GameObject floor;
@@ -20,17 +24,15 @@ public class PrefabInstantiator : MonoBehaviour
         floor = GameObject.Find("Floor");
     }
 
-    public GameObject SpawnCube()
+    public GameObject SpawnCube(bool isTransparent)
     {
         if (cubePrefab != null)
         {
-            
-
             //Criar pai
             GameObject newParent = Instantiate(interactionBlock, floor.transform);
             newParent.transform.SetParent(floor.transform, true);
-            
-            myModelObject = Instantiate(cubePrefab, newParent.transform);
+
+            GameObject myModelObject = Instantiate(cubePrefab, newParent.transform);
             myModelObject.transform.localScale = new Vector3(1f, 1f, 1f);
             myModelObject.transform.position = myModelObject.transform.position + new Vector3(0, 4, 0);
             myModelObject.SetActive(true);
@@ -52,17 +54,21 @@ public class PrefabInstantiator : MonoBehaviour
             gameManager.IncreaseNumberCube();
             gameManager.ChangeSelectedObject(myModelObject);
 
+            if ( isTransparent )
+            {
+                myModelObject.GetComponent<MeshRenderer>().material = transparentCube;
+            }
+
             return myModelObject;
         }
         return null;
     }
 
-    public GameObject SpawnSphere()
+    public GameObject SpawnSphere(bool isTransparent)
     {
         if (spherePrefab != null)
         {
-
-            myModelObject = Instantiate(spherePrefab, imageTarget.transform);
+            GameObject myModelObject = Instantiate(spherePrefab, imageTarget.transform);
             myModelObject.transform.localScale = new Vector3(1f, 1f, 1f);
             myModelObject.transform.position = myModelObject.transform.position + new Vector3(0, 4, 0);
             myModelObject.SetActive(true);
@@ -85,7 +91,10 @@ public class PrefabInstantiator : MonoBehaviour
             myModelObject.transform.parent = newParent.transform;
             newParent.AddComponent<InteractionBlock>();
 
-            
+            if ( isTransparent )
+            {
+                myModelObject.GetComponent<MeshRenderer>().material = transparentSphere;
+            }
 
 
             return myModelObject;
