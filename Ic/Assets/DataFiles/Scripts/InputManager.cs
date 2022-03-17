@@ -74,7 +74,7 @@ public class InputManager : MonoBehaviour
             }
 
 
-            if ( Input.GetKey( KeyCode.W ) && !Input.GetKey( KeyCode.LeftShift ) )
+            if ( (Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
             {
                 if ( tipoInteracao == 0 )
                 {
@@ -93,7 +93,7 @@ public class InputManager : MonoBehaviour
                 }
 
             }
-            if ( Input.GetKey( KeyCode.S ) && !Input.GetKey( KeyCode.LeftShift ) )
+            if ( (Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
             {
                 if ( tipoInteracao == 0 )
                 {
@@ -111,7 +111,7 @@ public class InputManager : MonoBehaviour
                     target.GetComponent<ResizeObject>().ScaleDown();
                 }
             }
-            if ( Input.GetKey( KeyCode.D ) )
+            if ( Input.GetKey( KeyCode.D ) || Input.GetKey( KeyCode.RightArrow ) )
             {
                 if ( tipoInteracao == 0 )
                 {
@@ -129,7 +129,7 @@ public class InputManager : MonoBehaviour
                     target.GetComponent<ResizeObject>().ScaleRight();
                 }
             }
-            if ( Input.GetKey( KeyCode.A ) )
+            if ( Input.GetKey( KeyCode.A ) || Input.GetKey( KeyCode.LeftArrow ) )
             {
                 if ( tipoInteracao == 0 )
                 {
@@ -147,7 +147,7 @@ public class InputManager : MonoBehaviour
                     target.GetComponent<ResizeObject>().ScaleLeft();
                 }
             }
-            if ( Input.GetKey( KeyCode.W ) && Input.GetKey( KeyCode.LeftShift ) )
+            if ( (Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
             {
                 if ( tipoInteracao == 0 )
                 {
@@ -165,7 +165,7 @@ public class InputManager : MonoBehaviour
                     target.GetComponent<ResizeObject>().ScaleForward();
                 }
             }
-            if ( Input.GetKey( KeyCode.S ) && Input.GetKey( KeyCode.LeftShift ) )
+            if ( (Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
             {
                 if ( tipoInteracao == 0 )
                 {
