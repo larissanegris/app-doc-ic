@@ -16,6 +16,7 @@ public class ObjectCollider : MonoBehaviour
     [SerializeField] [Range (0, 20)] private float radius;
     [SerializeField] private GameObject closestObject;
     [SerializeField] private float distToClosest;
+    [SerializeField] [Range(0, 2)] private float dist;
     private Vector3 closestPoint;
     private Vector3 colliderCenter;
     private DrawPlane plane;
@@ -111,8 +112,8 @@ public class ObjectCollider : MonoBehaviour
                 gameManager.RestrainMaxDistance( Vector3.one * 3 );
                 */
                 gameManager.RestrainPoint( colliderCenter );
-                gameManager.RestrainMaxDistance( closestObject.transform.lossyScale / 2 + halfBox + (Vector3.one * .1f) );
-                gameManager.RestrainMinDistance( closestObject.transform.lossyScale / 2 + halfBox - (Vector3.one * .1f) );
+                gameManager.RestrainMaxDistance( closestObject.transform.lossyScale / 2 + halfBox + (Vector3.one * dist) );
+                gameManager.RestrainMinDistance( closestObject.transform.lossyScale / 2 + halfBox - (Vector3.one * dist) );
 
 
                 //Debug.DrawLine( center, closestPoint, Color.magenta, 1 );
