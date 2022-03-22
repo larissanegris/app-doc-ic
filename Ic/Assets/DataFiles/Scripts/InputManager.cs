@@ -24,22 +24,22 @@ public class InputManager : MonoBehaviour
         //Criar cubo opaco
         if ( Input.GetKeyDown( KeyCode.Q ) && !Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.SpawnCube( false );
+            gameManager.prefabInstantiator.Spawn( Type.Cube, false );
         }
         //cria cubo transparente
         if ( Input.GetKeyDown( KeyCode.Q ) && Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.SpawnCube( true );
+            gameManager.prefabInstantiator.Spawn( Type.Cube, true );
         }
         //criar esfera opaca
         if ( Input.GetKeyDown( KeyCode.E ) && !Input.GetKey( KeyCode.LeftShift ))
         {
-            gameManager.prefabInstantiator.SpawnSphere( false );
+            gameManager.prefabInstantiator.Spawn( Type.Sphere, false );
         }
         //cria esfera transparente
         if ( Input.GetKeyDown( KeyCode.E ) && Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.SpawnSphere( true );
+            gameManager.prefabInstantiator.Spawn( Type.Sphere, true );
         }
 
 

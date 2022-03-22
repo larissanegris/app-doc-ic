@@ -12,9 +12,12 @@ public class MoveObject : MonoBehaviour
     private Vector3 minDistance; //Distancia que nao pode ficar mais perto
     [SerializeField] private float distance;
 
+    private Form form;
+
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        form = GetComponent<Form>();
     }
 
     private void Update()
@@ -29,57 +32,77 @@ public class MoveObject : MonoBehaviour
     public void Move(Vector3 dir)
     {
         Vector3 nextPos = CalculatePosition( dir );
-        if (restrainType == 0)
+        if ( restrainType == 0 )
         {
-            MoveToPosition(nextPos);
+            MoveToPosition( nextPos );
         }
-        else if(restrainType == 1)
+        else if ( form.GetFormType() == Type.Cube )
         {
-            //Verifica so se nao esta fora do limite
-            if( Mathf.Abs( (restrainPoint.x - nextPos.x)  ) < maxDistance.x )
+            if ( restrainType == 1 )
             {
-                if ( Mathf.Abs((restrainPoint.y - nextPos.y)) < maxDistance.y )
+                //Verifica so se nao esta fora do limite
+                if ( Mathf.Abs( ( restrainPoint.x - nextPos.x ) ) < maxDistance.x )
                 {
-                    if (Mathf.Abs((restrainPoint.z - nextPos.z)) < maxDistance.z)
+                    if ( Mathf.Abs( ( restrainPoint.y - nextPos.y ) ) < maxDistance.y )
                     {
-                        MoveToPosition(nextPos);
+                        if ( Mathf.Abs( ( restrainPoint.z - nextPos.z ) ) < maxDistance.z )
+                        {
+                            MoveToPosition( nextPos );
+                        }
+                    }
+                }
+            }
+            else if ( restrainType == 2 )
+            {
+                /*
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+                {
+
+                    if ( (nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x)
+                        || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
+                        || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
+                    {
+                        MoveToPosition( nextPos );
+                    }
+                }*/
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+                {
+                    //Verifica se esta dentro dos dois limites
+                    if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x )
+                        || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
+                        || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
+                    {
+                        MoveToPosition( nextPos );
+                    }
+                }
+            }
+            else if ( restrainType == 3 )
+            {
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+                {
+                    if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x )
+                        || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
+                        || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
+                    {
+                        MoveToPosition( nextPos );
                     }
                 }
             }
         }
-        else if (restrainType == 2)
+        else if ( form.GetFormType() == Type.Sphere )
         {
-            /*
-            if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+            if ( restrainType == 1 )
             {
-
-                if ( (nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x)
-                    || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
-                    || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
+                //Verifica so se nao esta fora do limite
+                if ( Mathf.Abs( ( restrainPoint.x - nextPos.x ) ) < (maxDistance.x) /maxDistance.normalized.x )
                 {
-                    MoveToPosition( nextPos );
-                }
-            }*/
-            if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
-            {
-                //Verifica se esta dentro dos dois limites
-                if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x )
-                    || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
-                    || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
-                {
-                    MoveToPosition( nextPos );
-                }
-            }
-        }
-        else if (restrainType == 3)
-        {
-            if (Vector3.Distance(restrainPoint, nextPos) <= maxDistance.magnitude)
-            {
-                if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x ) 
-                    || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
-                    || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
-                {
-                    MoveToPosition( nextPos );
+                    if ( Mathf.Abs( ( restrainPoint.y - nextPos.y ) ) < maxDistance.y )
+                    {
+                        if ( Mathf.Abs( ( restrainPoint.z - nextPos.z ) ) < maxDistance.z )
+                        {
+                            MoveToPosition( nextPos );
+                        }
+                    }
                 }
             }
         }

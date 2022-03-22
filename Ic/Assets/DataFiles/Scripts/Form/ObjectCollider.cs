@@ -41,16 +41,23 @@ public class ObjectCollider : MonoBehaviour
     {
         if(tag == "Selected")
         {
-            if(form.GetFormType() == Type.Cube )
-            {
-                tipoConecao = gameManager.GetTipoConecao();
-                center = transform.position;
-                Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
+            tipoConecao = gameManager.GetTipoConecao();
+            center = transform.position;
+            Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
 
-                GameObject closestObject = nearbyObjects();
+            GameObject closestObject = ClosestObject();
+            if (form.GetFormType() == Type.Cube )
+            {
                 if( closestObject != null )
                 {
-                    MakeInteraction( closestObject );
+                    MakeInteractionCube( closestObject );
+                }
+            }
+            else if ( form.GetFormType() == Type.Sphere ) { }
+            {
+                if ( closestObject != null )
+                {
+                    MakeInteractionSphere( closestObject );
                 }
             }
             
@@ -58,7 +65,7 @@ public class ObjectCollider : MonoBehaviour
     }
     
 
-    private GameObject nearbyObjects()
+    private GameObject ClosestObject()
     {
         
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
@@ -83,7 +90,7 @@ public class ObjectCollider : MonoBehaviour
         return closestObject;
     }
 
-    private void MakeInteraction(GameObject closestObject )
+    private void MakeInteractionCube(GameObject closestObject )
     {
         Vector3 colliderCenter = closestObject.transform.position;
         if ( closestObject != null )
@@ -126,6 +133,27 @@ public class ObjectCollider : MonoBehaviour
                 gameManager.RestrainMaxDistance( halfBox * 2 + Vector3.one * 6 );
             }
 
+        }
+    }
+
+    private void MakeInteractionSphere( GameObject closestObject )
+    {
+        Vector3 colliderCenter = closestObject.transform.position;
+        if ( closestObject != null )
+        {
+            halfBox = transform.lossyScale * 0.5f;
+            //Sem conecao
+            if ( tipoConecao == 0 )
+            {
+                gameManager.RestrainPoint( colliderCenter );
+            }
+            //Colisao
+            if ( tipoConecao == 1 )
+            {
+                Debug.DrawLine( colliderCenter, colliderCenter + ( closestObject.transform.lossyScale / 2 + halfBox ), Color.red, 1 );
+                gameManager.RestrainPoint( colliderCenter );
+                gameManager.RestrainMaxDistance( closestObject.transform.lossyScale / 2 + halfBox );
+            }
         }
     }
 
