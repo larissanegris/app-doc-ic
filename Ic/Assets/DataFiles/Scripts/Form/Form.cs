@@ -9,7 +9,7 @@ public class Form : MonoBehaviour
     private HighlightManager highlightManager;
 
     [SerializeField] private int id;
-    [SerializeField] private Type type;
+    [SerializeField] private FormType type;
     [SerializeField] private Colors cor = Colors.White;
     [SerializeField] private Colors previousCor = Colors.White;
     [SerializeField] private bool isSelected = false;
@@ -26,7 +26,7 @@ public class Form : MonoBehaviour
         highlightManager = gameManager.highlightManager;
     }
 
-    public void CreateForm(int id, Type type)
+    public void CreateForm(int id, FormType type)
     {
         this.id = id;
         this.type = type;
@@ -139,7 +139,7 @@ public class Form : MonoBehaviour
     {
         return cor;
     }
-    public Type GetFormType()
+    public FormType GetFormType()
     {
         return type;
     }
