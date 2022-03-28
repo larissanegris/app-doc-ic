@@ -4,4 +4,4 @@ using UnityEngine;
 
 public enum Colors { Orange, Pink, Yellow, Red, Grey, White };
 
-public enum Type { Cube, Sphere };
+public enum FormType { Cube, Sphere };
