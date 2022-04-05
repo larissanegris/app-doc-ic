@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1cb504603b1134f489428051d54b17f2, type: 2}
+  - {fileID: 2100000, guid: 7cb967da2fbded74dba33f599286040e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -148,6 +148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 10
   restrainPoint: {x: 0, y: 0, z: 0}
+  scale: {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 0, z: 0}
+  closestPoint: {x: 0, y: 0, z: 0}
   distance: 0
 --- !u!114 &-245878665370236038
 MonoBehaviour:

@@ -190,23 +190,23 @@ public class InputManager : MonoBehaviour
                 if ( Input.GetKeyDown( KeyCode.H ) )
                 {
                     //Debug.Log("W: Mudando Cor Laranja");
-                    colorManager.ChangeColor( Colors.Orange, target );
+                    colorManager.ChangeColor( 0, target );
 
                 }
                 if ( Input.GetKeyDown( KeyCode.J ) )
                 {
                     //Debug.Log("A: Mudando Cor Vermelho");
-                    colorManager.ChangeColor( Colors.Red, target );
+                    colorManager.ChangeColor( 1, target );
                 }
                 if ( Input.GetKeyDown( KeyCode.K ) )
                 {
                     //Debug.Log("S: Mudando Cor Rosa");
-                    colorManager.ChangeColor( Colors.Pink, target );
+                    colorManager.ChangeColor( 2, target );
                 }
                 if ( Input.GetKeyDown( KeyCode.L ) )
                 {
                     //Debug.Log("D: Mudando Cor Amarelo");
-                    colorManager.ChangeColor( Colors.Yellow, target );
+                    colorManager.ChangeColor( 3, target );
                 }
             }
 
