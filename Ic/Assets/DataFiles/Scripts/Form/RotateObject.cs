@@ -4,45 +4,40 @@ using UnityEngine;
 
 public class RotateObject : MonoBehaviour
 {
-    private float RotationtSpeed = 100f;
+    private float rotationAngle = 90f;
     private bool isRotating = false;
+    float smooth = 50.0f;
 
 
 
-    public void Rotate( Vector3 finalRotation )
+    public void Rotate( Vector3 target )
     {
-        Vector3 initialRotation = transform.rotation.eulerAngles;
-        if ( !isRotating )
-        {
-            while ( initialRotation != finalRotation )
-            {
-                transform.eulerAngles = ( finalRotation - initialRotation ) * Time.deltaTime;
-            }
-        }
+        Debug.Log( "Rodando de " + transform.eulerAngles + " para " + ( transform.eulerAngles + target ) );
+        transform.eulerAngles = transform.eulerAngles + target;
     }
 
     public void RotateUp()
     {
-        Rotate( new Vector3( RotationtSpeed, 0, 0 ) );
+        Rotate( new Vector3( rotationAngle, 0, 0 ) );
     }
     public void RotateDown()
     {
-        transform.eulerAngles = transform.eulerAngles - new Vector3( RotationtSpeed, 0, 0 ) * Time.deltaTime;
+        Rotate( new Vector3( -rotationAngle, 0, 0 ) );
     }
     public void RotateRight()
     {
-        transform.eulerAngles = transform.eulerAngles - new Vector3( 0, RotationtSpeed, 0 ) * Time.deltaTime;
+        Rotate( new Vector3( 0, rotationAngle, 0 ) );
     }
     public void RotateLeft()
     {
-        transform.eulerAngles = transform.eulerAngles + new Vector3( 0, RotationtSpeed, 0 ) * Time.deltaTime;
+        Rotate( new Vector3( 0, -rotationAngle, 0 ) );
     }
     public void RotateForward()
     {
-        transform.eulerAngles = transform.eulerAngles + new Vector3( 0, 0, RotationtSpeed ) * Time.deltaTime;
+        Rotate( new Vector3( 0, 0, rotationAngle ) );
     }
     public void RotateBackward()
     {
-        transform.eulerAngles = transform.eulerAngles - new Vector3( 0, 0, RotationtSpeed ) * Time.deltaTime;
+        Rotate( new Vector3( 0, 0, -rotationAngle ) );
     }
 }

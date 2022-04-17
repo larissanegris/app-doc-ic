@@ -73,18 +73,41 @@ public class InputManager : MonoBehaviour
                 target = target.transform.parent.gameObject;
             }
 
+            if(tipoInteracao == 1 )
+            {
+                if( ( Input.GetKeyDown( KeyCode.W ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
+                {
+                    target.GetComponent<RotateObject>().RotateUp();
+                }
+                if ( ( Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.DownArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
+                {
+                    target.GetComponent<RotateObject>().RotateDown();
+                }
+                if ( ( Input.GetKeyDown( KeyCode.A ) || Input.GetKeyDown( KeyCode.UpArrow ) ) )
+                {
+                    target.GetComponent<RotateObject>().RotateLeft();
+                }
+                if ( ( Input.GetKeyDown( KeyCode.D ) || Input.GetKeyDown( KeyCode.UpArrow ) ) )
+                {
+                    target.GetComponent<RotateObject>().RotateRight();
+                }
+                if ( ( Input.GetKeyDown( KeyCode.W ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+                {
+                    target.GetComponent<RotateObject>().RotateForward();
+                }
+                if ( ( Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+                {
+                    target.GetComponent<RotateObject>().RotateBackward();
+                }
 
-            if ( (Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
+            }
+
+            else if ( (Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
             {
                 if ( tipoInteracao == 0 )
                 {
                     //Debug.Log("Move UP");
                     target.GetComponent<MoveObject>().MoveUp();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate UP");
-                    target.GetComponent<RotateObject>().RotateUp();
                 }
                 else if ( tipoInteracao == 2 )
                 {
@@ -100,11 +123,6 @@ public class InputManager : MonoBehaviour
                     //Debug.Log("Move Down");
                     target.GetComponent<MoveObject>().MoveDown();
                 }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Down");
-                    target.GetComponent<RotateObject>().RotateDown();
-                }
                 else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale Down");
@@ -117,11 +135,6 @@ public class InputManager : MonoBehaviour
                 {
                     //Debug.Log("Move Right");
                     target.GetComponent<MoveObject>().MoveRight();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Right");
-                    target.GetComponent<RotateObject>().RotateRight();
                 }
                 else if ( tipoInteracao == 2 )
                 {
@@ -136,11 +149,6 @@ public class InputManager : MonoBehaviour
                     //Debug.Log("Move Left");
                     target.GetComponent<MoveObject>().MoveLeft();
                 }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Left");
-                    target.GetComponent<RotateObject>().RotateLeft();
-                }
                 else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale Left");
@@ -154,11 +162,6 @@ public class InputManager : MonoBehaviour
                     //Debug.Log("Move Forward");
                     target.GetComponent<MoveObject>().MoveForward();
                 }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Forward");
-                    target.GetComponent<RotateObject>().RotateForward();
-                }
                 else if ( tipoInteracao == 2 )
                 {
                     //Debug.Log("Scale Forward");
@@ -171,11 +174,6 @@ public class InputManager : MonoBehaviour
                 {
                     //Debug.Log("Move Backward");
                     target.GetComponent<MoveObject>().MoveBackward();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Backward");
-                    target.GetComponent<RotateObject>().RotateBackward();
                 }
                 else if ( tipoInteracao == 2 )
                 {
@@ -230,6 +228,17 @@ public class InputManager : MonoBehaviour
             {
                 //gameManager.FaceToFace();
             }
+        }
+
+        if ( Input.GetKeyDown( KeyCode.P ) )
+        {
+            Debug.Log( "Restart" );
+            gameManager.Restart();
+        }
+
+        if(Input.GetKeyDown( KeyCode.Delete ) )
+        {
+            gameManager.DeleteGameObect(gameManager.GetSelectedObjectForm());
         }
     }
 }

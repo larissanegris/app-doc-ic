@@ -95,4 +95,23 @@ public class InteractionBlock : MonoBehaviour
         
     }
 
+    public void DeletedBlock()
+    {
+        foreach(GameObject gm in interactionList )
+        {
+            gm.GetComponent<Form>().DeleteSelf();
+        }
+        GameObject.Destroy(gameObject);
+    }
+
+    public void DeleteForm(Form form )
+    {
+        form.DeleteSelf();
+        interactionList.Remove( form.gameObject );
+        if(interactionList.Count == 0 )
+        {
+            DeletedBlock();
+        }
+    }
+
 }

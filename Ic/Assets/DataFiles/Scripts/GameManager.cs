@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Form selectedObjectForm;
 
     public List<Form> createdForms = new List<Form>();
+    public List<InteractionBlock> createdBlocks = new List<InteractionBlock>();
 
     [SerializeField] private int number = 0;
     [SerializeField] private int numberCube = 0;
@@ -123,6 +124,10 @@ public class GameManager : MonoBehaviour
     {
         return selectedObject;
     }
+    public Form GetSelectedObjectForm()
+    {
+        return selectedObjectForm;
+    }
 
     public int GetTipoConecao()
     {
@@ -157,4 +162,29 @@ public class GameManager : MonoBehaviour
             mv.MoveToPosition(pointOnFace + dst);
         }
     }*/
+
+    public void Restart()
+    {
+        selectedObject = null;
+        selectedObjectForm = null;
+
+        foreach(InteractionBlock interactionBlock in createdBlocks )
+        {
+            interactionBlock.DeletedBlock();
+        }
+
+        number = 0;
+        numberCube = 0;
+        numberSphere = 0;
+
+        tipoInteracao = 0;
+        blockInteraction = false;
+        tipoConecao = 0;
+
+    }
+
+    public void DeleteGameObect(Form form )
+    {
+        form.GetComponentInParent<InteractionBlock>().DeleteForm( form );
+    }
 }

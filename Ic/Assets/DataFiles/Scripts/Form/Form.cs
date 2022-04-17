@@ -143,4 +143,9 @@ public class Form : MonoBehaviour
     {
         return type;
     }
+
+    public void DeleteSelf()
+    {
+        GameObject.Destroy(gameObject);
+    }
 }
