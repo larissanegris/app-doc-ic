@@ -89,7 +89,7 @@ public class PrefabInstantiator : MonoBehaviour
         }
         gameManager.IncreaseNumber();
         gameManager.ChangeSelectedObject( modelObject );
-
+        gameManager.createdBlocks.Add( newParent.GetComponent<InteractionBlock>() );
 
 
         modelObject.transform.SetParent( newParent.transform, true );

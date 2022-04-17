@@ -13,32 +13,35 @@ public class SelectionManager : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
         colorManager = gameManager.colorManager;
     }
 
     private void Update()
     {
-        if (_selection != null)
+        if ( _selection != null )
         {
             _selection = null;
         }
 
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if ( Input.GetMouseButtonDown( 0 ) )
         {
-            var selection = hit.transform;
-            if (selection.CompareTag(selectableTag))
+            if ( Physics.Raycast( ray, out hit ) )
             {
-                
-                if(selection.gameObject != gameManager.GetSelectedObject())
+                var selection = hit.transform;
+                if ( selection.CompareTag( selectableTag ) )
                 {
-                    gameManager.ChangeSelectedObject(selection.gameObject);
+
+                    if ( selection.gameObject != gameManager.GetSelectedObject() )
+                    {
+                        gameManager.ChangeSelectedObject( selection.gameObject );
+                    }
+
+                    _selection = selection;
+
                 }
-                
-                _selection = selection;
-                
             }
         }
     }
