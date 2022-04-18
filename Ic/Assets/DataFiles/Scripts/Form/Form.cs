@@ -14,6 +14,8 @@ public class Form : MonoBehaviour
     [SerializeField] private Colors previousCor = Colors.White;
     [SerializeField] private bool isSelected = false;
     [SerializeField] private bool isInBlock = false;
+    private Outline outline;
+
 
 
     [SerializeField] private List<Form> interactions = new List<Form>();
@@ -24,6 +26,7 @@ public class Form : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         colorManager = gameManager.colorManager;
         highlightManager = gameManager.highlightManager;
+        outline = gameObject.GetComponent<Outline>();
     }
 
     public void CreateForm(int id, FormType type)
@@ -45,10 +48,12 @@ public class Form : MonoBehaviour
     public void SetToSelected()
     {
         isSelected = true;
+        outline.OutlineMode = Outline.Mode.OutlineVisible;
     }
     public void SetToUnselected()
     {
         isSelected = false;
+        outline.OutlineMode = Outline.Mode.OutlineHidden;
     }
 
     public void AddInteraction(Form interaction)

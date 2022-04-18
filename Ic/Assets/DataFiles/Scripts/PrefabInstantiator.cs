@@ -49,7 +49,7 @@ public class PrefabInstantiator : MonoBehaviour
             myModelObject.name = "Sphere" + gameManager.numberSphere;
 
             forma = myModelObject.GetComponent<Form>();
-            forma.CreateForm(gameManager.number++, FormType.Sphere);
+            forma.CreateForm(gameManager.number, FormType.Sphere);
             gameManager.createdForms.Add(forma);
 
             return myModelObject;
