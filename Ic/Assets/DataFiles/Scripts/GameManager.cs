@@ -15,12 +15,12 @@ public class GameManager : MonoBehaviour
     public List<Form> createdForms = new List<Form>();
     public List<InteractionBlock> createdBlocks = new List<InteractionBlock>();
 
-    [SerializeField] private int number = 0;
-    [SerializeField] private int numberCube = 0;
-    [SerializeField] private int numberSphere = 0;
+    public int number = 0;
+    public int numberCube = 0;
+    public int numberSphere = 0;
     //[SerializeField] private bool hasSelectedObject = false;
 
-    public int tipoInteracao = 0;
+    public int tipoInteracao = 0; //Com o que interage
     public bool blockInteraction = false;
     public bool moveCamera = false;
     public int tipoConecao = 0;
@@ -89,44 +89,6 @@ public class GameManager : MonoBehaviour
         moveCamera = !moveCamera;
     }
 
-    public int GetNumber()
-    {
-        return number;
-    }
-    public void IncreaseNumber()
-    {
-        number++;
-    }
-    public void DecreaseNumber()
-    {
-        number--;
-    }
-
-    public int GetNumberCube()
-    {
-        return numberCube;
-    }
-    public void IncreaseNumberCube()
-    {
-        numberCube++;
-    }
-    public void DecreaseNumberCube()
-    {
-        numberCube--;
-    }
-
-    public int GetNumberSphere()
-    {
-        return numberSphere;
-    }
-    public void IncreaseNumberSphere()
-    {
-        numberSphere++;
-    }
-    public void DecreaseNumberSphere()
-    {
-        numberSphere--;
-    }
     public GameObject GetSelectedObject()
     {
         return selectedObject;
@@ -140,9 +102,29 @@ public class GameManager : MonoBehaviour
     {
         return tipoConecao;
     }
-    public void SetTipoConecao( int value )
+    public void ChangeTipoConecao(  )
     {
-        tipoConecao = value;
+        if(tipoConecao == 3 )
+        {
+            tipoConecao = 0;
+        }
+        else
+        {
+            tipoConecao++;
+        }
+    }
+
+    public void ChangeTipoInteracao(int novaInteracao )
+    {
+        tipoInteracao = novaInteracao;
+        if(novaInteracao == 3 )
+        {
+            moveCamera = true;
+        }
+        else
+        {
+            moveCamera = false;
+        }
     }
 
     public void RestrainPoint( Vector3 point )

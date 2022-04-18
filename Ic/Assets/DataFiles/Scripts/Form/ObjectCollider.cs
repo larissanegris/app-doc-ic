@@ -7,7 +7,6 @@ public class ObjectCollider : MonoBehaviour
     private bool isSelected;
     private GameManager gameManager;
     private InteractionBlock interactionBlock;
-    public PopupExample pop;
 
     [SerializeField] private Vector3 halfBox;
     private Vector3 center;

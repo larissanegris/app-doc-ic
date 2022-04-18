@@ -50,17 +50,21 @@ public class InputManager : MonoBehaviour
         //Mover
         if ( Input.GetKeyDown( KeyCode.Alpha0 ) )
         {
-            gameManager.tipoInteracao = 0;
+            gameManager.ChangeTipoInteracao( 0 );
         }
         //Rotacionar
         if ( Input.GetKeyDown( KeyCode.Alpha1 ) )
         {
-            gameManager.tipoInteracao = 1;
+            gameManager.ChangeTipoInteracao( 1 );
         }
         //escalar
         if ( Input.GetKeyDown( KeyCode.Alpha2 ) )
         {
-            gameManager.tipoInteracao = 2;
+            gameManager.ChangeTipoInteracao( 2 );
+        }
+        if ( Input.GetKeyDown( KeyCode.Alpha3 ) )
+        {
+            gameManager.ChangeTipoInteracao(3);
         }
 
         //Movimentacao
@@ -247,11 +251,10 @@ public class InputManager : MonoBehaviour
         {
             gameManager.ChangeBlockInteraction();
         }
+
         if ( Input.GetKeyDown( KeyCode.Space ) )
         {
-            int aux = gameManager.GetTipoConecao();
-            if ( aux == 3 ) gameManager.SetTipoConecao( 0 );
-            else gameManager.SetTipoConecao( ++aux );
+            gameManager.ChangeTipoConecao();
         }
         if ( Input.GetKeyDown( KeyCode.Z ) )
         {

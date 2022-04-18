@@ -30,10 +30,10 @@ public class PrefabInstantiator : MonoBehaviour
         if ( cubePrefab != null )
         {
             GameObject myModelObject = Instantiate(cubePrefab, parent.transform);
-            myModelObject.name = "Cube" + gameManager.GetNumberSphere();
+            myModelObject.name = "Cube" + gameManager.numberSphere;
 
             forma = myModelObject.GetComponent<Form>();
-            forma.CreateForm( gameManager.GetNumber(), FormType.Cube );
+            forma.CreateForm( gameManager.number, FormType.Cube );
             gameManager.createdForms.Add( forma );
 
             return myModelObject;
@@ -46,10 +46,10 @@ public class PrefabInstantiator : MonoBehaviour
         if (spherePrefab != null)
         {
             GameObject myModelObject = Instantiate(spherePrefab, parent.transform);
-            myModelObject.name = "Sphere" + gameManager.GetNumberSphere();
+            myModelObject.name = "Sphere" + gameManager.numberSphere;
 
             forma = myModelObject.GetComponent<Form>();
-            forma.CreateForm(gameManager.GetNumber(), FormType.Sphere);
+            forma.CreateForm(gameManager.number++, FormType.Sphere);
             gameManager.createdForms.Add(forma);
 
             return myModelObject;
@@ -69,7 +69,7 @@ public class PrefabInstantiator : MonoBehaviour
         {
             modelObject = SpawnCube( newParent );
 
-            gameManager.IncreaseNumberCube();
+            gameManager.numberCube++;
 
             if ( isTransparent )
             {
@@ -80,14 +80,14 @@ public class PrefabInstantiator : MonoBehaviour
         {
             modelObject = SpawnSphere( newParent );
 
-            gameManager.IncreaseNumberSphere();
+            gameManager.numberSphere++;
 
             if ( isTransparent )
             {
                 modelObject.GetComponent<MeshRenderer>().material = transparentSphere;
             }
         }
-        gameManager.IncreaseNumber();
+        gameManager.number++;
         Debug.Log( "Model: " + modelObject.name );
         gameManager.ChangeSelectedObject( modelObject );
         gameManager.createdBlocks.Add( newParent.GetComponent<InteractionBlock>() );
