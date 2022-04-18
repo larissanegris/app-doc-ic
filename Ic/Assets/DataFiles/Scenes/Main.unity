@@ -778,6 +778,7 @@ MonoBehaviour:
   gameManager: {fileID: 1269835863}
   target: {fileID: 0}
   colorManager: {fileID: 0}
+  moveCamera: {fileID: 0}
 --- !u!114 &1269835863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,12 +796,15 @@ MonoBehaviour:
   highlightManager: {fileID: 0}
   selectedObject: {fileID: 0}
   selectedObjectForm: {fileID: 0}
+  cameraObject: {fileID: 1470182494}
   createdForms: []
+  createdBlocks: []
   number: 0
   numberCube: 0
   numberSphere: 0
   tipoInteracao: 0
   blockInteraction: 0
+  moveCamera: 0
   tipoConecao: 0
 --- !u!114 &1269835864
 MonoBehaviour:
@@ -875,6 +879,7 @@ GameObject:
   - component: {fileID: 1470182497}
   - component: {fileID: 1470182496}
   - component: {fileID: 1470182495}
+  - component: {fileID: 1470182498}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -947,6 +952,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470182498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470182494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4974ef01a0ce85746ac0e032b5a29f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 10
 --- !u!1 &1695194466
 GameObject:
   m_ObjectHideFlags: 0

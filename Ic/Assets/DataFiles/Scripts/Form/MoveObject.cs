@@ -11,8 +11,8 @@ public class MoveObject : MonoBehaviour
     int restrainType;
     [SerializeField] private Vector3 restrainPoint;
     private Vector3 maxDistance; //Distancia que nao pode ficar mais longe
-    public Vector3 scale;
-    public Vector3 center;
+    private Vector3 scale;
+    private Vector3 center;
     public Vector3 closestPoint;
     private Vector3 minDistance; //Distancia que nao pode ficar mais perto
     [SerializeField] private float distance;

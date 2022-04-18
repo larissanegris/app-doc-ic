@@ -27,7 +27,7 @@ public class PrefabInstantiator : MonoBehaviour
 
     public GameObject SpawnCube( GameObject parent )
     {
-        if ( spherePrefab != null )
+        if ( cubePrefab != null )
         {
             GameObject myModelObject = Instantiate(cubePrefab, parent.transform);
             myModelObject.name = "Cube" + gameManager.GetNumberSphere();
@@ -88,6 +88,7 @@ public class PrefabInstantiator : MonoBehaviour
             }
         }
         gameManager.IncreaseNumber();
+        Debug.Log( "Model: " + modelObject.name );
         gameManager.ChangeSelectedObject( modelObject );
         gameManager.createdBlocks.Add( newParent.GetComponent<InteractionBlock>() );
 

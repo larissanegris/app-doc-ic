@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject selectedObject;
     [SerializeField] private Form selectedObjectForm;
+    [SerializeField] public GameObject cameraObject;
 
     public List<Form> createdForms = new List<Form>();
     public List<InteractionBlock> createdBlocks = new List<InteractionBlock>();
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public int tipoInteracao = 0;
     public bool blockInteraction = false;
+    public bool moveCamera = false;
     public int tipoConecao = 0;
 
     private void Start()
@@ -77,9 +79,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
     }
 
-    public void changeBlockInteraction()
+    public void ChangeBlockInteraction()
     {
         blockInteraction = !blockInteraction;
+    }
+
+    public void ChangeMoveCamera()
+    {
+        moveCamera = !moveCamera;
     }
 
     public int GetNumber()
@@ -186,5 +193,22 @@ public class GameManager : MonoBehaviour
     public void DeleteGameObect(Form form )
     {
         form.GetComponentInParent<InteractionBlock>().DeleteForm( form );
+
+        if(selectedObjectForm == form )
+        {
+            selectedObject = null;
+            selectedObjectForm = null;
+        }
+
+        number -= 1;
+        if(form.GetFormType() == FormType.Cube )
+        {
+            numberCube -= 1;
+        }
+        else if(form.GetFormType()== FormType.Sphere )
+        {
+            numberSphere -= 1;
+        }
+
     }
 }

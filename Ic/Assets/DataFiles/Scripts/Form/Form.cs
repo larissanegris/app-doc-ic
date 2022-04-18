@@ -146,6 +146,6 @@ public class Form : MonoBehaviour
 
     public void DeleteSelf()
     {
-        GameObject.Destroy(gameObject);
+        GameObject.Destroy(this.gameObject);
     }
 }
