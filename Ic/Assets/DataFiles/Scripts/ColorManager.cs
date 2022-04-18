@@ -15,13 +15,52 @@ public class ColorManager : MonoBehaviour
     }
 
     
-    public void ChangeColor(Colors newColor, GameObject target)
+    public void ChangeColor(int newColor, GameObject target)
     {
         if(target == null)
             return;
 
-        //Debug.Log("Cor: " + target.name + newColor);
+        if( target.GetComponent<Form>().GetFormType() == FormType.Cube )
+        {
+            if ( newColor == 0 )
+            {
+                target.GetComponent<Renderer>().material.color = new Color( 0.7960784f, 0.003921569f, 0.372549f );
+            }
+            if ( newColor == 1 )
+            {
+                target.GetComponent<Renderer>().material.color = new Color( 1f, 0.9098039f, 0.1176471f );
+            }
+            if ( newColor == 2 )
+            {
+                target.GetComponent<Renderer>().material.color = new Color( 1f, 0.3335596f, 0f );
+            }
+            if ( newColor == 3 )
+            {
+                target.GetComponent<Renderer>().material.color = new Color( 0.7960784f, 0f, 0f );
+            }
+        }
+        if ( target.GetComponent<Form>().GetFormType() == FormType.Sphere )
+        {
+            if ( newColor == 0 )
+            {
+                target.GetComponent<Renderer>().material.color = new Color( 0.4745098039f, 0.7882352941f, 0.6196078431f );
+            }
+            if ( newColor == 1 )
+            {
+                target.GetComponent<Renderer>().material.color = new Color( 0.3411764706f, 0.7215686275f, 1f );
+            }
+            if ( newColor == 2 )
+            {
+                target.GetComponent<Renderer>().material.color = new Color( 0.5411764706f, 0.3098039216f, 1f );
+            }
+            if ( newColor == 3 )
+            {
+                target.GetComponent<Renderer>().material.color = new Color( 0.3450980392f, 0.2941176471f, 0.3254901961f );
+            }
+        }
 
+        //Debug.Log("Cor: " + target.name + newColor);
+        /*
         target.GetComponent<Form>().saveColor(newColor);
         
         
@@ -56,6 +95,7 @@ public class ColorManager : MonoBehaviour
         {
             DarkerColor(target);
         }
+        */
 
     }
 

@@ -9,10 +9,12 @@ public class InputManager : MonoBehaviour
     private int tipoInteracao;
     private bool _blockInteraction;
     public ColorManager colorManager;
+    public MoveCamera moveCamera;
 
-    private void Start()
+    private void Awake()
     {
         colorManager = gameManager.GetComponent<ColorManager>();
+        moveCamera = gameManager.cameraObject.GetComponent<MoveCamera>();
     }
 
     // Update is called once per frame
@@ -24,22 +26,22 @@ public class InputManager : MonoBehaviour
         //Criar cubo opaco
         if ( Input.GetKeyDown( KeyCode.Q ) && !Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.SpawnCube( false );
+            gameManager.prefabInstantiator.Spawn( FormType.Cube, false );
         }
         //cria cubo transparente
         if ( Input.GetKeyDown( KeyCode.Q ) && Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.SpawnCube( true );
+            gameManager.prefabInstantiator.Spawn( FormType.Cube, true );
         }
         //criar esfera opaca
         if ( Input.GetKeyDown( KeyCode.E ) && !Input.GetKey( KeyCode.LeftShift ))
         {
-            gameManager.prefabInstantiator.SpawnSphere( false );
+            gameManager.prefabInstantiator.Spawn( FormType.Sphere, false );
         }
         //cria esfera transparente
         if ( Input.GetKeyDown( KeyCode.E ) && Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.SpawnSphere( true );
+            gameManager.prefabInstantiator.Spawn( FormType.Sphere, true );
         }
 
 
@@ -48,180 +50,211 @@ public class InputManager : MonoBehaviour
         //Mover
         if ( Input.GetKeyDown( KeyCode.Alpha0 ) )
         {
-            gameManager.tipoInteracao = 0;
+            gameManager.ChangeTipoInteracao( 0 );
         }
         //Rotacionar
         if ( Input.GetKeyDown( KeyCode.Alpha1 ) )
         {
-            gameManager.tipoInteracao = 1;
+            gameManager.ChangeTipoInteracao( 1 );
         }
         //escalar
         if ( Input.GetKeyDown( KeyCode.Alpha2 ) )
         {
-            gameManager.tipoInteracao = 2;
+            gameManager.ChangeTipoInteracao( 2 );
+        }
+        if ( Input.GetKeyDown( KeyCode.Alpha3 ) )
+        {
+            gameManager.ChangeTipoInteracao(3);
         }
 
         //Movimentacao
-        if ( gameManager.GetSelectedObject() )
+        if ( !gameManager.moveCamera )
         {
-
-            target = gameManager.GetSelectedObject();
-            Form form = target.GetComponent<Form>();
-
-            if ( form.GetIsInBlock() && gameManager.blockInteraction )
+            if ( gameManager.GetSelectedObject() )
             {
-                target = target.transform.parent.gameObject;
-            }
 
+                target = gameManager.GetSelectedObject();
+                Form form = target.GetComponent<Form>();
 
-            if ( (Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
-            {
-                if ( tipoInteracao == 0 )
+                if ( form.GetIsInBlock() && gameManager.blockInteraction )
                 {
-                    //Debug.Log("Move UP");
-                    target.GetComponent<MoveObject>().MoveUp();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate UP");
-                    target.GetComponent<RotateObject>().RotateUp();
-                }
-                else if ( tipoInteracao == 2 )
-                {
-                    //Debug.Log("Scale UP");
-                    target.GetComponent<ResizeObject>().ScaleUp();
+                    target = target.transform.parent.gameObject;
                 }
 
-            }
-            if ( (Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
-            {
-                if ( tipoInteracao == 0 )
+                if ( tipoInteracao == 1 )
                 {
-                    //Debug.Log("Move Down");
-                    target.GetComponent<MoveObject>().MoveDown();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Down");
-                    target.GetComponent<RotateObject>().RotateDown();
-                }
-                else if ( tipoInteracao == 2 )
-                {
-                    //Debug.Log("Scale Down");
-                    target.GetComponent<ResizeObject>().ScaleDown();
-                }
-            }
-            if ( Input.GetKey( KeyCode.D ) || Input.GetKey( KeyCode.RightArrow ) )
-            {
-                if ( tipoInteracao == 0 )
-                {
-                    //Debug.Log("Move Right");
-                    target.GetComponent<MoveObject>().MoveRight();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Right");
-                    target.GetComponent<RotateObject>().RotateRight();
-                }
-                else if ( tipoInteracao == 2 )
-                {
-                    //Debug.Log("Scale Right");
-                    target.GetComponent<ResizeObject>().ScaleRight();
-                }
-            }
-            if ( Input.GetKey( KeyCode.A ) || Input.GetKey( KeyCode.LeftArrow ) )
-            {
-                if ( tipoInteracao == 0 )
-                {
-                    //Debug.Log("Move Left");
-                    target.GetComponent<MoveObject>().MoveLeft();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Left");
-                    target.GetComponent<RotateObject>().RotateLeft();
-                }
-                else if ( tipoInteracao == 2 )
-                {
-                    //Debug.Log("Scale Left");
-                    target.GetComponent<ResizeObject>().ScaleLeft();
-                }
-            }
-            if ( (Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
-            {
-                if ( tipoInteracao == 0 )
-                {
-                    //Debug.Log("Move Forward");
-                    target.GetComponent<MoveObject>().MoveForward();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Forward");
-                    target.GetComponent<RotateObject>().RotateForward();
-                }
-                else if ( tipoInteracao == 2 )
-                {
-                    //Debug.Log("Scale Forward");
-                    target.GetComponent<ResizeObject>().ScaleForward();
-                }
-            }
-            if ( (Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
-            {
-                if ( tipoInteracao == 0 )
-                {
-                    //Debug.Log("Move Backward");
-                    target.GetComponent<MoveObject>().MoveBackward();
-                }
-                else if ( tipoInteracao == 1 )
-                {
-                    //Debug.Log("Rotate Backward");
-                    target.GetComponent<RotateObject>().RotateBackward();
-                }
-                else if ( tipoInteracao == 2 )
-                {
-                    //Debug.Log("Scale Backward");
-                    target.GetComponent<ResizeObject>().ScaleBackward();
-                }
-            }
-
-            if ( !_blockInteraction )
-            {
-                //Mudar Cor
-                if ( Input.GetKeyDown( KeyCode.H ) )
-                {
-                    //Debug.Log("W: Mudando Cor Laranja");
-                    colorManager.ChangeColor( Colors.Orange, target );
+                    if ( ( Input.GetKeyDown( KeyCode.W ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
+                    {
+                        target.GetComponent<RotateObject>().RotateUp();
+                    }
+                    if ( ( Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.DownArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
+                    {
+                        target.GetComponent<RotateObject>().RotateDown();
+                    }
+                    if ( ( Input.GetKeyDown( KeyCode.A ) || Input.GetKeyDown( KeyCode.UpArrow ) ) )
+                    {
+                        target.GetComponent<RotateObject>().RotateLeft();
+                    }
+                    if ( ( Input.GetKeyDown( KeyCode.D ) || Input.GetKeyDown( KeyCode.UpArrow ) ) )
+                    {
+                        target.GetComponent<RotateObject>().RotateRight();
+                    }
+                    if ( ( Input.GetKeyDown( KeyCode.W ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+                    {
+                        target.GetComponent<RotateObject>().RotateForward();
+                    }
+                    if ( ( Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+                    {
+                        target.GetComponent<RotateObject>().RotateBackward();
+                    }
 
                 }
-                if ( Input.GetKeyDown( KeyCode.J ) )
+
+                else if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
                 {
-                    //Debug.Log("A: Mudando Cor Vermelho");
-                    colorManager.ChangeColor( Colors.Red, target );
+                    if ( tipoInteracao == 0 )
+                    {
+                        //Debug.Log("Move UP");
+                        target.GetComponent<MoveObject>().MoveUp();
+                    }
+                    else if ( tipoInteracao == 2 )
+                    {
+                        //Debug.Log("Scale UP");
+                        target.GetComponent<ResizeObject>().ScaleUp();
+                    }
+
                 }
-                if ( Input.GetKeyDown( KeyCode.K ) )
+                if ( ( Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
                 {
-                    //Debug.Log("S: Mudando Cor Rosa");
-                    colorManager.ChangeColor( Colors.Pink, target );
+                    if ( tipoInteracao == 0 )
+                    {
+                        //Debug.Log("Move Down");
+                        target.GetComponent<MoveObject>().MoveDown();
+                    }
+                    else if ( tipoInteracao == 2 )
+                    {
+                        //Debug.Log("Scale Down");
+                        target.GetComponent<ResizeObject>().ScaleDown();
+                    }
                 }
-                if ( Input.GetKeyDown( KeyCode.L ) )
+                if ( Input.GetKey( KeyCode.D ) || Input.GetKey( KeyCode.RightArrow ) )
                 {
-                    //Debug.Log("D: Mudando Cor Amarelo");
-                    colorManager.ChangeColor( Colors.Yellow, target );
+                    if ( tipoInteracao == 0 )
+                    {
+                        //Debug.Log("Move Right");
+                        target.GetComponent<MoveObject>().MoveRight();
+                    }
+                    else if ( tipoInteracao == 2 )
+                    {
+                        //Debug.Log("Scale Right");
+                        target.GetComponent<ResizeObject>().ScaleRight();
+                    }
                 }
+                if ( Input.GetKey( KeyCode.A ) || Input.GetKey( KeyCode.LeftArrow ) )
+                {
+                    if ( tipoInteracao == 0 )
+                    {
+                        //Debug.Log("Move Left");
+                        target.GetComponent<MoveObject>().MoveLeft();
+                    }
+                    else if ( tipoInteracao == 2 )
+                    {
+                        //Debug.Log("Scale Left");
+                        target.GetComponent<ResizeObject>().ScaleLeft();
+                    }
+                }
+                if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+                {
+                    if ( tipoInteracao == 0 )
+                    {
+                        //Debug.Log("Move Forward");
+                        target.GetComponent<MoveObject>().MoveForward();
+                    }
+                    else if ( tipoInteracao == 2 )
+                    {
+                        //Debug.Log("Scale Forward");
+                        target.GetComponent<ResizeObject>().ScaleForward();
+                    }
+                }
+                if ( ( Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+                {
+                    if ( tipoInteracao == 0 )
+                    {
+                        //Debug.Log("Move Backward");
+                        target.GetComponent<MoveObject>().MoveBackward();
+                    }
+                    else if ( tipoInteracao == 2 )
+                    {
+                        //Debug.Log("Scale Backward");
+                        target.GetComponent<ResizeObject>().ScaleBackward();
+                    }
+                }
+
+                if ( !_blockInteraction )
+                {
+                    //Mudar Cor
+                    if ( Input.GetKeyDown( KeyCode.H ) )
+                    {
+                        //Debug.Log("W: Mudando Cor Laranja");
+                        colorManager.ChangeColor( 0, target );
+
+                    }
+                    if ( Input.GetKeyDown( KeyCode.J ) )
+                    {
+                        //Debug.Log("A: Mudando Cor Vermelho");
+                        colorManager.ChangeColor( 1, target );
+                    }
+                    if ( Input.GetKeyDown( KeyCode.K ) )
+                    {
+                        //Debug.Log("S: Mudando Cor Rosa");
+                        colorManager.ChangeColor( 2, target );
+                    }
+                    if ( Input.GetKeyDown( KeyCode.L ) )
+                    {
+                        //Debug.Log("D: Mudando Cor Amarelo");
+                        colorManager.ChangeColor( 3, target );
+                    }
+                }
+
             }
-
-
+        }
+        else if ( gameManager.moveCamera )
+        {
+            if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
+            {
+                moveCamera.MoveForward();
+            }
+            if ( ( Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
+            {
+                moveCamera.MoveBackward();
+            }
+            if ( ( Input.GetKey( KeyCode.A ) || Input.GetKey( KeyCode.LeftArrow ) ) )
+            {
+                moveCamera.MoveLeft();
+            }
+            if ( ( Input.GetKey( KeyCode.D ) || Input.GetKey( KeyCode.RightArrow ) ) )
+            {
+                moveCamera.MoveRight();
+            }
+            if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+            {
+                Debug.Log( "AAAAAAAAAA" );
+                moveCamera.MoveUp();
+            }
+            if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+            {
+                moveCamera.MoveDown();
+            }
         }
 
         if ( Input.GetKeyDown( KeyCode.R ) )
         {
-            gameManager.changeBlockInteraction();
+            gameManager.ChangeBlockInteraction();
         }
+
         if ( Input.GetKeyDown( KeyCode.Space ) )
         {
-            int aux = gameManager.GetTipoConecao();
-            if ( aux == 3 ) gameManager.SetTipoConecao( 0 );
-            else gameManager.SetTipoConecao( ++aux );
+            gameManager.ChangeTipoConecao();
         }
         if ( Input.GetKeyDown( KeyCode.Z ) )
         {
@@ -230,6 +263,17 @@ public class InputManager : MonoBehaviour
             {
                 //gameManager.FaceToFace();
             }
+        }
+
+        if ( Input.GetKeyDown( KeyCode.P ) )
+        {
+            Debug.Log( "Restart" );
+            gameManager.Restart();
+        }
+
+        if(Input.GetKeyDown( KeyCode.Delete ) || Input.GetKeyDown( KeyCode.Backspace ) )
+        {
+            gameManager.DeleteGameObect(gameManager.GetSelectedObjectForm());
         }
     }
 }

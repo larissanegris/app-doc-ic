@@ -21,85 +21,91 @@ public class PrefabInstantiator : MonoBehaviour
 
     private void Awake()
     {
-        floor = GameObject.Find("Floor");
+         floor = GameObject.Find("Floor");
+         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    public GameObject SpawnCube(bool isTransparent)
+    public GameObject SpawnCube( GameObject parent )
     {
-        if (cubePrefab != null)
+        if ( cubePrefab != null )
         {
-            //Criar pai
-            GameObject newParent = Instantiate(interactionBlock, floor.transform);
-            newParent.transform.SetParent(floor.transform, true);
-
-            GameObject myModelObject = Instantiate(cubePrefab, newParent.transform);
-            myModelObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            myModelObject.transform.position = myModelObject.transform.position + new Vector3(0, 4, 0);
-            myModelObject.SetActive(true);
-            myModelObject.name = "Cube" + gameManager.GetNumberCube();
-
-            myModelObject.transform.SetParent(newParent.transform, true);
-
-            Debug.Log("Criando " + myModelObject.name);
+            GameObject myModelObject = Instantiate(cubePrefab, parent.transform);
+            myModelObject.name = "Cube" + gameManager.numberSphere;
 
             forma = myModelObject.GetComponent<Form>();
-            forma.CreateForm(gameManager.GetNumber(), Type.Cube);
-            gameManager.createdForms.Add(forma);
-
-            newParent.name = "InteractionBlock" + forma.GetId();
-            newParent.GetComponent<InteractionBlock>().AddInteraction(myModelObject);
-
-
-            gameManager.IncreaseNumber();
-            gameManager.IncreaseNumberCube();
-            gameManager.ChangeSelectedObject(myModelObject);
-
-            if ( isTransparent )
-            {
-                myModelObject.GetComponent<MeshRenderer>().material = transparentCube;
-            }
+            forma.CreateForm( gameManager.number, FormType.Cube );
+            gameManager.createdForms.Add( forma );
 
             return myModelObject;
         }
         return null;
     }
 
-    public GameObject SpawnSphere(bool isTransparent)
+    public GameObject SpawnSphere(GameObject parent)
     {
         if (spherePrefab != null)
         {
-            GameObject myModelObject = Instantiate(spherePrefab, imageTarget.transform);
-            myModelObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            myModelObject.transform.position = myModelObject.transform.position + new Vector3(0, 4, 0);
-            myModelObject.SetActive(true);
-            myModelObject.name = "Sphere" + gameManager.GetNumberSphere();
-            Debug.Log(myModelObject.transform.position);
-
-            Debug.Log("Criando " + myModelObject.name);
+            GameObject myModelObject = Instantiate(spherePrefab, parent.transform);
+            myModelObject.name = "Sphere" + gameManager.numberSphere;
 
             forma = myModelObject.GetComponent<Form>();
-            forma.CreateForm(gameManager.GetNumber(), Type.Sphere);
+            forma.CreateForm(gameManager.number, FormType.Sphere);
             gameManager.createdForms.Add(forma);
-
-            gameManager.IncreaseNumber();
-            gameManager.IncreaseNumberSphere();
-            gameManager.ChangeSelectedObject(myModelObject);
-
-            //Criar pai
-            GameObject newParent = new GameObject("InteractionBlock" + gameManager.GetNumber());
-            newParent.transform.parent = floor.transform;
-            myModelObject.transform.parent = newParent.transform;
-            newParent.AddComponent<InteractionBlock>();
-
-            if ( isTransparent )
-            {
-                myModelObject.GetComponent<MeshRenderer>().material = transparentSphere;
-            }
-
 
             return myModelObject;
         }
         return null;
+    }
+
+    public GameObject Spawn(FormType type, bool isTransparent)
+    {
+        //Criar pai
+        GameObject newParent = Instantiate(interactionBlock, floor.transform);
+        newParent.transform.SetParent( floor.transform, true );
+        
+        GameObject modelObject;
+
+        if(type == FormType.Cube )
+        {
+            modelObject = SpawnCube( newParent );
+
+            gameManager.numberCube++;
+
+            if ( isTransparent )
+            {
+                modelObject.GetComponent<MeshRenderer>().material = transparentCube;
+            }
+        }
+        else
+        {
+            modelObject = SpawnSphere( newParent );
+
+            gameManager.numberSphere++;
+
+            if ( isTransparent )
+            {
+                modelObject.GetComponent<MeshRenderer>().material = transparentSphere;
+            }
+        }
+        gameManager.number++;
+        Debug.Log( "Model: " + modelObject.name );
+        gameManager.ChangeSelectedObject( modelObject );
+        gameManager.createdBlocks.Add( newParent.GetComponent<InteractionBlock>() );
+
+
+        modelObject.transform.SetParent( newParent.transform, true );
+
+
+        modelObject.transform.localScale = new Vector3( 1f, 1f, 1f );
+        modelObject.transform.position = modelObject.transform.position + new Vector3( 0, 4, 0 );
+        modelObject.SetActive( true );
+
+        newParent.name = "InteractionBlock" + forma.GetId();
+        newParent.GetComponent<InteractionBlock>().AddInteraction( modelObject );
+
+
+        return modelObject;
+        
     }
 
     

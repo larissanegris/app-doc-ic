@@ -5,81 +5,155 @@ using UnityEngine;
 public class MoveObject : MonoBehaviour
 {
     private GameManager gameManager;
+    private Form form;
+
     [SerializeField] [Range(0, 15)] private float MovementSpeed = 10f;
     int restrainType;
     [SerializeField] private Vector3 restrainPoint;
     private Vector3 maxDistance; //Distancia que nao pode ficar mais longe
+    private Vector3 scale;
+    private Vector3 center;
+    public Vector3 closestPoint;
     private Vector3 minDistance; //Distancia que nao pode ficar mais perto
     [SerializeField] private float distance;
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
+        form = GetComponent<Form>();
     }
 
     private void Update()
     {
-        restrainType = gameManager.GetTipoConecao();
+        restrainType = gameManager.tipoConecao;
+        scale = gameObject.transform.lossyScale / 2;
+        center = gameObject.transform.position;
+        if(tag=="Selected")
+            Debug.DrawLine( center, closestPoint, Color.magenta, .3f );
         if ( restrainPoint != null )
             distance = Vector3.Distance( transform.position, restrainPoint );
-        //if( tag == "Selected")
-            //Debug.DrawLine( restrainPoint, transform.position, Color.cyan, 1 );
     }
 
-    public void Move(Vector3 dir)
+    public void Move( Vector3 dir )
     {
         Vector3 nextPos = CalculatePosition( dir );
-        if (restrainType == 0)
+        if ( restrainType == 0 )
         {
-            MoveToPosition(nextPos);
+            MoveToPosition( nextPos );
         }
-        else if(restrainType == 1)
+        else if ( form.GetFormType() == FormType.Cube )
         {
-            //Verifica so se nao esta fora do limite
-            if( Mathf.Abs( (restrainPoint.x - nextPos.x)  ) < maxDistance.x )
+            if ( restrainType == 1 )
             {
-                if ( Mathf.Abs((restrainPoint.y - nextPos.y)) < maxDistance.y )
+                //Verifica so se nao esta fora do limite
+                if ( Mathf.Abs( ( restrainPoint.x - nextPos.x ) ) < maxDistance.x )
                 {
-                    if (Mathf.Abs((restrainPoint.z - nextPos.z)) < maxDistance.z)
+                    if ( Mathf.Abs( ( restrainPoint.y - nextPos.y ) ) < maxDistance.y )
                     {
-                        MoveToPosition(nextPos);
+                        if ( Mathf.Abs( ( restrainPoint.z - nextPos.z ) ) < maxDistance.z )
+                        {
+                            MoveToPosition( nextPos );
+                        }
                     }
                 }
             }
-        }
-        else if (restrainType == 2)
-        {
-            /*
-            if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+            else if ( restrainType == 2 )
             {
+                /*
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+                {
 
-                if ( (nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x)
-                    || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
-                    || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
+                    if ( (nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x)
+                        || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
+                        || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
+                    {
+                        MoveToPosition( nextPos );
+                    }
+                }*/
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
                 {
-                    MoveToPosition( nextPos );
+                    //Verifica se esta dentro dos dois limites
+                    if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x )
+                        || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
+                        || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
+                    {
+                        MoveToPosition( nextPos );
+                    }
                 }
-            }*/
-            if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+            }
+            else if ( restrainType == 3 )
             {
-                //Verifica se esta dentro dos dois limites
-                if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x )
-                    || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
-                    || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
                 {
+                    if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x )
+                        || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
+                        || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
+                    {
+                        MoveToPosition( nextPos );
+                    }
+                }
+            }
+
+        }
+        else if ( form.GetFormType() == FormType.Sphere )
+        {
+            if ( restrainType == 1 )
+            {
+                Debug.Log( "AAAAA" );
+                float a = scale.x;
+                float b = scale.y;
+                float c = scale.z;
+
+
+
+                float x0 = nextPos.x;
+                float y0 = nextPos.y;
+                float z0 = nextPos.z;
+
+                if ( ( ( ( closestPoint.x - x0 ) / a ) * ( ( closestPoint.x - x0 ) / a ) ) +
+                    ( ( ( closestPoint.y - y0 ) / b ) * ( ( closestPoint.y - y0 ) / b ) ) +
+                    ( ( ( closestPoint.z - z0 ) / c ) * ( ( closestPoint.z - z0 ) / c ) ) < 1 )
+                {
+                    Debug.Log( ( ( ( closestPoint.x - x0 ) / a ) * ( ( closestPoint.x - x0 ) / a ) ) +
+                    ( ( ( closestPoint.y - y0 ) / b ) * ( ( closestPoint.y - y0 ) / b ) ) +
+                    ( ( ( closestPoint.z - z0 ) / c ) * ( ( closestPoint.z - z0 ) / c ) ) < 1 );
                     MoveToPosition( nextPos );
                 }
             }
-        }
-        else if (restrainType == 3)
-        {
-            if (Vector3.Distance(restrainPoint, nextPos) <= maxDistance.magnitude)
+            else if ( restrainType == 2 )
             {
-                if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x ) 
-                    || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
-                    || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
+                /*
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
                 {
-                    MoveToPosition( nextPos );
+
+                    if ( (nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x)
+                        || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
+                        || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
+                    {
+                        MoveToPosition( nextPos );
+                    }
+                }*/
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+                {
+                    //Verifica se esta dentro dos dois limites
+                    if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x )
+                        || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
+                        || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
+                    {
+                        MoveToPosition( nextPos );
+                    }
+                }
+            }
+            else if ( restrainType == 3 )
+            {
+                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
+                {
+                    if ( ( nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x )
+                        || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
+                        || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
+                    {
+                        MoveToPosition( nextPos );
+                    }
                 }
             }
         }
@@ -96,66 +170,66 @@ public class MoveObject : MonoBehaviour
 
     public void MoveUp()
     {
-        Move(new Vector3(0, MovementSpeed, 0));
+        Move( new Vector3( 0, MovementSpeed, 0 ) );
     }
     public void MoveDown()
     {
-        Move(new Vector3(0, -MovementSpeed, 0));
+        Move( new Vector3( 0, -MovementSpeed, 0 ) );
     }
     public void MoveRight()
     {
-        Move(new Vector3(MovementSpeed, 0, 0));
+        Move( new Vector3( MovementSpeed, 0, 0 ) );
     }
     public void MoveLeft()
     {
-        Move(new Vector3(-MovementSpeed, 0, 0));
+        Move( new Vector3( -MovementSpeed, 0, 0 ) );
     }
     public void MoveForward()
     {
-        Move(new Vector3(0, 0, MovementSpeed));
+        Move( new Vector3( 0, 0, MovementSpeed ) );
     }
     public void MoveBackward()
     {
-        Move(new Vector3(0, 0, -MovementSpeed));
+        Move( new Vector3( 0, 0, -MovementSpeed ) );
     }
 
-    public void SetRestraintType(int value)
+    public void SetRestraintType( int value )
     {
         restrainType = value;
     }
 
-    public void SetRestraintPoint(Vector3 value)
+    public void SetRestraintPoint( Vector3 value )
     {
         restrainPoint = value;
     }
 
-    public void SetMaxDistance(Vector3 value)
+    public void SetMaxDistance( Vector3 value )
     {
         maxDistance = value;
     }
 
-    public void SetMinDistance(Vector3 value)
+    public void SetMinDistance( Vector3 value )
     {
         minDistance = value;
     }
 
-    private float FindMaxComponent( Vector3 vec)
+    private float FindMaxComponent( Vector3 vec )
     {
-        if (vec.x > vec.y)
+        if ( vec.x > vec.y )
         {
-            if( vec.x > vec.z)
+            if ( vec.x > vec.z )
                 return vec.x;
             else
                 return vec.z;
         }
         else
         {
-            if (vec.y > vec.z)
+            if ( vec.y > vec.z )
                 return vec.y;
             else
                 return vec.z;
         }
     }
 
-    
+
 }

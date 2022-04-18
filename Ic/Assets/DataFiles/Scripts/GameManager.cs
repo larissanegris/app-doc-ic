@@ -10,16 +10,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject selectedObject;
     [SerializeField] private Form selectedObjectForm;
+    [SerializeField] public GameObject cameraObject;
 
     public List<Form> createdForms = new List<Form>();
+    public List<InteractionBlock> createdBlocks = new List<InteractionBlock>();
 
-    [SerializeField] private int number = 0;
-    [SerializeField] private int numberCube = 0;
-    [SerializeField] private int numberSphere = 0;
+    public int number = 0;
+    public int numberCube = 0;
+    public int numberSphere = 0;
     //[SerializeField] private bool hasSelectedObject = false;
 
-    public int tipoInteracao = 0;
+    public int tipoInteracao = 0; //Com o que interage
     public bool blockInteraction = false;
+    public bool moveCamera = false;
     public int tipoConecao = 0;
 
     private void Start()
@@ -76,61 +79,52 @@ public class GameManager : MonoBehaviour
         Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
     }
 
-    public void changeBlockInteraction()
+    public void ChangeBlockInteraction()
     {
         blockInteraction = !blockInteraction;
     }
 
-    public int GetNumber()
+    public void ChangeMoveCamera()
     {
-        return number;
-    }
-    public void IncreaseNumber()
-    {
-        number++;
-    }
-    public void DecreaseNumber()
-    {
-        number--;
+        moveCamera = !moveCamera;
     }
 
-    public int GetNumberCube()
-    {
-        return numberCube;
-    }
-    public void IncreaseNumberCube()
-    {
-        numberCube++;
-    }
-    public void DecreaseNumberCube()
-    {
-        numberCube--;
-    }
-
-    public int GetNumberSphere()
-    {
-        return numberSphere;
-    }
-    public void IncreaseNumberSphere()
-    {
-        numberSphere++;
-    }
-    public void DecreaseNumberSphere()
-    {
-        numberSphere--;
-    }
     public GameObject GetSelectedObject()
     {
         return selectedObject;
+    }
+    public Form GetSelectedObjectForm()
+    {
+        return selectedObjectForm;
     }
 
     public int GetTipoConecao()
     {
         return tipoConecao;
     }
-    public void SetTipoConecao( int value )
+    public void ChangeTipoConecao(  )
     {
-        tipoConecao = value;
+        if(tipoConecao == 3 )
+        {
+            tipoConecao = 0;
+        }
+        else
+        {
+            tipoConecao++;
+        }
+    }
+
+    public void ChangeTipoInteracao(int novaInteracao )
+    {
+        tipoInteracao = novaInteracao;
+        if(novaInteracao == 3 )
+        {
+            moveCamera = true;
+        }
+        else
+        {
+            moveCamera = false;
+        }
     }
 
     public void RestrainPoint( Vector3 point )
@@ -157,4 +151,46 @@ public class GameManager : MonoBehaviour
             mv.MoveToPosition(pointOnFace + dst);
         }
     }*/
+
+    public void Restart()
+    {
+        selectedObject = null;
+        selectedObjectForm = null;
+
+        foreach(InteractionBlock interactionBlock in createdBlocks )
+        {
+            interactionBlock.DeletedBlock();
+        }
+
+        number = 0;
+        numberCube = 0;
+        numberSphere = 0;
+
+        tipoInteracao = 0;
+        blockInteraction = false;
+        tipoConecao = 0;
+
+    }
+
+    public void DeleteGameObect(Form form )
+    {
+        form.GetComponentInParent<InteractionBlock>().DeleteForm( form );
+
+        if(selectedObjectForm == form )
+        {
+            selectedObject = null;
+            selectedObjectForm = null;
+        }
+
+        number -= 1;
+        if(form.GetFormType() == FormType.Cube )
+        {
+            numberCube -= 1;
+        }
+        else if(form.GetFormType()== FormType.Sphere )
+        {
+            numberSphere -= 1;
+        }
+
+    }
 }
