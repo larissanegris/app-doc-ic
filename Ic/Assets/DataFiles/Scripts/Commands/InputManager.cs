@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,11 +10,20 @@ public class InputManager : MonoBehaviour
     private bool _blockInteraction;
     public ColorManager colorManager;
     public MoveCamera moveCamera;
+    
+    public Move move;
+    public Rotate rotate;
+    public ScaleObject scale;
+
+    public event Func<GameObject> Move;
 
     private void Awake()
     {
         colorManager = gameManager.GetComponent<ColorManager>();
         moveCamera = gameManager.cameraObject.GetComponent<MoveCamera>();
+        move = gameManager.GetComponent<Move>();
+        rotate = gameManager.GetComponent<Rotate>();
+        scale = gameManager.GetComponent<ScaleObject>();
     }
 
     // Update is called once per frame
@@ -80,47 +89,47 @@ public class InputManager : MonoBehaviour
                 {
                     target = target.transform.parent.gameObject;
                 }
-
+                
                 if ( tipoInteracao == 1 )
                 {
                     if ( ( Input.GetKeyDown( KeyCode.W ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
                     {
-                        target.GetComponent<RotateObject>().RotateUp();
+                        rotate.RotateUp();
                     }
                     if ( ( Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.DownArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
                     {
-                        target.GetComponent<RotateObject>().RotateDown();
+                        rotate.RotateDown();
                     }
-                    if ( ( Input.GetKeyDown( KeyCode.A ) || Input.GetKeyDown( KeyCode.UpArrow ) ) )
+                    if ( ( Input.GetKeyDown( KeyCode.A ) || Input.GetKeyDown( KeyCode.LeftArrow ) ) )
                     {
-                        target.GetComponent<RotateObject>().RotateLeft();
+                        rotate.RotateLeft();
                     }
-                    if ( ( Input.GetKeyDown( KeyCode.D ) || Input.GetKeyDown( KeyCode.UpArrow ) ) )
+                    if ( ( Input.GetKeyDown( KeyCode.D ) || Input.GetKeyDown( KeyCode.RightArrow ) ) )
                     {
-                        target.GetComponent<RotateObject>().RotateRight();
+                        rotate.RotateRight();
                     }
                     if ( ( Input.GetKeyDown( KeyCode.W ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
                     {
-                        target.GetComponent<RotateObject>().RotateForward();
+                        rotate.RotateForward();
                     }
-                    if ( ( Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
+                    if ( ( Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.DownArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
                     {
-                        target.GetComponent<RotateObject>().RotateBackward();
+                        rotate.RotateBackward();
                     }
 
                 }
-
+                
                 else if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
                 {
                     if ( tipoInteracao == 0 )
                     {
                         //Debug.Log("Move UP");
-                        target.GetComponent<MoveObject>().MoveUp();
+                        move.MoveUp();
                     }
                     else if ( tipoInteracao == 2 )
                     {
                         //Debug.Log("Scale UP");
-                        target.GetComponent<ResizeObject>().ScaleUp();
+                        scale.ScaleUp();
                     }
 
                 }
@@ -129,12 +138,12 @@ public class InputManager : MonoBehaviour
                     if ( tipoInteracao == 0 )
                     {
                         //Debug.Log("Move Down");
-                        target.GetComponent<MoveObject>().MoveDown();
+                        move.MoveDown();
                     }
                     else if ( tipoInteracao == 2 )
                     {
                         //Debug.Log("Scale Down");
-                        target.GetComponent<ResizeObject>().ScaleDown();
+                        scale.ScaleDown();
                     }
                 }
                 if ( Input.GetKey( KeyCode.D ) || Input.GetKey( KeyCode.RightArrow ) )
@@ -142,12 +151,12 @@ public class InputManager : MonoBehaviour
                     if ( tipoInteracao == 0 )
                     {
                         //Debug.Log("Move Right");
-                        target.GetComponent<MoveObject>().MoveRight();
+                        move.MoveRight();
                     }
                     else if ( tipoInteracao == 2 )
                     {
                         //Debug.Log("Scale Right");
-                        target.GetComponent<ResizeObject>().ScaleRight();
+                        scale.ScaleRight();
                     }
                 }
                 if ( Input.GetKey( KeyCode.A ) || Input.GetKey( KeyCode.LeftArrow ) )
@@ -155,12 +164,12 @@ public class InputManager : MonoBehaviour
                     if ( tipoInteracao == 0 )
                     {
                         //Debug.Log("Move Left");
-                        target.GetComponent<MoveObject>().MoveLeft();
+                        move.MoveLeft();
                     }
                     else if ( tipoInteracao == 2 )
                     {
                         //Debug.Log("Scale Left");
-                        target.GetComponent<ResizeObject>().ScaleLeft();
+                        scale.ScaleLeft();
                     }
                 }
                 if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
@@ -168,12 +177,12 @@ public class InputManager : MonoBehaviour
                     if ( tipoInteracao == 0 )
                     {
                         //Debug.Log("Move Forward");
-                        target.GetComponent<MoveObject>().MoveForward();
+                        move.MoveForward();
                     }
                     else if ( tipoInteracao == 2 )
                     {
                         //Debug.Log("Scale Forward");
-                        target.GetComponent<ResizeObject>().ScaleForward();
+                        scale.ScaleForward();
                     }
                 }
                 if ( ( Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
@@ -181,15 +190,15 @@ public class InputManager : MonoBehaviour
                     if ( tipoInteracao == 0 )
                     {
                         //Debug.Log("Move Backward");
-                        target.GetComponent<MoveObject>().MoveBackward();
+                        move.MoveBackward();
                     }
                     else if ( tipoInteracao == 2 )
                     {
                         //Debug.Log("Scale Backward");
-                        target.GetComponent<ResizeObject>().ScaleBackward();
+                        scale.ScaleBackward();
                     }
                 }
-
+                
                 if ( !_blockInteraction )
                 {
                     //Mudar Cor
@@ -276,4 +285,12 @@ public class InputManager : MonoBehaviour
             gameManager.DeleteGameObect(gameManager.GetSelectedObjectForm());
         }
     }
+
+    /*
+    private void SendMoveCommand( Transform objectToMove, Vector3 direction, float distance )
+    {
+        ICommand movement = new Move(objectToMove, direction, distance);
+        target.GetComponent<MoveObject>().AddCommand( movement as Move );
+    }
+    */
 }

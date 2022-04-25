@@ -4,31 +4,48 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Managers")]
+
     public PrefabInstantiator prefabInstantiator;
     public ColorManager colorManager;
     public HighlightManager highlightManager;
+    
+    [Header("Object Controllers")]
+    public Move move;
+    public Rotate rotate;
 
-    [SerializeField] private GameObject selectedObject;
-    [SerializeField] private Form selectedObjectForm;
-    [SerializeField] public GameObject cameraObject;
-
-    public List<Form> createdForms = new List<Form>();
-    public List<InteractionBlock> createdBlocks = new List<InteractionBlock>();
-
+    [Header("Formas")]
+    [SerializeField] public GameObject selectedObject;
+    [HideInInspector] public Form selectedObjectForm;
     public int number = 0;
     public int numberCube = 0;
     public int numberSphere = 0;
-    //[SerializeField] private bool hasSelectedObject = false;
+    public List<Form> createdForms = new List<Form>();
+    public List<InteractionBlock> createdBlocks = new List<InteractionBlock>();
 
+    [Header("Tipos de Relações")]
     public int tipoInteracao = 0; //Com o que interage
+    public int tipoConecao = 0;
     public bool blockInteraction = false;
     public bool moveCamera = false;
-    public int tipoConecao = 0;
+    
+
+
+    [Header("Camera")]
+    [SerializeField] public GameObject cameraObject;
+
+    
+
+
+    //[SerializeField] private bool hasSelectedObject = false;
+    
 
     private void Start()
     {
+        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
         colorManager = GetComponent<ColorManager>();
         highlightManager = GetComponent<HighlightManager>();
+        move = GetComponent<Move>();
     }
 
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
@@ -141,16 +158,7 @@ public class GameManager : MonoBehaviour
         selectedObject.GetComponent<MoveObject>().SetMinDistance( dis );
     }
 
-    /*
-    public void FaceToFace()
-    {
-        MoveObject mv = mover.GetComponent<MoveObject>();
-        Vector3 pointOnFace = mv.clo
-        if ( mv != null )
-        {
-            mv.MoveToPosition(pointOnFace + dst);
-        }
-    }*/
+
 
     public void Restart()
     {
@@ -162,6 +170,8 @@ public class GameManager : MonoBehaviour
             interactionBlock.DeletedBlock();
         }
 
+        createdForms.Clear();
+        createdBlocks.Clear();
         number = 0;
         numberCube = 0;
         numberSphere = 0;
@@ -174,7 +184,11 @@ public class GameManager : MonoBehaviour
 
     public void DeleteGameObect(Form form )
     {
-        form.GetComponentInParent<InteractionBlock>().DeleteForm( form );
+        InteractionBlock parent = form.gameObject.GetComponentInParent<InteractionBlock>();
+        bool onlyFormInBlock = form.GetComponentInParent<InteractionBlock>().DeleteForm( form );
+        if ( onlyFormInBlock )
+            createdBlocks.Remove( parent );
+        createdForms.Remove( form );
 
         if(selectedObjectForm == form )
         {
@@ -191,6 +205,9 @@ public class GameManager : MonoBehaviour
         {
             numberSphere -= 1;
         }
+
+        
+        
 
     }
 }

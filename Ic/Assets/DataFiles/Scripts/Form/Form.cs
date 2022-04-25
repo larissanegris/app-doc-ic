@@ -29,6 +29,16 @@ public class Form : MonoBehaviour
         outline = gameObject.GetComponent<Outline>();
     }
 
+    private void OnEnable()
+    {
+        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
+    }
+
+    private void OnDisable()
+    {
+        FindObjectOfType<SelectionManager>().selectionChange -= ChangeSelectedObject;
+    }
+
     public void CreateForm(int id, FormType type)
     {
         this.id = id;
@@ -43,6 +53,19 @@ public class Form : MonoBehaviour
     {
         previousCor = cor;
         cor = newCor;
+    }
+
+    public void ChangeSelectedObject(GameObject gm)
+    {
+        if(gm == gameObject ) {
+            isSelected = true;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
+        else
+        {
+            isSelected = false;
+            outline.OutlineMode = Outline.Mode.OutlineHidden;
+        }
     }
 
     public void SetToSelected()

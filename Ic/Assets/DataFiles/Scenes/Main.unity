@@ -721,6 +721,9 @@ GameObject:
   - component: {fileID: 1269835865}
   - component: {fileID: 1269835866}
   - component: {fileID: 1269835867}
+  - component: {fileID: 1269835868}
+  - component: {fileID: 1269835869}
+  - component: {fileID: 1269835870}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -741,6 +744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1269835863}
+  selectionManager: {fileID: 0}
   cubePrefab: {fileID: 3793351226083502663, guid: 80a32d85e7822ee49ad4155283b2ea8c, type: 3}
   spherePrefab: {fileID: 3157072259384202465, guid: 3897f2507da739049a9d6ae7d801504a, type: 3}
   interactionBlock: {fileID: 1609678129853975907, guid: 6857c8f3e85db794eb81915e7f51740c, type: 3}
@@ -779,6 +783,9 @@ MonoBehaviour:
   target: {fileID: 0}
   colorManager: {fileID: 0}
   moveCamera: {fileID: 0}
+  move: {fileID: 0}
+  rotate: {fileID: 0}
+  scale: {fileID: 0}
 --- !u!114 &1269835863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -792,20 +799,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabInstantiator: {fileID: 1269835860}
-  colorManager: {fileID: 0}
-  highlightManager: {fileID: 0}
+  colorManager: {fileID: 1269835866}
+  highlightManager: {fileID: 1269835867}
+  move: {fileID: 0}
+  rotate: {fileID: 0}
   selectedObject: {fileID: 0}
   selectedObjectForm: {fileID: 0}
-  cameraObject: {fileID: 1470182494}
-  createdForms: []
-  createdBlocks: []
   number: 0
   numberCube: 0
   numberSphere: 0
+  createdForms: []
+  createdBlocks: []
   tipoInteracao: 0
+  tipoConecao: 0
   blockInteraction: 0
   moveCamera: 0
-  tipoConecao: 0
+  cameraObject: {fileID: 1470182494}
 --- !u!114 &1269835864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,6 +877,46 @@ MonoBehaviour:
   colorManager: {fileID: 1269835866}
   baseMaterial: {fileID: 2100000, guid: 4aeeb9ce0be126d42a89f218d4c3ff76, type: 2}
   highlightMat: {fileID: 2100000, guid: bed481b76173c294b89efa0a1a73cb2a, type: 2}
+--- !u!114 &1269835868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269835859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efcaa67f34a0ad4d89da19da3331202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
+  MovementSpeed: 10
+--- !u!114 &1269835869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269835859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251f63e512b03ea45857f862f9889fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
+--- !u!114 &1269835870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269835859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160a0af7ec675af468e47015ba92137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
 --- !u!1 &1470182494
 GameObject:
   m_ObjectHideFlags: 0
