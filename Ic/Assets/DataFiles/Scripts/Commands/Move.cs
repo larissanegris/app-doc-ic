@@ -1,18 +1,26 @@
 using UnityEngine;
+using UnityEditor;
 
 public class Move : MonoBehaviour
 {
+
     private GameManager gameManager;
+    [Header("Selected Object")]
     public GameObject selectedObject;
     private Form form;
-
+    [Space(20)]
     [SerializeField] [Range(0, 15)] private float MovementSpeed = 10f;
-    private int restrainType;
+    
+    
+    [Header("Restricoes")]
+
+    [Tooltip("Indica qual o tipo de restricao:\n0 - Nenhuma\n1- Colisao\n2 - Face a Face\n3 - Proximidade")]
+    [SerializeField] private int restrainType;
     private Vector3 restrainPoint;
     private Vector3 maxDistance; //Distancia que nao pode ficar mais longe
     private Vector3 scale;
     private Vector3 center;
-    private Vector3 closestPoint;
+    public Vector3 closestPoint;
     private Vector3 minDistance; //Distancia que nao pode ficar mais perto
     private float distance;
 
@@ -28,6 +36,8 @@ public class Move : MonoBehaviour
     {
         selectedObject = gameManager.selectedObject;
         restrainType = gameManager.tipoConecao;
+        Debug.DrawLine(center, restrainPoint, Color.cyan, 0.2f);
+        //Debug.DrawLine( center, closestPoint, Color.green, 0.2f );
 
         if ( restrainPoint != null )
             distance = Vector3.Distance( transform.position, restrainPoint );
@@ -46,7 +56,9 @@ public class Move : MonoBehaviour
     }
     public Vector3 CalculateSelectedObjectPosition( Vector3 dir )
     {
+        Vector3 currentPos = selectedObject.transform.position;
         Vector3 nextPos = CalculatePosition( dir );
+
         if ( restrainType == 0 )
         {
             return nextPos;
@@ -146,7 +158,7 @@ public class Move : MonoBehaviour
                 }
             }
         }
-        return Vector3.zero;
+        return currentPos;
     }
 
     public void MoveSelectedObject( Vector3 newPosition )

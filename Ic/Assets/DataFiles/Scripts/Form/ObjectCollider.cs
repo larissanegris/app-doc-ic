@@ -8,7 +8,9 @@ public class ObjectCollider : MonoBehaviour
     private GameManager gameManager;
     private InteractionBlock interactionBlock;
 
-    [SerializeField] private Vector3 halfBox;
+    private Move move;
+
+    private Vector3 halfBox;
     private Vector3 center;
     private Form form;
 
@@ -19,9 +21,10 @@ public class ObjectCollider : MonoBehaviour
     private Vector3 colliderCenter;
     private DrawPlane plane;
 
-    public Vector3 a;
-    public Vector3 distance;
-    public Vector3 n;
+    /*
+    [SerializeField][Range (0, 1)] private float maxD = .1f;
+    [SerializeField] private float currentDist;
+    */
 
     private int tipoConecao;
 
@@ -33,6 +36,7 @@ public class ObjectCollider : MonoBehaviour
         form = GetComponent<Form>();
         interactionBlock = transform.parent.GetComponent<InteractionBlock>();
         radius = 12;
+        move = gameManager.GetComponent<Move>();
     }
 
     private void FixedUpdate()
@@ -42,8 +46,9 @@ public class ObjectCollider : MonoBehaviour
             tipoConecao = gameManager.GetTipoConecao();
             center = transform.position;
             //Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
-            GameObject closestObject = nearbyObjects(out closestPoint);
-            gameObject.GetComponent<MoveObject>().closestPoint = closestPoint;
+            closestObject = nearbyObjects(out closestPoint);
+            move.closestPoint = closestPoint;
+            Debug.DrawLine( center, closestPoint, Color.yellow, 0.2f );
             if (form.GetFormType() == FormType.Cube )
             {
                 if( closestObject != null )
@@ -68,7 +73,7 @@ public class ObjectCollider : MonoBehaviour
         
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
 
-        closestObject = null;
+        GameObject closest = null;
         distToClosest = float.PositiveInfinity;
         closestPoint = Vector3.zero;
         foreach (var hitCollider in hitColliders)
@@ -78,14 +83,15 @@ public class ObjectCollider : MonoBehaviour
                 float dis = Vector3.Distance( hitCollider.gameObject.transform.position, gameObject.transform.position );
                 if (dis < distToClosest)
                 {
-                    closestObject = hitCollider.gameObject;
-                    colliderCenter = closestObject.transform.position;
+                    closest = hitCollider.gameObject;
+                    colliderCenter = closest.transform.position;
                     closestPoint = hitCollider.ClosestPoint(transform.position);
                     distToClosest = Vector3.Distance( center, closestPoint );
                 }
             }
         }
-        return closestObject;
+        Debug.Log("Closest: " + closest);
+        return closest;
     }
 
     private void MakeInteractionCube(GameObject closestObject )
@@ -109,19 +115,15 @@ public class ObjectCollider : MonoBehaviour
             //Face a Face
             if ( tipoConecao == 2 )
             {
-                Faces( this.gameObject, closestObject, out Vector3 point );
-                /*
-                gameManager.RestrainPoint( closestPoint );
-                gameManager.RestrainMinDistance( Vector3.zero );
-                gameManager.RestrainMaxDistance( Vector3.one * 3 );
-                */
+
                 gameManager.RestrainPoint( colliderCenter );
                 gameManager.RestrainMaxDistance( closestObject.transform.lossyScale / 2 + halfBox + (Vector3.one * .1f) );
                 gameManager.RestrainMinDistance( closestObject.transform.lossyScale / 2 + halfBox - (Vector3.one * .1f) );
 
+                //currentDist = ( closestObject.transform.lossyScale / 2 + ( Vector3.one * maxD ) ).magnitude;
 
-                //Debug.DrawLine( center, closestPoint, Color.magenta, 1 );
-                Debug.DrawLine( Vector3.zero, point, Color.magenta, 1 );
+                //Debug.DrawLine( center, closestObject.transform.lossyScale / 2 + halfBox + ( Vector3.one * maxD ), Color.magenta, 1 );
+                //Debug.DrawLine( center, closestObject.transform.lossyScale / 2 + halfBox - ( Vector3.one * .1f ), Color.red, 1 );
             }
             //Distancia
             if ( tipoConecao == 3 )
@@ -157,19 +159,12 @@ public class ObjectCollider : MonoBehaviour
             //Face a Face
             if ( tipoConecao == 2 )
             {
-                Faces( this.gameObject, closestObject, out Vector3 point );
-                /*
-                gameManager.RestrainPoint( closestPoint );
-                gameManager.RestrainMinDistance( Vector3.zero );
-                gameManager.RestrainMaxDistance( Vector3.one * 3 );
-                */
+
                 gameManager.RestrainPoint( colliderCenter );
                 gameManager.RestrainMaxDistance( closestObject.transform.lossyScale / 2 + halfBox + ( Vector3.one * .1f ) );
                 gameManager.RestrainMinDistance( closestObject.transform.lossyScale / 2 + halfBox - ( Vector3.one * .1f ) );
 
 
-                //Debug.DrawLine( center, closestPoint, Color.magenta, 1 );
-                Debug.DrawLine( Vector3.zero, point, Color.magenta, 1 );
             }
             //Distancia
             if ( tipoConecao == 3 )
@@ -181,36 +176,22 @@ public class ObjectCollider : MonoBehaviour
 
         }
     }
-
-    private Vector3 FindNormal( Vector3 vec )
-    {
-        Vector3 aux = vec;
-        if ( vec.x > vec.y )
-        {
-            if ( vec.x > vec.z )
-                aux.x = 0;
-            else
-                aux.z = 0;
-        }
-        else
-        {
-            if ( vec.y > vec.z )
-                aux.y = 0;
-            else
-                aux.z = 0;
-        }
-        return aux;
-    }
+    
 
     public bool Faces( GameObject source, GameObject target, out Vector3 point )
     {
+        if( source == null || target == null )
+        {
+            point = Vector3.zero;
+            return false;
+        }
+            
+
         Vector3 spos = source.transform.position;
         Vector3 shbox = source.transform.lossyScale/2;
 
         Vector3 tpos = target.transform.position;
         Vector3 thbox = target.transform.lossyScale/2;
-
-        
 
         if( (spos.y < tpos.y + thbox.y && spos.y > tpos.y - thbox.y )
             || ( spos.x < tpos.x + thbox.x && spos.x > tpos.x - thbox.x )

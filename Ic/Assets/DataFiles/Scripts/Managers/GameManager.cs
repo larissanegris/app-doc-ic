@@ -146,16 +146,16 @@ public class GameManager : MonoBehaviour
 
     public void RestrainPoint( Vector3 point )
     {
-        selectedObject.GetComponent<MoveObject>().SetRestraintPoint( point );
+        move.SetRestraintPoint( point );
     }
     public void RestrainMaxDistance( Vector3 dis )
     {
-        selectedObject.GetComponent<MoveObject>().SetMaxDistance( dis );
+        move.SetMaxDistance( dis );
     }
 
     public void RestrainMinDistance( Vector3 dis )
     {
-        selectedObject.GetComponent<MoveObject>().SetMinDistance( dis );
+        move.SetMinDistance( dis );
     }
 
 

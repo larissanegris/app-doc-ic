@@ -36,7 +36,7 @@ public class Form : MonoBehaviour
 
     private void OnDisable()
     {
-        FindObjectOfType<SelectionManager>().selectionChange -= ChangeSelectedObject;
+        //FindObjectOfType<SelectionManager>().selectionChange -= ChangeSelectedObject;
     }
 
     public void CreateForm(int id, FormType type)
