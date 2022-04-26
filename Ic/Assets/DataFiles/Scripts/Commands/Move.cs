@@ -1,45 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class MoveObject : MonoBehaviour
+public class Move : MonoBehaviour
 {
-    private GameManager gameManager;
-    private Form form;
 
+    private GameManager gameManager;
+    [Header("Selected Object")]
+    public GameObject selectedObject;
+    private Form form;
+    [Space(20)]
     [SerializeField] [Range(0, 15)] private float MovementSpeed = 10f;
-    int restrainType;
-    [SerializeField] private Vector3 restrainPoint;
+    
+    
+    [Header("Restricoes")]
+
+    [Tooltip("Indica qual o tipo de restricao:\n0 - Nenhuma\n1- Colisao\n2 - Face a Face\n3 - Proximidade")]
+    [SerializeField] private int restrainType;
+    private Vector3 restrainPoint;
     private Vector3 maxDistance; //Distancia que nao pode ficar mais longe
     private Vector3 scale;
     private Vector3 center;
     public Vector3 closestPoint;
     private Vector3 minDistance; //Distancia que nao pode ficar mais perto
-    [SerializeField] private float distance;
+    private float distance;
+
+    //public event Func<GameObject> Move;
 
     private void Awake()
     {
+        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
         gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
-        form = GetComponent<Form>();
     }
 
     private void Update()
     {
+        selectedObject = gameManager.selectedObject;
         restrainType = gameManager.tipoConecao;
-        scale = gameObject.transform.lossyScale / 2;
-        center = gameObject.transform.position;
-        if(tag=="Selected")
-            Debug.DrawLine( center, closestPoint, Color.magenta, .3f );
+        Debug.DrawLine(center, restrainPoint, Color.cyan, 0.2f);
+        //Debug.DrawLine( center, closestPoint, Color.green, 0.2f );
+
         if ( restrainPoint != null )
             distance = Vector3.Distance( transform.position, restrainPoint );
     }
-
-    public void Move( Vector3 dir )
+    private void ChangeSelectedObject(GameObject gm)
     {
+        selectedObject = gm;
+        form = selectedObject.GetComponent<Form>();
+        UpdateSelectedObjectStats();
+    }
+
+    private void UpdateSelectedObjectStats()
+    {
+        scale = selectedObject.transform.lossyScale / 2;
+        center = selectedObject.transform.position;
+    }
+    public Vector3 CalculateSelectedObjectPosition( Vector3 dir )
+    {
+        Vector3 currentPos = selectedObject.transform.position;
         Vector3 nextPos = CalculatePosition( dir );
+
         if ( restrainType == 0 )
         {
-            MoveToPosition( nextPos );
+            return nextPos;
         }
         else if ( form.GetFormType() == FormType.Cube )
         {
@@ -52,24 +74,14 @@ public class MoveObject : MonoBehaviour
                     {
                         if ( Mathf.Abs( ( restrainPoint.z - nextPos.z ) ) < maxDistance.z )
                         {
-                            MoveToPosition( nextPos );
+                            return nextPos;
                         }
                     }
                 }
             }
             else if ( restrainType == 2 )
             {
-                /*
-                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
-                {
 
-                    if ( (nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x)
-                        || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
-                        || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
-                    {
-                        MoveToPosition( nextPos );
-                    }
-                }*/
                 if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
                 {
                     //Verifica se esta dentro dos dois limites
@@ -77,7 +89,7 @@ public class MoveObject : MonoBehaviour
                         || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
                         || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
                     {
-                        MoveToPosition( nextPos );
+                        return( nextPos );
                     }
                 }
             }
@@ -89,7 +101,7 @@ public class MoveObject : MonoBehaviour
                         || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
                         || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
                     {
-                        MoveToPosition( nextPos );
+                        return ( nextPos );
                     }
                 }
             }
@@ -117,22 +129,11 @@ public class MoveObject : MonoBehaviour
                     Debug.Log( ( ( ( closestPoint.x - x0 ) / a ) * ( ( closestPoint.x - x0 ) / a ) ) +
                     ( ( ( closestPoint.y - y0 ) / b ) * ( ( closestPoint.y - y0 ) / b ) ) +
                     ( ( ( closestPoint.z - z0 ) / c ) * ( ( closestPoint.z - z0 ) / c ) ) < 1 );
-                    MoveToPosition( nextPos );
+                    return( nextPos );
                 }
             }
             else if ( restrainType == 2 )
             {
-                /*
-                if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
-                {
-
-                    if ( (nextPos.x > restrainPoint.x + minDistance.x || nextPos.x < restrainPoint.x - minDistance.x)
-                        || (nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y)
-                        || (nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z) )
-                    {
-                        MoveToPosition( nextPos );
-                    }
-                }*/
                 if ( Vector3.Distance( restrainPoint, nextPos ) <= maxDistance.magnitude )
                 {
                     //Verifica se esta dentro dos dois limites
@@ -140,7 +141,7 @@ public class MoveObject : MonoBehaviour
                         || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
                         || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
                     {
-                        MoveToPosition( nextPos );
+                        return( nextPos );
                     }
                 }
             }
@@ -152,45 +153,48 @@ public class MoveObject : MonoBehaviour
                         || ( nextPos.y > restrainPoint.y + minDistance.y || nextPos.y < restrainPoint.y - minDistance.y )
                         || ( nextPos.z > restrainPoint.z + minDistance.z || nextPos.z < restrainPoint.z - minDistance.z ) )
                     {
-                        MoveToPosition( nextPos );
+                        return( nextPos );
                     }
                 }
             }
         }
+        return currentPos;
     }
 
-    public void MoveToPosition( Vector3 newPosition )
+    public void MoveSelectedObject( Vector3 newPosition )
     {
-        transform.position = newPosition;
+        UpdateSelectedObjectStats();
+        Vector3 nextPosition = CalculateSelectedObjectPosition(newPosition);
+        selectedObject.transform.position = nextPosition;
     }
     public Vector3 CalculatePosition( Vector3 dir )
     {
-        return transform.position + dir * Time.deltaTime;
+        return selectedObject.transform.position + dir * Time.deltaTime;
     }
 
     public void MoveUp()
     {
-        Move( new Vector3( 0, MovementSpeed, 0 ) );
+        MoveSelectedObject( new Vector3( 0, MovementSpeed, 0 ) );
     }
     public void MoveDown()
     {
-        Move( new Vector3( 0, -MovementSpeed, 0 ) );
+        MoveSelectedObject( new Vector3( 0, -MovementSpeed, 0 ) );
     }
     public void MoveRight()
     {
-        Move( new Vector3( MovementSpeed, 0, 0 ) );
+        MoveSelectedObject( new Vector3( MovementSpeed, 0, 0 ) );
     }
     public void MoveLeft()
     {
-        Move( new Vector3( -MovementSpeed, 0, 0 ) );
+        MoveSelectedObject( new Vector3( -MovementSpeed, 0, 0 ) );
     }
     public void MoveForward()
     {
-        Move( new Vector3( 0, 0, MovementSpeed ) );
+        MoveSelectedObject( new Vector3( 0, 0, MovementSpeed ) );
     }
     public void MoveBackward()
     {
-        Move( new Vector3( 0, 0, -MovementSpeed ) );
+        MoveSelectedObject( new Vector3( 0, 0, -MovementSpeed ) );
     }
 
     public void SetRestraintType( int value )
@@ -212,24 +216,5 @@ public class MoveObject : MonoBehaviour
     {
         minDistance = value;
     }
-
-    private float FindMaxComponent( Vector3 vec )
-    {
-        if ( vec.x > vec.y )
-        {
-            if ( vec.x > vec.z )
-                return vec.x;
-            else
-                return vec.z;
-        }
-        else
-        {
-            if ( vec.y > vec.z )
-                return vec.y;
-            else
-                return vec.z;
-        }
-    }
-
 
 }

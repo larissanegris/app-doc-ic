@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
@@ -10,6 +9,8 @@ public class SelectionManager : MonoBehaviour
     private Transform _selection;
     public Form form;
     public ColorManager colorManager;
+
+    public event Action<GameObject> selectionChange;
 
     private void Start()
     {
@@ -36,7 +37,11 @@ public class SelectionManager : MonoBehaviour
 
                     if ( selection.gameObject != gameManager.GetSelectedObject() )
                     {
-                        gameManager.ChangeSelectedObject( selection.gameObject );
+                        if( selectionChange != null )
+                        {
+                            selectionChange( selection.gameObject );
+                        }
+                        //gameManager.ChangeSelectedObject( selection.gameObject );
                     }
 
                     _selection = selection;
@@ -44,5 +49,11 @@ public class SelectionManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ChangeSelectedObject(GameObject gm )
+    {
+        gameManager.ChangeSelectedObject( gm );
+        selectionChange?.Invoke( gm );
     }
 }

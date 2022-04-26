@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PrefabInstantiator : MonoBehaviour
 {
     public GameManager gameManager;
+    public SelectionManager selectionManager;
 
     public GameObject cubePrefab;
     public GameObject spherePrefab;
@@ -23,6 +24,7 @@ public class PrefabInstantiator : MonoBehaviour
     {
          floor = GameObject.Find("Floor");
          gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        selectionManager = gameManager.GetComponent<SelectionManager>();
     }
 
     public GameObject SpawnCube( GameObject parent )
@@ -30,7 +32,7 @@ public class PrefabInstantiator : MonoBehaviour
         if ( cubePrefab != null )
         {
             GameObject myModelObject = Instantiate(cubePrefab, parent.transform);
-            myModelObject.name = "Cube" + gameManager.numberSphere;
+            myModelObject.name = "Cube" + gameManager.numberCube;
 
             forma = myModelObject.GetComponent<Form>();
             forma.CreateForm( gameManager.number, FormType.Cube );
@@ -89,7 +91,8 @@ public class PrefabInstantiator : MonoBehaviour
         }
         gameManager.number++;
         Debug.Log( "Model: " + modelObject.name );
-        gameManager.ChangeSelectedObject( modelObject );
+        
+        selectionManager.ChangeSelectedObject(modelObject);
         gameManager.createdBlocks.Add( newParent.GetComponent<InteractionBlock>() );
 
 

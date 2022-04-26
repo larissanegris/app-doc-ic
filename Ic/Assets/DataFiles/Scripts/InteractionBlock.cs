@@ -104,7 +104,7 @@ public class InteractionBlock : MonoBehaviour
         GameObject.Destroy(gameObject);
     }
 
-    public void DeleteForm(Form form )
+    public bool DeleteForm(Form form )
     {
         Debug.Log( "Deletado: " + form.gameObject.name );
         form.DeleteSelf();
@@ -112,7 +112,9 @@ public class InteractionBlock : MonoBehaviour
         if(interactionList.Count == 0 )
         {
             DeletedBlock();
+            return true;
         }
+        return false;
     }
 
 }

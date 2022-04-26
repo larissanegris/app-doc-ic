@@ -14,9 +14,6 @@ GameObject:
   - component: {fileID: 5344694631523415509}
   - component: {fileID: 250712527244084839}
   - component: {fileID: 156405384603034726}
-  - component: {fileID: 4607015442397708442}
-  - component: {fileID: -245878665370236038}
-  - component: {fileID: -7131802961262153357}
   - component: {fileID: 1436022637913850413}
   - component: {fileID: 3985173842367838522}
   m_Layer: 0
@@ -135,46 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
---- !u!114 &4607015442397708442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3157072259384202465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100b67869b7f0684292895c74489d7fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovementSpeed: 10
-  restrainPoint: {x: 0, y: 0, z: 0}
-  closestPoint: {x: 0, y: 0, z: 0}
-  distance: 0
---- !u!114 &-245878665370236038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3157072259384202465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895a888cd0d0617408ca23f6686d2348, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-7131802961262153357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3157072259384202465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 967710c7c5a062a4d8ceea6ad522da98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1436022637913850413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0.6537614, a: 1}
+  outlineColor: {r: 0, g: 1, b: 0.16862746, a: 1}
   outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
