@@ -80,31 +80,14 @@ public class Form : MonoBehaviour
     }
 
     public void AddInteraction(Form interaction)
-    {
-        foreach(GameObject gm in interaction.transform.parent.GetComponent<InteractionBlock>().interactionList)
-        {
-            Form form = gm.GetComponent<Form>();
-            if (!this.interactions.Contains(form) && form != this)
-            {
-                interactions.Add(form);
-                if (!form.interactions.Contains(this) && form.gameObject != interaction)
-                {
-                    form.interactions.Add(this);
-                    form.SetIsInBlock(true);
-                }
-                
-                //form.AddSingleInteraction(this);
-                
-            }
-            //form.AddSingleInteraction(this);
-        }
-
+    {/*
         isInBlock = true;
         
         if(interactions.Count > 0)
         {
             colorManager.LigtherColor(this.gameObject);
         }
+        */
     }
 
     public void AddSingleInteraction(Form form)

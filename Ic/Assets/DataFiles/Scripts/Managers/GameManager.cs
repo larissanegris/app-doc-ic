@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     public int numberCube = 0;
     public int numberSphere = 0;
     public List<Form> createdForms = new List<Form>();
-    public List<InteractionBlock> createdBlocks = new List<InteractionBlock>();
+    [SerializeField] public bool displayVolume = false;
+
 
     [Header("Tipos de Relações")]
     public int tipoInteracao = 0; //Com o que interage
@@ -165,13 +166,7 @@ public class GameManager : MonoBehaviour
         selectedObject = null;
         selectedObjectForm = null;
 
-        foreach(InteractionBlock interactionBlock in createdBlocks )
-        {
-            interactionBlock.DeletedBlock();
-        }
-
         createdForms.Clear();
-        createdBlocks.Clear();
         number = 0;
         numberCube = 0;
         numberSphere = 0;
@@ -184,10 +179,6 @@ public class GameManager : MonoBehaviour
 
     public void DeleteGameObect(Form form )
     {
-        InteractionBlock parent = form.gameObject.GetComponentInParent<InteractionBlock>();
-        bool onlyFormInBlock = form.GetComponentInParent<InteractionBlock>().DeleteForm( form );
-        if ( onlyFormInBlock )
-            createdBlocks.Remove( parent );
         createdForms.Remove( form );
 
         if(selectedObjectForm == form )
@@ -205,9 +196,5 @@ public class GameManager : MonoBehaviour
         {
             numberSphere -= 1;
         }
-
-        
-        
-
     }
 }

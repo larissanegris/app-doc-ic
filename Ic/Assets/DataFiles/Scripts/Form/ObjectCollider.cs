@@ -6,7 +6,6 @@ public class ObjectCollider : MonoBehaviour
 {
     private bool isSelected;
     private GameManager gameManager;
-    private InteractionBlock interactionBlock;
 
     private Move move;
 
@@ -35,7 +34,6 @@ public class ObjectCollider : MonoBehaviour
         
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         form = GetComponent<Form>();
-        interactionBlock = transform.parent.GetComponent<InteractionBlock>();
         radius = 12;
         move = gameManager.GetComponent<Move>();
     }
