@@ -24,7 +24,7 @@ public class PrefabInstantiator : MonoBehaviour
     {
          floor = GameObject.Find("Floor");
          gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        selectionManager = gameManager.GetComponent<SelectionManager>();
+         selectionManager = gameManager.GetComponent<SelectionManager>();
     }
 
     public GameObject SpawnCube( GameObject parent )
@@ -37,6 +37,15 @@ public class PrefabInstantiator : MonoBehaviour
             forma = myModelObject.GetComponent<Form>();
             forma.CreateForm( gameManager.number, FormType.Cube );
             gameManager.createdForms.Add( forma );
+
+            if (gameManager.displayVolume )
+            {
+                GameObject interactionVolume = Instantiate(cubePrefab, myModelObject.transform);
+                interactionVolume.name = "Cube" + gameManager.numberCube + "Interaction Volume";
+                interactionVolume.GetComponent<MeshRenderer>().material = transparentCube;
+                interactionVolume.transform.localScale = 1.5f * Vector3.one;
+            }
+            
 
             return myModelObject;
         }
@@ -61,15 +70,12 @@ public class PrefabInstantiator : MonoBehaviour
 
     public GameObject Spawn(FormType type, bool isTransparent)
     {
-        //Criar pai
-        GameObject newParent = Instantiate(interactionBlock, floor.transform);
-        newParent.transform.SetParent( floor.transform, true );
         
         GameObject modelObject;
 
         if(type == FormType.Cube )
         {
-            modelObject = SpawnCube( newParent );
+            modelObject = SpawnCube( floor.gameObject );
 
             gameManager.numberCube++;
 
@@ -80,7 +86,7 @@ public class PrefabInstantiator : MonoBehaviour
         }
         else
         {
-            modelObject = SpawnSphere( newParent );
+            modelObject = SpawnSphere( floor.gameObject );
 
             gameManager.numberSphere++;
 
@@ -93,23 +99,13 @@ public class PrefabInstantiator : MonoBehaviour
         Debug.Log( "Model: " + modelObject.name );
         
         selectionManager.ChangeSelectedObject(modelObject);
-        gameManager.createdBlocks.Add( newParent.GetComponent<InteractionBlock>() );
-
-
-        modelObject.transform.SetParent( newParent.transform, true );
 
 
         modelObject.transform.localScale = new Vector3( 1f, 1f, 1f );
         modelObject.transform.position = modelObject.transform.position + new Vector3( 0, 4, 0 );
         modelObject.SetActive( true );
 
-        newParent.name = "InteractionBlock" + forma.GetId();
-        newParent.GetComponent<InteractionBlock>().AddInteraction( modelObject );
-
-
         return modelObject;
         
-    }
-
-    
+    }    
 }
