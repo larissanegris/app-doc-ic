@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 156405384603034726}
   - component: {fileID: 1436022637913850413}
   - component: {fileID: 3985173842367838522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -32,7 +32,8 @@ Transform:
   m_GameObject: {fileID: 3157072259384202465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.44, z: 0}
-  m_LocalScale: {x: 0.78515, y: 0.78515, z: 0.78515}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,6 +57,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -116,7 +118,7 @@ MonoBehaviour:
   cor: 5
   previousCor: 5
   isSelected: 0
-  isInBlock: 0
+  halfBoxVolume: {x: 0, y: 0, z: 0}
   interactions: []
   distances: []
 --- !u!114 &156405384603034726
@@ -144,13 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc322cbd3a94ba84884a9225d1f396f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  halfBox: {x: 0, y: 0, z: 0}
   radius: 0
   closestObject: {fileID: 0}
   distToClosest: 0
-  a: {x: 0, y: 0, z: 0}
-  distance: {x: 0, y: 0, z: 0}
-  n: {x: 0, y: 0, z: 0}
 --- !u!114 &3985173842367838522
 MonoBehaviour:
   m_ObjectHideFlags: 0

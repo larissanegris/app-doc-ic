@@ -1,28 +1,34 @@
 using UnityEngine;
 using Vuforia;
-using System.Collections.Generic;
+using System;
 
-public class PrefabInstantiator : MonoBehaviour
+public class InstantiationManager : MonoBehaviour
 {
+    [Header("Managers")]
     public GameManager gameManager;
     public SelectionManager selectionManager;
 
+    [Header("Prefabs")]
     public GameObject cubePrefab;
     public GameObject spherePrefab;
-    public GameObject interactionBlock;
-    public GameObject imageTarget;
+    public GameObject cubeVolumePrefab;
+    public GameObject sphereVolumePrefab;
 
+    [Header("Materials")]
     [SerializeField]
     private Material transparentCube;
     [SerializeField]
     private Material transparentSphere;
 
-    public Form forma;
-    public GameObject floor;
+
+    private Form forma;
+    private GameObject parent;
+
+    public event Action<GameObject> Instantiation;
 
     private void Awake()
     {
-         floor = GameObject.Find("Floor");
+         parent = GameObject.Find("Parent");
          gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
          selectionManager = gameManager.GetComponent<SelectionManager>();
     }
@@ -36,13 +42,11 @@ public class PrefabInstantiator : MonoBehaviour
 
             forma = myModelObject.GetComponent<Form>();
             forma.CreateForm( gameManager.number, FormType.Cube );
-            gameManager.createdForms.Add( forma );
 
-            if (gameManager.displayVolume )
+            if (gameManager.displayVolume && cubeVolumePrefab != null)
             {
-                GameObject interactionVolume = Instantiate(cubePrefab, myModelObject.transform);
-                interactionVolume.name = "Cube" + gameManager.numberCube + "Interaction Volume";
-                interactionVolume.GetComponent<MeshRenderer>().material = transparentCube;
+                GameObject interactionVolume = Instantiate(cubeVolumePrefab, myModelObject.transform);
+                interactionVolume.name = "Cube" + gameManager.numberCube + " Volume";                interactionVolume.GetComponent<MeshRenderer>().material = transparentCube;
                 interactionVolume.transform.localScale = 1.5f * Vector3.one;
             }
             
@@ -61,7 +65,6 @@ public class PrefabInstantiator : MonoBehaviour
 
             forma = myModelObject.GetComponent<Form>();
             forma.CreateForm(gameManager.number, FormType.Sphere);
-            gameManager.createdForms.Add(forma);
 
             return myModelObject;
         }
@@ -75,9 +78,7 @@ public class PrefabInstantiator : MonoBehaviour
 
         if(type == FormType.Cube )
         {
-            modelObject = SpawnCube( floor.gameObject );
-
-            gameManager.numberCube++;
+            modelObject = SpawnCube( parent.gameObject );
 
             if ( isTransparent )
             {
@@ -86,24 +87,26 @@ public class PrefabInstantiator : MonoBehaviour
         }
         else
         {
-            modelObject = SpawnSphere( floor.gameObject );
-
-            gameManager.numberSphere++;
+            modelObject = SpawnSphere( parent.gameObject );
 
             if ( isTransparent )
             {
                 modelObject.GetComponent<MeshRenderer>().material = transparentSphere;
             }
         }
-        gameManager.number++;
-        Debug.Log( "Model: " + modelObject.name );
-        
-        selectionManager.ChangeSelectedObject(modelObject);
 
+        //Debug.Log( "Model: " + modelObject.name );
 
-        modelObject.transform.localScale = new Vector3( 1f, 1f, 1f );
-        modelObject.transform.position = modelObject.transform.position + new Vector3( 0, 4, 0 );
+        //modelObject.transform.localScale = new Vector3( 1f, 1f, 1f );
+        //modelObject.transform.position = modelObject.transform.position + new Vector3( 0, 0, 0 );
         modelObject.SetActive( true );
+
+        if (Instantiation != null )
+        {
+            Instantiation( modelObject );
+        }
+        
+        //selectionManager.ChangeSelectedObject( modelObject );
 
         return modelObject;
         

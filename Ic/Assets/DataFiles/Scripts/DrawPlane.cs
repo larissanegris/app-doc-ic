@@ -10,13 +10,20 @@ public class DrawPlane : MonoBehaviour
     [SerializeField] [Range(-1f, 1f)] float xView;
     [SerializeField] [Range(-1f, 1f)] float yView;
     public Vector3 point;
+    public Vector3 VolumeHalfBox;
     public GameObject pointer;
 
 
     private void Update()
     {
-        DrawSphere( gameObject );
+        drawCube( gameObject );
     }
+
+    public void DrawVolumeHalfBox()
+    {
+
+    }
+
     public void Draw( Vector3 position, Vector3 normal )
     {
 

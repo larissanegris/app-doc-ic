@@ -48,20 +48,24 @@ public class ObjectCollider : MonoBehaviour
             closestObject = nearbyObjects(out closestPoint);
             move.closestPoint = closestPoint;
             Debug.DrawLine( center, closestPoint, Color.yellow, 0.2f );
+            
             if (form.GetFormType() == FormType.Cube )
             {
                 if( closestObject != null )
                 {
-                    MakeInteractionCube( closestObject );
+                    //MakeInteractionCube( closestObject );
                 }
             }
             else if ( form.GetFormType() == FormType.Sphere )
             {
                 if ( closestObject != null )
                 {
-                    MakeInteractionSphere( closestObject );
+                    //MakeInteractionSphere( closestObject );
                 }
             }
+
+
+            VerifyInteractionsCube();
 
         }
     }
@@ -89,7 +93,7 @@ public class ObjectCollider : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Closest: " + closest);
+        //Debug.Log("Closest: " + closest);
         return closest;
     }
 
@@ -135,6 +139,65 @@ public class ObjectCollider : MonoBehaviour
         }
     }
 
+    private void VerifyInteractionsCube()
+    {
+
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        halfBox = transform.lossyScale * 0.5f;
+        
+
+        foreach (Collider hitCollider in hitColliders )
+        {
+
+            if ( hitCollider.gameObject != gameObject && hitCollider.gameObject.tag != "Floor" )
+            {
+                //verifica se é conecao do tipo 1
+                Vector3 colliderCenter = hitCollider.transform.position;
+
+                Vector3 hitColliderHalfBox = hitCollider.transform.lossyScale * 0.5f;
+                Vector3 maxDistance = halfBox + hitColliderHalfBox;
+                
+                //Verifica contato
+                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                {
+                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
+                    {
+                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
+                        {
+                            Debug.Log( "Dentro" );
+                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
+                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+                            continue;
+                        }
+                    }
+                }
+
+                //Verifica se é do tipo 2
+
+                Vector3 volumeHalfBox = hitCollider.transform.GetChild( 0 ).transform.lossyScale * .5f;
+                maxDistance = halfBox + colliderCenter + volumeHalfBox;
+
+                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                {
+                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
+                    {
+                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
+                        {
+                            Debug.Log( "Dentro" );
+                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
+                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+                            continue;
+                        }
+                    }
+                }
+
+
+            }
+
+        }
+
+    }
+
     private void MakeInteractionSphere( GameObject closestObject )
     {
         
@@ -174,42 +237,5 @@ public class ObjectCollider : MonoBehaviour
             }
 
         }
-    }
-    
-
-    public bool Faces( GameObject source, GameObject target, out Vector3 point )
-    {
-        if( source == null || target == null )
-        {
-            point = Vector3.zero;
-            return false;
-        }
-            
-
-        Vector3 spos = source.transform.position;
-        Vector3 shbox = source.transform.lossyScale/2;
-
-        Vector3 tpos = target.transform.position;
-        Vector3 thbox = target.transform.lossyScale/2;
-
-        if( (spos.y < tpos.y + thbox.y && spos.y > tpos.y - thbox.y )
-            || ( spos.x < tpos.x + thbox.x && spos.x > tpos.x - thbox.x )
-            )
-        {
-            Vector3 a = spos;
-            a.z = tpos.z + thbox.z;
-            Vector3 b = spos;
-            b.z  = tpos.z - thbox.z;
-            Debug.DrawLine( a, b, Color.red, 1 );
-
-            plane.drawCube( target );
-            Vector3 dst = spos - tpos;
-            point = ( tpos + ( dst ) ).normalized;
-            point *= ( thbox + shbox ).magnitude;
-
-            return true;
-        }
-        point = Vector3.zero;
-        return false;
     }
 }
