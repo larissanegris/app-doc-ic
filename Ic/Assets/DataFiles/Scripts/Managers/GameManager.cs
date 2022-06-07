@@ -6,10 +6,11 @@ public class GameManager : MonoBehaviour
 {
     [Header("Managers")]
 
-    public PrefabInstantiator prefabInstantiator;
+    public InstantiationManager instantiationManager;
     public ColorManager colorManager;
     public HighlightManager highlightManager;
-    
+    public CollisionManager collisionManager;
+
     [Header("Object Controllers")]
     public Move move;
     public Rotate rotate;
@@ -23,34 +24,33 @@ public class GameManager : MonoBehaviour
     public List<Form> createdForms = new List<Form>();
     [SerializeField] public bool displayVolume = false;
 
-
     [Header("Tipos de Relações")]
     public int tipoInteracao = 0; //Com o que interage
     public int tipoConecao = 0;
     public bool blockInteraction = false;
     public bool moveCamera = false;
     
-
-
     [Header("Camera")]
     [SerializeField] public GameObject cameraObject;
-
-    
 
 
     //[SerializeField] private bool hasSelectedObject = false;
     
 
-    private void Start()
+    private void Awake()
     {
         FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
         colorManager = GetComponent<ColorManager>();
         highlightManager = GetComponent<HighlightManager>();
+        instantiationManager = GetComponent<InstantiationManager>();
+        instantiationManager.Instantiation += AddNewObject;
+        collisionManager = GetComponent<CollisionManager>();
         move = GetComponent<Move>();
     }
 
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
     {
+        Debug.Log( "Trocando Selecionado" );
         //se for o unico objeto, nao precisa modificar o antigo selecionado
         if(number == 1)
         {
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
 
         //muda tag
         selectedObject.tag = "Selected";
-        Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
+        //Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
     }
 
     public void ChangeBlockInteraction()
@@ -159,6 +159,19 @@ public class GameManager : MonoBehaviour
         move.SetMinDistance( dis );
     }
 
+    public void AddNewObject(GameObject gm )
+    {
+        Debug.Log("Adicionando");
+        number++;
+        Form form = gm.GetComponent<Form>();
+        createdForms.Add( form );
+        if(form.GetFormType() == FormType.Cube)
+            numberCube++;
+        else
+            numberSphere++;
+        ChangeSelectedObject(gm);
+        colorManager.ChangeColor( -1, gm );
+    }
 
 
     public void Restart()

@@ -10,6 +10,8 @@ public class SelectionManager : MonoBehaviour
     public Form form;
     public ColorManager colorManager;
 
+    [SerializeField] private int layerMask = 1 << 6;
+
     public event Action<GameObject> selectionChange;
 
     private void Start()
@@ -27,9 +29,10 @@ public class SelectionManager : MonoBehaviour
 
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        
         if ( Input.GetMouseButtonDown( 0 ) )
         {
-            if ( Physics.Raycast( ray, out hit ) )
+            if ( Physics.Raycast( ray, out hit, layerMask ) )
             {
                 var selection = hit.transform;
                 if ( selection.CompareTag( selectableTag ) )

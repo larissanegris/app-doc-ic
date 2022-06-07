@@ -35,22 +35,22 @@ public class InputManager : MonoBehaviour
         //Criar cubo opaco
         if ( Input.GetKeyDown( KeyCode.Q ) && !Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.Spawn( FormType.Cube, false );
+            gameManager.instantiationManager.Spawn( FormType.Cube, false );
         }
         //cria cubo transparente
         if ( Input.GetKeyDown( KeyCode.Q ) && Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.Spawn( FormType.Cube, true );
+            gameManager.instantiationManager.Spawn( FormType.Cube, true );
         }
         //criar esfera opaca
         if ( Input.GetKeyDown( KeyCode.E ) && !Input.GetKey( KeyCode.LeftShift ))
         {
-            gameManager.prefabInstantiator.Spawn( FormType.Sphere, false );
+            gameManager.instantiationManager.Spawn( FormType.Sphere, false );
         }
         //cria esfera transparente
         if ( Input.GetKeyDown( KeyCode.E ) && Input.GetKey( KeyCode.LeftShift ) )
         {
-            gameManager.prefabInstantiator.Spawn( FormType.Sphere, true );
+            gameManager.instantiationManager.Spawn( FormType.Sphere, true );
         }
 
 
@@ -85,11 +85,6 @@ public class InputManager : MonoBehaviour
                 target = gameManager.GetSelectedObject();
                 Form form = target.GetComponent<Form>();
 
-                if ( form.GetIsInBlock() && gameManager.blockInteraction )
-                {
-                    target = target.transform.parent.gameObject;
-                }
-                
                 if ( tipoInteracao == 1 )
                 {
                     if ( ( Input.GetKeyDown( KeyCode.W ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )

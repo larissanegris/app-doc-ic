@@ -36,7 +36,7 @@ public class Move : MonoBehaviour
     {
         selectedObject = gameManager.selectedObject;
         restrainType = gameManager.tipoConecao;
-        Debug.DrawLine(center, restrainPoint, Color.cyan, 0.2f);
+        //Debug.DrawLine(center, restrainPoint, Color.cyan, 0.2f);
         //Debug.DrawLine( center, closestPoint, Color.green, 0.2f );
 
         if ( restrainPoint != null )

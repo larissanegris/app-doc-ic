@@ -6,15 +6,15 @@ public class Form : MonoBehaviour
 {
     private GameManager gameManager;
     private ColorManager colorManager;
-    private HighlightManager highlightManager;
 
     [SerializeField] private int id;
     [SerializeField] private FormType type;
     [SerializeField] private Colors cor = Colors.White;
     [SerializeField] private Colors previousCor = Colors.White;
     [SerializeField] private bool isSelected = false;
-    [SerializeField] private bool isInBlock = false;
+    
     private Outline outline;
+    public Vector3 halfBoxVolume ;
 
 
 
@@ -25,19 +25,10 @@ public class Form : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         colorManager = gameManager.colorManager;
-        highlightManager = gameManager.highlightManager;
         outline = gameObject.GetComponent<Outline>();
-    }
-
-    private void OnEnable()
-    {
         FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
     }
 
-    private void OnDisable()
-    {
-        //FindObjectOfType<SelectionManager>().selectionChange -= ChangeSelectedObject;
-    }
 
     public void CreateForm(int id, FormType type)
     {
@@ -79,61 +70,9 @@ public class Form : MonoBehaviour
         outline.OutlineMode = Outline.Mode.OutlineHidden;
     }
 
-    public void AddInteraction(Form interaction)
-    {/*
-        isInBlock = true;
-        
-        if(interactions.Count > 0)
-        {
-            colorManager.LigtherColor(this.gameObject);
-        }
-        */
-    }
-
-    public void AddSingleInteraction(Form form)
-    {
-        if (!this.interactions.Contains(form) && form != this)
-        {
-            interactions.Add(form);
-        }
-        //isInBlock = true;
-
-        if (interactions.Count > 0)
-        {
-            colorManager.LigtherColor(this.gameObject);
-        }
-    }
-
-    public void RemoveInteraction(Form interation)
-    {
-        if (interactions.Exists(element => element == interation))
-        {
-            interactions.Remove(interation);
-        }
-        if (interactions.Count <= 0)
-        {
-            colorManager.DarkerColor(this.gameObject);
-        }
-    }
-
-    public bool GetIsInBlock()
-    {
-        return isInBlock;
-    }
-
-    public void SetIsInBlock(bool isInBlock)
-    {
-        this.isInBlock = isInBlock;
-    }
-
     public int GetId()
     {
         return id;
-    }
-
-    public bool InteractionsContains(Form form)
-    {
-        return interactions.Contains(form);
     }
 
     public List<Form> GetInteractions()
