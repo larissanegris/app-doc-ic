@@ -3,21 +3,17 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-    [SerializeField] private string selectableTag = "Selectable";
-
-    public GameManager gameManager;
+    private GameManager gameManager;
     private Transform _selection;
-    public Form form;
-    public ColorManager colorManager;
 
-    [SerializeField] private int layerMask = 1 << 6;
+    private string selectableTag = "Selectable";
+    private int layerMask = 1 << 6;
 
     public event Action<GameObject> selectionChange;
 
     private void Start()
     {
         gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
-        colorManager = gameManager.colorManager;
     }
 
     private void Update()

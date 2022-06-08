@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ColorManager : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     private float darkeninFactor = 0.8f;
     private float lighteningFactor = 1.25f;
@@ -66,44 +66,6 @@ public class ColorManager : MonoBehaviour
                 target.GetComponent<Renderer>().material.color = new Color( 1, 1, 1 );
             }
         }
-
-        //Debug.Log("Cor: " + target.name + newColor);
-        /*
-        target.GetComponent<Form>().saveColor(newColor);
-        
-        
-        if (newColor == Colors.Yellow)
-        {
-            target.GetComponent<Renderer>().material.color = Color.yellow;
-        }
-        else if (newColor == Colors.Orange)
-        {
-            target.GetComponent<Renderer>().material.color = new Color(1, 0.37f, 0.1f, 1);
-        }
-        else if (newColor == Colors.Red)
-        {
-            target.GetComponent<Renderer>().material.color = Color.red;
-        }
-        else if (newColor == Colors.Pink)
-        {
-            target.GetComponent<Renderer>().material.color = new Color(0.9f, 0, 0.9f, 1);
-        }
-        else if (newColor == Colors.Grey)
-        {
-            target.GetComponent<Renderer>().material.color = Color.gray;
-        }
-        else if (newColor == Colors.White)
-        {
-            target.GetComponent<Renderer>().material.color = Color.white;
-        }
-
-        target.GetComponent<Renderer>().material.SetFloat("_Brightness", 0.8f);
-
-        if (target.GetComponent<Form>().GetIsSelected())
-        {
-            DarkerColor(target);
-        }
-        */
 
     }
 

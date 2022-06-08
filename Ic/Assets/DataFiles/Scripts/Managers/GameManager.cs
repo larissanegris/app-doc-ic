@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Managers")]
+    [HideInInspector] public InstantiationManager instantiationManager;
+    [HideInInspector] public ColorManager colorManager;
+    [HideInInspector] public CollisionManager collisionManager;
 
-    public InstantiationManager instantiationManager;
-    public ColorManager colorManager;
-    public HighlightManager highlightManager;
-    public CollisionManager collisionManager;
-
-    [Header("Object Controllers")]
-    public Move move;
-    public Rotate rotate;
+    [HideInInspector] public Move move;
+    [HideInInspector] public Rotate rotate;
 
     [Header("Formas")]
     [SerializeField] public GameObject selectedObject;
@@ -27,11 +23,10 @@ public class GameManager : MonoBehaviour
     [Header("Tipos de Relações")]
     public int tipoInteracao = 0; //Com o que interage
     public int tipoConecao = 0;
-    public bool blockInteraction = false;
     public bool moveCamera = false;
     
-    [Header("Camera")]
-    [SerializeField] public GameObject cameraObject;
+
+    [HideInInspector][SerializeField] public GameObject cameraObject;
 
 
     //[SerializeField] private bool hasSelectedObject = false;
@@ -39,18 +34,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
         colorManager = GetComponent<ColorManager>();
-        highlightManager = GetComponent<HighlightManager>();
         instantiationManager = GetComponent<InstantiationManager>();
-        instantiationManager.Instantiation += AddNewObject;
         collisionManager = GetComponent<CollisionManager>();
         move = GetComponent<Move>();
+
+        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
+        instantiationManager.Instantiation += AddNewObject;
     }
 
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
     {
-        Debug.Log( "Trocando Selecionado" );
         //se for o unico objeto, nao precisa modificar o antigo selecionado
         if(number == 1)
         {
@@ -62,11 +56,6 @@ public class GameManager : MonoBehaviour
             //muda tag
             selectedObject.tag = "Selected";
 
-            //colorManager.DarkerColor(selectedObject);
-            highlightManager.HighlightObject(selectedObject);
-
-            //hasSelectedObject = true;
-            
             return;
         }
 
@@ -79,28 +68,17 @@ public class GameManager : MonoBehaviour
         selectedObjectForm = selectedObject.GetComponent<Form>();
         selectedObjectForm.SetToUnselected();
 
-        //colorManager.ChangeColor(selectedObjectForm.cor, selectedObject);
-        highlightManager.UnhighlightObject(selectedObject);
-
-
         //seleciona forma nova
         selectedObject = newSelectedGameObject;
         selectedObjectForm = selectedObject.GetComponent<Form>();
         selectedObjectForm.saveColor();
         selectedObjectForm.SetToSelected();
 
-        //colorManager.DarkerColor(selectedObject);
-        highlightManager.HighlightObject(selectedObject);
-
         //muda tag
         selectedObject.tag = "Selected";
         //Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
     }
 
-    public void ChangeBlockInteraction()
-    {
-        blockInteraction = !blockInteraction;
-    }
 
     public void ChangeMoveCamera()
     {
@@ -161,7 +139,6 @@ public class GameManager : MonoBehaviour
 
     public void AddNewObject(GameObject gm )
     {
-        Debug.Log("Adicionando");
         number++;
         Form form = gm.GetComponent<Form>();
         createdForms.Add( form );
@@ -185,7 +162,6 @@ public class GameManager : MonoBehaviour
         numberSphere = 0;
 
         tipoInteracao = 0;
-        blockInteraction = false;
         tipoConecao = 0;
 
     }

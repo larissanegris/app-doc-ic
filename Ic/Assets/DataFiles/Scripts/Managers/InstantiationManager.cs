@@ -4,9 +4,7 @@ using System;
 
 public class InstantiationManager : MonoBehaviour
 {
-    [Header("Managers")]
-    public GameManager gameManager;
-    public SelectionManager selectionManager;
+    private GameManager gameManager;
 
     [Header("Prefabs")]
     public GameObject cubePrefab;
@@ -30,7 +28,6 @@ public class InstantiationManager : MonoBehaviour
     {
          parent = GameObject.Find("Parent");
          gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-         selectionManager = gameManager.GetComponent<SelectionManager>();
     }
 
     public GameObject SpawnCube( GameObject parent )
@@ -43,11 +40,13 @@ public class InstantiationManager : MonoBehaviour
             forma = myModelObject.GetComponent<Form>();
             forma.CreateForm( gameManager.number, FormType.Cube );
 
-            if (gameManager.displayVolume && cubeVolumePrefab != null)
+            if (cubeVolumePrefab != null)
             {
                 GameObject interactionVolume = Instantiate(cubeVolumePrefab, myModelObject.transform);
-                interactionVolume.name = "Cube" + gameManager.numberCube + " Volume";                interactionVolume.GetComponent<MeshRenderer>().material = transparentCube;
+                interactionVolume.name = "Cube" + gameManager.numberCube + " Volume";
+                interactionVolume.GetComponent<MeshRenderer>().material = transparentCube;
                 interactionVolume.transform.localScale = 1.5f * Vector3.one;
+                interactionVolume.SetActive( gameManager.displayVolume );
             }
             
 
@@ -65,6 +64,15 @@ public class InstantiationManager : MonoBehaviour
 
             forma = myModelObject.GetComponent<Form>();
             forma.CreateForm(gameManager.number, FormType.Sphere);
+
+            if ( sphereVolumePrefab != null )
+            {
+                GameObject interactionVolume = Instantiate(sphereVolumePrefab, myModelObject.transform);
+                interactionVolume.name = "Sphere" + gameManager.numberCube + " Volume";
+                interactionVolume.GetComponent<MeshRenderer>().material = transparentSphere;
+                interactionVolume.transform.localScale = 1.5f * Vector3.one;
+                interactionVolume.SetActive( gameManager.displayVolume );
+            }
 
             return myModelObject;
         }

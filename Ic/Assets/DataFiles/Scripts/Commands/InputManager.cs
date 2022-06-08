@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
     public GameObject target;
     private int tipoInteracao;
     private bool _blockInteraction;
-    public ColorManager colorManager;
-    public MoveCamera moveCamera;
+    private ColorManager colorManager;
+    private MoveCamera moveCamera;
     
-    public Move move;
-    public Rotate rotate;
-    public ScaleObject scale;
+    private Move move;
+    private Rotate rotate;
+    private ScaleObject scale;
 
     public event Func<GameObject> Move;
 
     private void Awake()
     {
+        gameManager = GetComponent<GameManager>();
         colorManager = gameManager.GetComponent<ColorManager>();
         moveCamera = gameManager.cameraObject.GetComponent<MoveCamera>();
         move = gameManager.GetComponent<Move>();
@@ -31,7 +32,6 @@ public class InputManager : MonoBehaviour
     {
 
         tipoInteracao = gameManager.tipoInteracao;
-        _blockInteraction = gameManager.blockInteraction;
         //Criar cubo opaco
         if ( Input.GetKeyDown( KeyCode.Q ) && !Input.GetKey( KeyCode.LeftShift ) )
         {
@@ -249,11 +249,6 @@ public class InputManager : MonoBehaviour
             {
                 moveCamera.MoveDown();
             }
-        }
-
-        if ( Input.GetKeyDown( KeyCode.R ) )
-        {
-            gameManager.ChangeBlockInteraction();
         }
 
         if ( Input.GetKeyDown( KeyCode.Space ) )
