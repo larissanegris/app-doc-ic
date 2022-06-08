@@ -173,8 +173,9 @@ public class ObjectCollider : MonoBehaviour
 
                 //Verifica se é do tipo 2
 
-                Vector3 volumeHalfBox = hitCollider.transform.GetChild( 0 ).transform.lossyScale * .5f;
-                maxDistance = halfBox + colliderCenter + volumeHalfBox;
+                Vector3 volumeHalfBox = gameObject.transform.GetChild( 0 ).transform.lossyScale * .5f;
+
+                maxDistance =  volumeHalfBox + hitColliderHalfBox;
 
                 if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
                 {
@@ -182,7 +183,25 @@ public class ObjectCollider : MonoBehaviour
                     {
                         if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
                         {
-                            Debug.Log( "Dentro" );
+                            Debug.Log( "Volume e Interior" );
+                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
+                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+                            continue;
+                        }
+                    }
+                }
+
+
+                Vector3 volumeColliderHalfBox = hitCollider.transform.GetChild( 0 ).transform.lossyScale * .5f;
+                maxDistance = volumeHalfBox + volumeColliderHalfBox;
+
+                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                {
+                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
+                    {
+                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
+                        {
+                            Debug.Log( "Intersecacao Volumes" );
                             Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
                             Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
                             continue;

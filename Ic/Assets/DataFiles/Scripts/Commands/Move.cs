@@ -5,22 +5,18 @@ public class Move : MonoBehaviour
 {
 
     private GameManager gameManager;
-    [Header("Selected Object")]
     public GameObject selectedObject;
     private Form form;
     [Space(20)]
     [SerializeField] [Range(0, 15)] private float MovementSpeed = 10f;
     
     
-    [Header("Restricoes")]
-
-    [Tooltip("Indica qual o tipo de restricao:\n0 - Nenhuma\n1- Colisao\n2 - Face a Face\n3 - Proximidade")]
-    [SerializeField] private int restrainType;
+    private int restrainType;
     private Vector3 restrainPoint;
     private Vector3 maxDistance; //Distancia que nao pode ficar mais longe
     private Vector3 scale;
     private Vector3 center;
-    public Vector3 closestPoint;
+    [HideInInspector] public Vector3 closestPoint;
     private Vector3 minDistance; //Distancia que nao pode ficar mais perto
     private float distance;
 

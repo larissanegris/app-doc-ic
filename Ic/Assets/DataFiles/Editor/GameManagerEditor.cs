@@ -8,6 +8,11 @@ public class GameManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
+        GameManager gameManager = (GameManager)target;
+
+        //[Tooltip("Indica se devem aparecer os volumes de interações de cada objeto")]
+        gameManager.displayVolume = EditorGUILayout.Toggle( "Display Volume", gameManager.displayVolume );
+
+        DrawDefaultInspector();
     }
 }
