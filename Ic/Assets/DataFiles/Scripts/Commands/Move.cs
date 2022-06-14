@@ -31,7 +31,7 @@ public class Move : MonoBehaviour
     private void Update()
     {
         selectedObject = gameManager.selectedObject;
-        restrainType = gameManager.tipoConecao;
+        restrainType = gameManager.connectionType;
         //Debug.DrawLine(center, restrainPoint, Color.cyan, 0.2f);
         //Debug.DrawLine( center, closestPoint, Color.green, 0.2f );
 
