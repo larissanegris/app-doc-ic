@@ -21,7 +21,11 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _Brightness: 0.682
+<<<<<<< Updated upstream
     - _Transparency: 0.4
+=======
+    - _Transparency: 0.25
+>>>>>>> Stashed changes
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

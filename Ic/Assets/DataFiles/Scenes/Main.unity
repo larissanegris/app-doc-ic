@@ -766,11 +766,18 @@ GameObject:
   - component: {fileID: 1269835864}
   - component: {fileID: 1269835865}
   - component: {fileID: 1269835866}
+<<<<<<< Updated upstream
   - component: {fileID: 1269835867}
+=======
+  - component: {fileID: 1269835868}
+  - component: {fileID: 1269835869}
+  - component: {fileID: 1269835870}
+  - component: {fileID: 1269835871}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 158d9c687149a0e499002e08c9420c70, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -786,8 +793,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ef4289b23801546927ce0f08a69ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   gameManager: {fileID: 1269835863}
   cubePrefab: {fileID: 3793351226083502663, guid: 80a32d85e7822ee49ad4155283b2ea8c, type: 3}
+=======
+  cubePrefab: {fileID: 3482353415707194465, guid: 80a32d85e7822ee49ad4155283b2ea8c, type: 3}
+>>>>>>> Stashed changes
   spherePrefab: {fileID: 3157072259384202465, guid: 3897f2507da739049a9d6ae7d801504a, type: 3}
   interactionBlock: {fileID: 1609678129853975907, guid: 6857c8f3e85db794eb81915e7f51740c, type: 3}
   imageTarget: {fileID: 1695194466}
@@ -821,9 +832,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428750864d3036c4987ba1b1d95e8ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1269835863}
   target: {fileID: 0}
+<<<<<<< Updated upstream
   colorManager: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!114 &1269835863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,9 +849,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443fc43f0141c804e9b02657995923e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   prefabInstantiator: {fileID: 1269835860}
   colorManager: {fileID: 0}
   highlightManager: {fileID: 0}
+=======
+  instantiationManager: {fileID: 0}
+  colorManager: {fileID: 1269835866}
+  collisionManager: {fileID: 0}
+  move: {fileID: 1269835868}
+  rotate: {fileID: 1269835869}
+>>>>>>> Stashed changes
   selectedObject: {fileID: 0}
   selectedObjectForm: {fileID: 0}
   createdForms: []
@@ -846,8 +867,14 @@ MonoBehaviour:
   numberCube: 0
   numberSphere: 0
   tipoInteracao: 0
+<<<<<<< Updated upstream
   blockInteraction: 0
   tipoConecao: 0
+=======
+  tipoConecao: 0
+  moveCamera: 0
+  cameraObject: {fileID: 1470182494}
+>>>>>>> Stashed changes
 --- !u!114 &1269835864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,9 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObjectMode: {fileID: 830388385}
   selectedObject: {fileID: 1259384567}
-  interactionBlock: {fileID: 727830590}
   conectionType: {fileID: 500991165}
-  gameManager: {fileID: 1269835863}
 --- !u!114 &1269835865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,10 +902,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dfea8c69948ba4fbcf3715d17aa341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   selectableTag: Selectable
   gameManager: {fileID: 0}
   form: {fileID: 0}
   colorManager: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!114 &1269835866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,8 +921,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01247be18246bd8418cae9f61d6c87a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   gameManager: {fileID: 0}
 --- !u!114 &1269835867
+=======
+--- !u!114 &1269835868
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -903,6 +935,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1269835859}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: 28e15ac2f68901143abc6551d462e61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -910,6 +943,52 @@ MonoBehaviour:
   colorManager: {fileID: 1269835866}
   baseMaterial: {fileID: 2100000, guid: 4aeeb9ce0be126d42a89f218d4c3ff76, type: 2}
   highlightMat: {fileID: 2100000, guid: bed481b76173c294b89efa0a1a73cb2a, type: 2}
+=======
+  m_Script: {fileID: 11500000, guid: 1efcaa67f34a0ad4d89da19da3331202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
+  MovementSpeed: 10
+  closestPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &1269835869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269835859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251f63e512b03ea45857f862f9889fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
+--- !u!114 &1269835870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269835859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160a0af7ec675af468e47015ba92137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
+--- !u!114 &1269835871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269835859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d74ce3f006eb340940fc5791c2f8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> Stashed changes
 --- !u!1 &1470182494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,7 +1109,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+=======
+  - {fileID: 2100000, guid: ce4daa22b986ff946a6ee1eb02165b48, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

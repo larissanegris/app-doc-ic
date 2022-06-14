@@ -7,11 +7,16 @@ using UnityEngine.UI;
 public class TextManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    [Header("Objetos de Texto")]
     public Text textObjectMode;
     public Text selectedObject;
-    public Text interactionBlock;
     public Text conectionType;
-    public GameManager gameManager;
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = GetComponent<GameManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,15 +43,6 @@ public class TextManager : MonoBehaviour
         else
         {
             selectedObject.text = "Objeto Selecionado: Nenhum";
-        }
-
-        if (gameManager.blockInteraction)
-        {
-            interactionBlock.text = "Bloco";
-        }
-        else
-        {
-            interactionBlock.text = "Individual";
         }
 
         conectionType.text = "Conecao: ";
