@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
 {
     private GameManager gameManager;
     public GameObject target;
-    private int tipoInteracao;
+    private int interactionType;
     private bool _blockInteraction;
     private ColorManager colorManager;
     private MoveCamera moveCamera;
@@ -31,7 +31,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
 
-        tipoInteracao = gameManager.tipoInteracao;
+        interactionType = gameManager.interactionType;
         //Criar cubo opaco
         if ( Input.GetKeyDown( KeyCode.Q ) && !Input.GetKey( KeyCode.LeftShift ) )
         {
@@ -59,21 +59,21 @@ public class InputManager : MonoBehaviour
         //Mover
         if ( Input.GetKeyDown( KeyCode.Alpha0 ) )
         {
-            gameManager.ChangeTipoInteracao( 0 );
+            gameManager.ChangeinteractionType( 0 );
         }
         //Rotacionar
         if ( Input.GetKeyDown( KeyCode.Alpha1 ) )
         {
-            gameManager.ChangeTipoInteracao( 1 );
+            gameManager.ChangeinteractionType( 1 );
         }
         //escalar
         if ( Input.GetKeyDown( KeyCode.Alpha2 ) )
         {
-            gameManager.ChangeTipoInteracao( 2 );
+            gameManager.ChangeinteractionType( 2 );
         }
         if ( Input.GetKeyDown( KeyCode.Alpha3 ) )
         {
-            gameManager.ChangeTipoInteracao(3);
+            gameManager.ChangeinteractionType(3);
         }
 
         //Movimentacao
@@ -85,7 +85,7 @@ public class InputManager : MonoBehaviour
                 target = gameManager.GetSelectedObject();
                 Form form = target.GetComponent<Form>();
 
-                if ( tipoInteracao == 1 )
+                if ( interactionType == 1 )
                 {
                     if ( ( Input.GetKeyDown( KeyCode.W ) || Input.GetKeyDown( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
                     {
@@ -116,12 +116,12 @@ public class InputManager : MonoBehaviour
                 
                 else if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
                 {
-                    if ( tipoInteracao == 0 )
+                    if ( interactionType == 0 )
                     {
                         //Debug.Log("Move UP");
                         move.MoveUp();
                     }
-                    else if ( tipoInteracao == 2 )
+                    else if ( interactionType == 2 )
                     {
                         //Debug.Log("Scale UP");
                         scale.ScaleUp();
@@ -130,12 +130,12 @@ public class InputManager : MonoBehaviour
                 }
                 if ( ( Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
                 {
-                    if ( tipoInteracao == 0 )
+                    if ( interactionType == 0 )
                     {
                         //Debug.Log("Move Down");
                         move.MoveDown();
                     }
-                    else if ( tipoInteracao == 2 )
+                    else if ( interactionType == 2 )
                     {
                         //Debug.Log("Scale Down");
                         scale.ScaleDown();
@@ -143,12 +143,12 @@ public class InputManager : MonoBehaviour
                 }
                 if ( Input.GetKey( KeyCode.D ) || Input.GetKey( KeyCode.RightArrow ) )
                 {
-                    if ( tipoInteracao == 0 )
+                    if ( interactionType == 0 )
                     {
                         //Debug.Log("Move Right");
                         move.MoveRight();
                     }
-                    else if ( tipoInteracao == 2 )
+                    else if ( interactionType == 2 )
                     {
                         //Debug.Log("Scale Right");
                         scale.ScaleRight();
@@ -156,12 +156,12 @@ public class InputManager : MonoBehaviour
                 }
                 if ( Input.GetKey( KeyCode.A ) || Input.GetKey( KeyCode.LeftArrow ) )
                 {
-                    if ( tipoInteracao == 0 )
+                    if ( interactionType == 0 )
                     {
                         //Debug.Log("Move Left");
                         move.MoveLeft();
                     }
-                    else if ( tipoInteracao == 2 )
+                    else if ( interactionType == 2 )
                     {
                         //Debug.Log("Scale Left");
                         scale.ScaleLeft();
@@ -169,12 +169,12 @@ public class InputManager : MonoBehaviour
                 }
                 if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
                 {
-                    if ( tipoInteracao == 0 )
+                    if ( interactionType == 0 )
                     {
                         //Debug.Log("Move Forward");
                         move.MoveForward();
                     }
-                    else if ( tipoInteracao == 2 )
+                    else if ( interactionType == 2 )
                     {
                         //Debug.Log("Scale Forward");
                         scale.ScaleForward();
@@ -182,12 +182,12 @@ public class InputManager : MonoBehaviour
                 }
                 if ( ( Input.GetKey( KeyCode.S ) || Input.GetKey( KeyCode.DownArrow ) ) && Input.GetKey( KeyCode.LeftShift ) )
                 {
-                    if ( tipoInteracao == 0 )
+                    if ( interactionType == 0 )
                     {
                         //Debug.Log("Move Backward");
                         move.MoveBackward();
                     }
-                    else if ( tipoInteracao == 2 )
+                    else if ( interactionType == 2 )
                     {
                         //Debug.Log("Scale Backward");
                         scale.ScaleBackward();
@@ -253,11 +253,11 @@ public class InputManager : MonoBehaviour
 
         if ( Input.GetKeyDown( KeyCode.Space ) )
         {
-            gameManager.ChangeTipoConecao();
+            gameManager.ChangeconnectionType();
         }
         if ( Input.GetKeyDown( KeyCode.Z ) )
         {
-            int aux = gameManager.GetTipoConecao();
+            int aux = gameManager.GetconnectionType();
             if ( aux == 2 )
             {
                 //gameManager.FaceToFace();

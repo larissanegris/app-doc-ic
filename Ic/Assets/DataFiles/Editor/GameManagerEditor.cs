@@ -6,13 +6,64 @@ using UnityEditor;
 [CustomEditor(typeof(GameManager))]
 public class GameManagerEditor : Editor
 {
+    bool showForms = true;
+    bool showCreatedForms = false;
+    bool showRelations = true; 
     public override void OnInspectorGUI()
     {
         GameManager gameManager = (GameManager)target;
 
-        //[Tooltip("Indica se devem aparecer os volumes de interações de cada objeto")]
-        gameManager.displayVolume = EditorGUILayout.Toggle( "Display Volume", gameManager.displayVolume );
+        GUIStyle headFoldout = new GUIStyle( EditorStyles.foldout );
+        headFoldout.fontSize = 12;
+        headFoldout.fontStyle = FontStyle.Bold;
+        headFoldout.normal.textColor = Color.white;
 
-        DrawDefaultInspector();
+        GUIStyle bodyField = new GUIStyle(  );
+        bodyField.fontSize = 12;
+        bodyField.fontStyle = FontStyle.Normal;
+        bodyField.normal.textColor = Color.white;
+
+
+        gameManager.displayVolume = EditorGUILayout.Toggle( "Display Volume", gameManager.displayVolume);
+        EditorGUILayout.Space();
+
+        showForms = EditorGUILayout.Foldout( showForms, "Forms", true, headFoldout );
+
+        if ( showForms )
+        {
+            EditorGUILayout.ObjectField( "Selected Form", gameManager.selectedObject, typeof(GameObject), false );
+            EditorGUILayout.IntField( "Number of Forms", gameManager.number );
+            EditorGUILayout.IntField( "Number of Cubes", gameManager.numberCube );
+            EditorGUILayout.IntField( "Number of Spheres", gameManager.numberSphere );
+
+            EditorGUILayout.BeginHorizontal();
+            showCreatedForms = EditorGUILayout.BeginFoldoutHeaderGroup( showCreatedForms, "Created Forms", headFoldout );
+            EditorGUILayout.EndFoldoutHeaderGroup();
+            EditorGUILayout.IntField( gameManager.createdForms.Count );
+            EditorGUILayout.EndHorizontal();
+
+            if ( showCreatedForms )
+            {
+                for( int i = 0; i < gameManager.createdForms.Count; i++ )
+                {
+                    Form form = gameManager.createdForms[i];
+                    EditorGUILayout.ObjectField( "Form " + form.GetId(), form, typeof( Form ), false );
+                }
+            }
+        }
+        
+        EditorGUILayout.Space();
+
+        showRelations = EditorGUILayout.Foldout( showRelations, "Relations Info", headFoldout);
+        if ( showRelations )
+        {
+            EditorGUILayout.IntField("Interaction Type", gameManager.interactionType);
+            EditorGUILayout.IntField("Connection Type", gameManager.connectionType);
+            gameManager.moveCamera = EditorGUILayout.Toggle( "Move Camera", gameManager.moveCamera );
+        }
+
+
+
+        //DrawDefaultInspector();
     }
 }

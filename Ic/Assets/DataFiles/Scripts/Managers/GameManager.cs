@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool displayVolume = false;
 
     [Header("Tipos de Relações")]
-    public int tipoInteracao = 0; //Com o que interage
-    public int tipoConecao = 0;
+    public int interactionType = 0; //Com o que interage
+    public int connectionType = 0;
     public bool moveCamera = false;
     
 
@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
             selectedObject = newSelectedGameObject;
             selectedObjectForm = selectedObject.GetComponent<Form>();
             selectedObject.GetComponent<Form>().SetToSelected();
+
+
 
             //muda tag
             selectedObject.tag = "Selected";
@@ -94,25 +96,25 @@ public class GameManager : MonoBehaviour
         return selectedObjectForm;
     }
 
-    public int GetTipoConecao()
+    public int GetconnectionType()
     {
-        return tipoConecao;
+        return connectionType;
     }
-    public void ChangeTipoConecao(  )
+    public void ChangeconnectionType(  )
     {
-        if(tipoConecao == 3 )
+        if(connectionType == 3 )
         {
-            tipoConecao = 0;
+            connectionType = 0;
         }
         else
         {
-            tipoConecao++;
+            connectionType++;
         }
     }
 
-    public void ChangeTipoInteracao(int novaInteracao )
+    public void ChangeinteractionType(int novaInteracao )
     {
-        tipoInteracao = novaInteracao;
+        interactionType = novaInteracao;
         if(novaInteracao == 3 )
         {
             moveCamera = true;
@@ -161,8 +163,8 @@ public class GameManager : MonoBehaviour
         numberCube = 0;
         numberSphere = 0;
 
-        tipoInteracao = 0;
-        tipoConecao = 0;
+        interactionType = 0;
+        connectionType = 0;
 
     }
 

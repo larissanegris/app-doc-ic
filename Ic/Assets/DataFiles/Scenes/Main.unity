@@ -839,8 +839,8 @@ MonoBehaviour:
   numberSphere: 0
   createdForms: []
   displayVolume: 1
-  tipoInteracao: 0
-  tipoConecao: 0
+  interactionType: 0
+  connectionType: 0
   moveCamera: 0
   cameraObject: {fileID: 1470182494}
 --- !u!114 &1269835864
@@ -935,6 +935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d74ce3f006eb340940fc5791c2f8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adjacencyMatrixSizeX: 0
+  adjacencyMatrixSizeY: 0
 --- !u!1 &1470182494
 GameObject:
   m_ObjectHideFlags: 0
