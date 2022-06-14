@@ -1,9 +1,25 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3877368d11953194a87b6aea939ec000
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
+=======
+guid: 25ef4289b23801546927ce0f08a69ffa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameManager: {instanceID: 0}
+  - selectionManager: {instanceID: 0}
+  - cubePrefab: {fileID: 3482353415707194465, guid: 80a32d85e7822ee49ad4155283b2ea8c, type: 3}
+  - spherePrefab: {fileID: 3157072259384202465, guid: 3897f2507da739049a9d6ae7d801504a, type: 3}
+  - cubeVolumePrefab: {fileID: 3482353415707194465, guid: 51ec9a86c4264c746ad8495034e32e01, type: 3}
+  - sphereVolumePrefab: {fileID: 3157072259384202465, guid: b630ecb6a9f039f49b9d2ecd2fa2e204, type: 3}
+  - transparentCube: {fileID: 2100000, guid: d58f9110f04fc094ab126e3c56e50e01, type: 2}
+  - transparentSphere: {fileID: 2100000, guid: be20b6542ba50b141af91f5a324a185f, type: 2}
+>>>>>>> master
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

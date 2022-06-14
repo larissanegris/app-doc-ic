@@ -34,6 +34,10 @@ public class TextManager : MonoBehaviour
         {
             textObjectMode.text = "Modo: Tamanho";
         }
+        else if ( gameManager.tipoInteracao == 3 )
+        {
+            textObjectMode.text = "Modo: Camera";
+        }
 
 
         if (gameManager.GetSelectedObject() != null)

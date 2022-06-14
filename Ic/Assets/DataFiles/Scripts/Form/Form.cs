@@ -6,14 +6,16 @@ public class Form : MonoBehaviour
 {
     private GameManager gameManager;
     private ColorManager colorManager;
-    private HighlightManager highlightManager;
 
     [SerializeField] private int id;
-    [SerializeField] private Type type;
+    [SerializeField] private FormType type;
     [SerializeField] private Colors cor = Colors.White;
     [SerializeField] private Colors previousCor = Colors.White;
     [SerializeField] private bool isSelected = false;
-    [SerializeField] private bool isInBlock = false;
+    
+    private Outline outline;
+    public Vector3 halfBoxVolume ;
+
 
 
     [SerializeField] private List<Form> interactions = new List<Form>();
@@ -23,10 +25,12 @@ public class Form : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         colorManager = gameManager.colorManager;
-        highlightManager = gameManager.highlightManager;
+        outline = gameObject.GetComponent<Outline>();
+        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
     }
 
-    public void CreateForm(int id, Type type)
+
+    public void CreateForm(int id, FormType type)
     {
         this.id = id;
         this.type = type;
@@ -42,87 +46,33 @@ public class Form : MonoBehaviour
         cor = newCor;
     }
 
+    public void ChangeSelectedObject(GameObject gm)
+    {
+        if(gm == gameObject ) {
+            isSelected = true;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
+        else
+        {
+            isSelected = false;
+            outline.OutlineMode = Outline.Mode.OutlineHidden;
+        }
+    }
+
     public void SetToSelected()
     {
         isSelected = true;
+        outline.OutlineMode = Outline.Mode.OutlineVisible;
     }
     public void SetToUnselected()
     {
         isSelected = false;
-    }
-
-    public void AddInteraction(Form interaction)
-    {
-        foreach(GameObject gm in interaction.transform.parent.GetComponent<InteractionBlock>().interactionList)
-        {
-            Form form = gm.GetComponent<Form>();
-            if (!this.interactions.Contains(form) && form != this)
-            {
-                interactions.Add(form);
-                if (!form.interactions.Contains(this) && form.gameObject != interaction)
-                {
-                    form.interactions.Add(this);
-                    form.SetIsInBlock(true);
-                }
-                
-                //form.AddSingleInteraction(this);
-                
-            }
-            //form.AddSingleInteraction(this);
-        }
-
-        isInBlock = true;
-        
-        if(interactions.Count > 0)
-        {
-            colorManager.LigtherColor(this.gameObject);
-        }
-    }
-
-    public void AddSingleInteraction(Form form)
-    {
-        if (!this.interactions.Contains(form) && form != this)
-        {
-            interactions.Add(form);
-        }
-        //isInBlock = true;
-
-        if (interactions.Count > 0)
-        {
-            colorManager.LigtherColor(this.gameObject);
-        }
-    }
-
-    public void RemoveInteraction(Form interation)
-    {
-        if (interactions.Exists(element => element == interation))
-        {
-            interactions.Remove(interation);
-        }
-        if (interactions.Count <= 0)
-        {
-            colorManager.DarkerColor(this.gameObject);
-        }
-    }
-
-    public bool GetIsInBlock()
-    {
-        return isInBlock;
-    }
-
-    public void SetIsInBlock(bool isInBlock)
-    {
-        this.isInBlock = isInBlock;
+        outline.OutlineMode = Outline.Mode.OutlineHidden;
     }
 
     public int GetId()
     {
         return id;
-    }
-
-    public bool InteractionsContains(Form form)
-    {
-        return interactions.Contains(form);
     }
 
     public List<Form> GetInteractions()
@@ -139,8 +89,13 @@ public class Form : MonoBehaviour
     {
         return cor;
     }
-    public Type GetFormType()
+    public FormType GetFormType()
     {
         return type;
+    }
+
+    public void DeleteSelf()
+    {
+        GameObject.Destroy(this.gameObject);
     }
 }

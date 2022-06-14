@@ -6,17 +6,24 @@ public class DrawPlane : MonoBehaviour
 {
     float xOffset = 0;
     [SerializeField] [Range(0f, 1f)] float yRotOfsset;
-    List<Vector3> vertices;
-    Vector3 aux;
 
-    [SerializeField] [Range(0f, 1f)] float x;
-    [SerializeField] [Range(0f, 1f)] float y;
-    private Vector3 point;
+    [SerializeField] [Range(-1f, 1f)] float xView;
+    [SerializeField] [Range(-1f, 1f)] float yView;
+    public Vector3 point;
+    public Vector3 VolumeHalfBox;
+    public GameObject pointer;
+
 
     private void Update()
     {
-        //drawCube(this.gameObject);
+        drawCube( gameObject );
     }
+
+    public void DrawVolumeHalfBox()
+    {
+
+    }
+
     public void Draw( Vector3 position, Vector3 normal )
     {
 
@@ -52,17 +59,16 @@ public class DrawPlane : MonoBehaviour
         Vector3 lrotation = Cube.transform.localRotation.eulerAngles;
 
 
-        vertices = new List<Vector3>();
+        List<Vector3> vertices = new List<Vector3>();
         Vector3 newCenter = center;
         newCenter.x += xOffset*2;
         Vector3 newRotation = lrotation;
         newRotation.y += yRotOfsset * 90;
 
-        point = new Vector3( x + center.x - scale.x, y + center.y - scale.y, center.z - scale.z );
-
         Debug.DrawLine ( newCenter, point, Color.yellow, 1 );
 
-        for (int i = 0; i < 2; i++ )
+        Vector3 aux;
+        for ( int i = 0; i < 2; i++ )
         {
             for ( int j = 0; j < 2; j++ )
             {
@@ -88,6 +94,64 @@ public class DrawPlane : MonoBehaviour
                     Debug.DrawLine( v, v2, Color.black, 0.3f );
                 }
             }
+        }
+    }
+
+    public void DrawSphere(GameObject sphere)
+    {
+        Vector3 center = sphere.transform.position;
+        Vector3 scale = sphere.transform.lossyScale;
+        scale /= 2;
+        Vector3 rotation = sphere.transform.rotation.eulerAngles;
+        Vector3 lrotation = sphere.transform.localRotation.eulerAngles;
+
+        List<Vector3> vertices = new List<Vector3>();
+        Vector3 newCenter = center;
+        newCenter.x += xOffset * 2;
+        Vector3 newRotation = lrotation;
+        newRotation.y += yRotOfsset * 90;
+
+        Vector3 aux;
+        for(int i = 0; i < 3; i++ )
+        {
+            for(int j = 0; j < 2; j++ )
+            {
+                aux = new Vector3( newCenter.x + scale.x * ( i == 0 ? 1 : 0 ) * ( j == 0 ? 1 : -1 ),
+               newCenter.y + scale.y * ( i == 1 ? 1 : 0 ) * ( j == 0 ? 1 : -1 ),
+               newCenter.z + scale.z * ( i == 2 ? 1 : 0 ) * ( j == 0 ? 1 : -1 ) );
+                vertices.Add( aux );
+            }
+            
+        }
+
+        float a = scale.x;
+        float b = scale.y;
+        float c = scale.z;
+
+        
+        float x0 = newCenter.x;
+        float y0 = newCenter.y;
+        float z0 = newCenter.z;
+
+        float x = xView * scale.x + x0;
+        float y = yView * scale.y + y0;
+
+        float z = -((c*Mathf.Sqrt(1 - (((x - x0)/a) *((x - x0)/a)) - (((y - y0)/b ) * ((y - y0)/b ) ) ) ) - z0);
+
+        if(z == float.NaN )
+        {
+            z = 0;
+        }
+
+        point = new Vector3( x, y, z );
+        Debug.DrawLine( point, newCenter, Color.cyan, 0.3f );
+        Debug.DrawLine( Vector3.zero, newCenter, Color.cyan, 0.3f );
+
+        pointer.transform.position = point;
+
+        foreach ( Vector3 v in vertices )
+        {
+            Debug.DrawLine( center, v, Color.red, 0.3f );
         }
     }
 }

@@ -13,11 +13,16 @@ GameObject:
   - component: {fileID: 3128437217536295540}
   - component: {fileID: 5344694631523415509}
   - component: {fileID: 250712527244084839}
+<<<<<<< HEAD
   - component: {fileID: 4607015442397708442}
   - component: {fileID: -245878665370236038}
   - component: {fileID: -7131802961262153357}
+=======
+  - component: {fileID: 156405384603034726}
+>>>>>>> master
   - component: {fileID: 1436022637913850413}
-  m_Layer: 0
+  - component: {fileID: 3985173842367838522}
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -33,7 +38,8 @@ Transform:
   m_GameObject: {fileID: 3157072259384202465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.44, z: 0}
-  m_LocalScale: {x: 0.78515, y: 0.78515, z: 0.78515}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,6 +63,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -117,10 +124,14 @@ MonoBehaviour:
   cor: 5
   previousCor: 5
   isSelected: 0
-  isInBlock: 0
+  halfBoxVolume: {x: 0, y: 0, z: 0}
   interactions: []
   distances: []
+<<<<<<< HEAD
 --- !u!114 &4607015442397708442
+=======
+--- !u!114 &156405384603034726
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,6 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3157072259384202465}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 100b67869b7f0684292895c74489d7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -159,6 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967710c7c5a062a4d8ceea6ad522da98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+  m_Script: {fileID: 11500000, guid: 01247be18246bd8418cae9f61d6c87a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+>>>>>>> master
 --- !u!114 &1436022637913850413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +189,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc322cbd3a94ba84884a9225d1f396f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  halfBox: {x: 0, y: 0, z: 0}
   radius: 0
   closestObject: {fileID: 0}
   distToClosest: 0
-  a: {x: 0, y: 0, z: 0}
-  distance: {x: 0, y: 0, z: 0}
-  n: {x: 0, y: 0, z: 0}
+--- !u!114 &3985173842367838522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157072259384202465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 1, b: 0.16862746, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
