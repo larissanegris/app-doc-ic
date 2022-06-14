@@ -189,6 +189,9 @@ public class ObjectCollider : MonoBehaviour
                             Debug.Log( "Dentro" );
                             Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
                             Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Intersection );
+
                             continue;
                         }
                     }
@@ -209,6 +212,9 @@ public class ObjectCollider : MonoBehaviour
                             Debug.Log( "Volume e Interior" );
                             Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
                             Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Parcial );
+
                             continue;
                         }
                     }
@@ -227,10 +233,15 @@ public class ObjectCollider : MonoBehaviour
                             Debug.Log( "Intersecacao Volumes" );
                             Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
                             Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Volume );
+
                             continue;
                         }
                     }
                 }
+
+                collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), 0 );
 
 
             }
@@ -247,12 +258,12 @@ public class ObjectCollider : MonoBehaviour
         {
             halfBox = transform.lossyScale * 0.5f;
             //Sem conecao
-            if ( tipoConecao == 0 )
+            if ( connectionType == 0 )
             {
                 gameManager.RestrainPoint( colliderCenter );
             }
             //Colisao
-            if ( tipoConecao == 1 )
+            if ( connectionType == 1 )
             {
                 Debug.DrawLine( colliderCenter, colliderCenter + ( closestObject.transform.lossyScale / 2 + halfBox ), Color.red, 1 );
                 gameManager.RestrainPoint( colliderCenter );

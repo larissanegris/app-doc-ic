@@ -881,11 +881,6 @@ MonoBehaviour:
   connectionType: 0
   moveCamera: 0
   cameraObject: {fileID: 1470182494}
->>>>>>> Stashed changes
-=======
-  tipoConecao: 0
-  moveCamera: 0
-  cameraObject: {fileID: 1470182494}
 >>>>>>> master
 --- !u!114 &1269835864
 MonoBehaviour:
