@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 //
 public class ObjectCollider : MonoBehaviour
 {
     private bool isSelected;
     private GameManager gameManager;
+    private CollisionManager collisionManager;
 
     private Move move;
 
@@ -21,18 +21,15 @@ public class ObjectCollider : MonoBehaviour
     private Vector3 colliderCenter;
     private DrawPlane plane;
 
-    /*
-    [SerializeField][Range (0, 1)] private float maxD = .1f;
-    [SerializeField] private float currentDist;
-    */
+    private int connectionType;
 
-    private int tipoConecao;
-
+    public event Action<Form> collisionDetection;
 
     private void Awake()
     {
         
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        collisionManager = gameManager.GetComponent<CollisionManager>();
         form = GetComponent<Form>();
         radius = 12;
         move = gameManager.GetComponent<Move>();
@@ -42,7 +39,7 @@ public class ObjectCollider : MonoBehaviour
     {
         if(tag == "Selected")
         {
-            tipoConecao = gameManager.GetTipoConecao();
+            connectionType = gameManager.GetconnectionType();
             center = transform.position;
 <<<<<<< HEAD
             Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
@@ -126,19 +123,19 @@ public class ObjectCollider : MonoBehaviour
         {
             halfBox = transform.lossyScale * 0.5f;
             //Sem conecao
-            if ( tipoConecao == 0 )
+            if ( connectionType == 0 )
             {
                 gameManager.RestrainPoint( colliderCenter );
             }
             //Colisao
-            if ( tipoConecao == 1 )
+            if ( connectionType == 1 )
             {
                 Debug.DrawLine( colliderCenter, colliderCenter + ( halfBox * 2 ), Color.red, 1 );
                 gameManager.RestrainPoint( colliderCenter );
                 gameManager.RestrainMaxDistance( closestObject.transform.lossyScale / 2 + halfBox );
             }
             //Face a Face
-            if ( tipoConecao == 2 )
+            if ( connectionType == 2 )
             {
 
                 gameManager.RestrainPoint( colliderCenter );
@@ -151,7 +148,7 @@ public class ObjectCollider : MonoBehaviour
                 //Debug.DrawLine( center, closestObject.transform.lossyScale / 2 + halfBox - ( Vector3.one * .1f ), Color.red, 1 );
             }
             //Distancia
-            if ( tipoConecao == 3 )
+            if ( connectionType == 3 )
             {
                 gameManager.RestrainPoint( colliderCenter );
                 gameManager.RestrainMinDistance( halfBox * 2 + Vector3.one );
@@ -295,6 +292,9 @@ public class ObjectCollider : MonoBehaviour
                             Debug.Log( "Dentro" );
                             Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
                             Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Intersection );
+
                             continue;
                         }
                     }
@@ -315,6 +315,9 @@ public class ObjectCollider : MonoBehaviour
                             Debug.Log( "Volume e Interior" );
                             Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
                             Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Parcial );
+
                             continue;
                         }
                     }
@@ -333,10 +336,15 @@ public class ObjectCollider : MonoBehaviour
                             Debug.Log( "Intersecacao Volumes" );
                             Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
                             Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Volume );
+
                             continue;
                         }
                     }
                 }
+
+                collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), 0 );
 
 
             }
@@ -354,19 +362,19 @@ public class ObjectCollider : MonoBehaviour
         {
             halfBox = transform.lossyScale * 0.5f;
             //Sem conecao
-            if ( tipoConecao == 0 )
+            if ( connectionType == 0 )
             {
                 gameManager.RestrainPoint( colliderCenter );
             }
             //Colisao
-            if ( tipoConecao == 1 )
+            if ( connectionType == 1 )
             {
                 Debug.DrawLine( colliderCenter, colliderCenter + ( halfBox * 2 ), Color.red, 1 );
                 gameManager.RestrainPoint( colliderCenter );
                 gameManager.RestrainMaxDistance( closestObject.transform.lossyScale / 2 );
             }
             //Face a Face
-            if ( tipoConecao == 2 )
+            if ( connectionType == 2 )
             {
 
                 gameManager.RestrainPoint( colliderCenter );
@@ -376,7 +384,7 @@ public class ObjectCollider : MonoBehaviour
 
             }
             //Distancia
-            if ( tipoConecao == 3 )
+            if ( connectionType == 3 )
             {
                 gameManager.RestrainPoint( colliderCenter );
                 gameManager.RestrainMinDistance( halfBox * 2 + Vector3.one );

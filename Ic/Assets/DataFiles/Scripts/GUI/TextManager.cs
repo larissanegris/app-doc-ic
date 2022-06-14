@@ -22,19 +22,19 @@ public class TextManager : MonoBehaviour
     void Update()
     {
         textObjectMode.text = "Modo: ";
-        if(gameManager.tipoInteracao == 0)
+        if(gameManager.interactionType == 0)
         {
             textObjectMode.text = "Modo: Mover";
         }
-        else if (gameManager.tipoInteracao == 1)
+        else if (gameManager.interactionType == 1)
         {
             textObjectMode.text = "Modo: Rotacao";
         }
-        else if (gameManager.tipoInteracao == 2)
+        else if (gameManager.interactionType == 2)
         {
             textObjectMode.text = "Modo: Tamanho";
         }
-        else if ( gameManager.tipoInteracao == 3 )
+        else if ( gameManager.interactionType == 3 )
         {
             textObjectMode.text = "Modo: Camera";
         }
@@ -50,19 +50,19 @@ public class TextManager : MonoBehaviour
         }
 
         conectionType.text = "Conecao: ";
-        if (gameManager.tipoConecao == 0)
+        if (gameManager.connectionType == 0)
         {
             conectionType.text = "Conecao: Nenhuma";
         }
-        else if (gameManager.tipoConecao == 1)
+        else if (gameManager.connectionType == 1)
         {
             conectionType.text = "Conecao: Colisao";
         }
-        else if (gameManager.tipoConecao == 2)
+        else if (gameManager.connectionType == 2)
         {
             conectionType.text = "Conecao: Face a Face";
         }
-        else if (gameManager.tipoConecao == 3)
+        else if (gameManager.connectionType == 3)
         {
             conectionType.text = "Conecao: Proximidade";
         }
