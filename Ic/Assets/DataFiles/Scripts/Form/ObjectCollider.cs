@@ -41,6 +41,23 @@ public class ObjectCollider : MonoBehaviour
         {
             connectionType = gameManager.GetconnectionType();
             center = transform.position;
+<<<<<<< HEAD
+            Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
+
+            GameObject closestObject = ClosestObject();
+            if (form.GetFormType() == Type.Cube )
+            {
+                if( closestObject != null )
+                {
+                    MakeInteractionCube( closestObject );
+                }
+            }
+            else if ( form.GetFormType() == Type.Sphere ) { }
+            {
+                if ( closestObject != null )
+                {
+                    MakeInteractionSphere( closestObject );
+=======
             //Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
             closestObject = nearbyObjects(out closestPoint);
             move.closestPoint = closestPoint;
@@ -51,6 +68,7 @@ public class ObjectCollider : MonoBehaviour
                 if( closestObject != null )
                 {
                     //MakeInteractionCube( closestObject );
+>>>>>>> master
                 }
             }
             else if ( form.GetFormType() == FormType.Sphere )
@@ -68,7 +86,11 @@ public class ObjectCollider : MonoBehaviour
     }
     
 
+<<<<<<< HEAD
+    private GameObject ClosestObject()
+=======
     private GameObject nearbyObjects(out Vector3 closestPoint)
+>>>>>>> master
     {
         
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
@@ -136,7 +158,124 @@ public class ObjectCollider : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
     private void VerifyInteractionsCube()
+    {
+
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        halfBox = transform.lossyScale * 0.5f;
+        
+
+        foreach (Collider hitCollider in hitColliders )
+        {
+
+            if ( hitCollider.gameObject != gameObject && hitCollider.gameObject.tag != "Floor" )
+            {
+                //verifica se é conecao do tipo 1
+                Vector3 colliderCenter = hitCollider.transform.position;
+
+                Vector3 hitColliderHalfBox = hitCollider.transform.lossyScale * 0.5f;
+                Vector3 maxDistance = halfBox + hitColliderHalfBox;
+                
+                //Verifica contato
+                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                {
+                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
+                    {
+                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
+                        {
+                            Debug.Log( "Dentro" );
+                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
+                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Intersection );
+
+                            continue;
+                        }
+                    }
+                }
+
+                //Verifica se é do tipo 2
+
+                Vector3 volumeHalfBox = gameObject.transform.GetChild( 0 ).transform.lossyScale * .5f;
+
+                maxDistance =  volumeHalfBox + hitColliderHalfBox;
+
+                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                {
+                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
+                    {
+                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
+                        {
+                            Debug.Log( "Volume e Interior" );
+                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
+                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Parcial );
+
+                            continue;
+                        }
+                    }
+                }
+
+
+                Vector3 volumeColliderHalfBox = hitCollider.transform.GetChild( 0 ).transform.lossyScale * .5f;
+                maxDistance = volumeHalfBox + volumeColliderHalfBox;
+
+                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                {
+                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
+                    {
+                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
+                        {
+                            Debug.Log( "Intersecacao Volumes" );
+                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
+                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
+
+                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Volume );
+
+                            continue;
+                        }
+                    }
+                }
+
+                collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), 0 );
+
+
+            }
+
+        }
+
+    }
+
+>>>>>>> Stashed changes
+    private void MakeInteractionSphere( GameObject closestObject )
+    {
+        Vector3 colliderCenter = closestObject.transform.position;
+        if ( closestObject != null )
+        {
+            halfBox = transform.lossyScale * 0.5f;
+            //Sem conecao
+            if ( connectionType == 0 )
+            {
+                gameManager.RestrainPoint( colliderCenter );
+            }
+            //Colisao
+            if ( connectionType == 1 )
+            {
+                Debug.DrawLine( colliderCenter, colliderCenter + ( closestObject.transform.lossyScale / 2 + halfBox ), Color.red, 1 );
+                gameManager.RestrainPoint( colliderCenter );
+                gameManager.RestrainMaxDistance( closestObject.transform.lossyScale / 2 + halfBox );
+            }
+        }
+    }
+
+    private Vector3 FindNormal( Vector3 vec )
+=======
+    private void VerifyInteractionsCube()
+>>>>>>> master
     {
 
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
