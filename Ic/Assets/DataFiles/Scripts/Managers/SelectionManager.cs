@@ -50,9 +50,8 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    public void ChangeSelectedObject(GameObject gm )
+    public void ChangeSelectedObject( GameObject gm )
     {
-        gameManager.ChangeSelectedObject( gm );
         selectionChange?.Invoke( gm );
     }
 }

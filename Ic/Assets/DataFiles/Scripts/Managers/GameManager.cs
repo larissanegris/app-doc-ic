@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public InstantiationManager instantiationManager;
     [HideInInspector] public ColorManager colorManager;
     [HideInInspector] public CollisionManager collisionManager;
+    [HideInInspector] public SelectionManager selectionManager;
 
     [HideInInspector] public Move move;
     [HideInInspector] public Rotate rotate;
+    [HideInInspector] public ScaleObject scaleObject;
 
     [Header("Formas")]
     [SerializeField] public GameObject selectedObject;
@@ -37,7 +39,11 @@ public class GameManager : MonoBehaviour
         colorManager = GetComponent<ColorManager>();
         instantiationManager = GetComponent<InstantiationManager>();
         collisionManager = GetComponent<CollisionManager>();
+        selectionManager = GetComponent<SelectionManager>();
+        
         move = GetComponent<Move>();
+        rotate = GetComponent<Rotate>();
+        scaleObject = GetComponent<ScaleObject>();
 
         FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
         instantiationManager.Instantiation += AddNewObject;
@@ -148,7 +154,7 @@ public class GameManager : MonoBehaviour
             numberCube++;
         else
             numberSphere++;
-        ChangeSelectedObject(gm);
+        selectionManager.ChangeSelectedObject(gm);
         colorManager.ChangeColor( -1, gm );
     }
 

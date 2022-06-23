@@ -103,10 +103,7 @@ public class InstantiationManager : MonoBehaviour
             }
         }
 
-        //Debug.Log( "Model: " + modelObject.name );
 
-        //modelObject.transform.localScale = new Vector3( 1f, 1f, 1f );
-        //modelObject.transform.position = modelObject.transform.position + new Vector3( 0, 0, 0 );
         modelObject.SetActive( true );
 
         if (Instantiation != null )
