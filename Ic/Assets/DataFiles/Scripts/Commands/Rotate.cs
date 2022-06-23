@@ -15,7 +15,7 @@ public class Rotate : MonoBehaviour
     private void Awake()
     {
         FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
-        gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
+        gameManager = GetComponent<GameManager>();
     }
 
     private void ChangeSelectedObject( GameObject gm )
