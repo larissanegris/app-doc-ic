@@ -22,7 +22,7 @@ public class MoveObject : MonoBehaviour
 
     private void Update()
     {
-        restrainType = gameManager.GetTipoConecao();
+        restrainType = gameManager.connectionType;
         if ( restrainPoint != null )
             distance = Vector3.Distance( transform.position, restrainPoint );
         //if( tag == "Selected")
@@ -36,7 +36,7 @@ public class MoveObject : MonoBehaviour
         {
             MoveToPosition( nextPos );
         }
-        else if ( form.GetFormType() == Type.Cube )
+        else if ( form.GetFormType() == FormType.Cube )
         {
             if ( restrainType == 1 )
             {
@@ -89,7 +89,7 @@ public class MoveObject : MonoBehaviour
                 }
             }
         }
-        else if ( form.GetFormType() == Type.Sphere )
+        else if ( form.GetFormType() == FormType.Sphere )
         {
             if ( restrainType == 1 )
             {

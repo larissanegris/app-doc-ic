@@ -59,6 +59,7 @@ public class GameManagerEditor : Editor
         {
             EditorGUILayout.IntField("Interaction Type", gameManager.interactionType);
             EditorGUILayout.IntField("Connection Type", gameManager.connectionType);
+            gameManager.cameraObject = (GameObject) EditorGUILayout.ObjectField( "Camera", gameManager.cameraObject, typeof( GameObject ), true );
             gameManager.moveCamera = EditorGUILayout.Toggle( "Move Camera", gameManager.moveCamera );
         }
 
