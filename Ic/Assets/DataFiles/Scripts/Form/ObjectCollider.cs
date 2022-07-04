@@ -41,7 +41,6 @@ public class ObjectCollider : MonoBehaviour
         {
             connectionType = gameManager.GetconnectionType();
             center = transform.position;
-            //Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
             closestObject = nearbyObjects(out closestPoint);
             move.closestPoint = closestPoint;
             Debug.DrawLine( center, closestPoint, Color.yellow, 0.2f );
