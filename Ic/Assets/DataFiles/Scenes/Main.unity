@@ -758,6 +758,7 @@ GameObject:
   - component: {fileID: 1269835864}
   - component: {fileID: 1269835865}
   - component: {fileID: 1269835866}
+  - component: {fileID: 1269835867}
   - component: {fileID: 1269835868}
   - component: {fileID: 1269835869}
   - component: {fileID: 1269835870}
@@ -781,7 +782,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ef4289b23801546927ce0f08a69ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePrefab: {fileID: 3482353415707194465, guid: 80a32d85e7822ee49ad4155283b2ea8c, type: 3}
+  gameManager: {fileID: 1269835863}
+  cubePrefab: {fileID: 3793351226083502663, guid: 80a32d85e7822ee49ad4155283b2ea8c, type: 3}
   spherePrefab: {fileID: 3157072259384202465, guid: 3897f2507da739049a9d6ae7d801504a, type: 3}
   cubeVolumePrefab: {fileID: 3482353415707194465, guid: 51ec9a86c4264c746ad8495034e32e01, type: 3}
   sphereVolumePrefab: {fileID: 3157072259384202465, guid: b630ecb6a9f039f49b9d2ecd2fa2e204, type: 3}
@@ -815,6 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  colorManager: {fileID: 0}
 --- !u!114 &1269835863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,6 +830,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443fc43f0141c804e9b02657995923e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabInstantiator: {fileID: 1269835860}
+  colorManager: {fileID: 0}
+  highlightManager: {fileID: 0}
   instantiationManager: {fileID: 0}
   colorManager: {fileID: 1269835866}
   collisionManager: {fileID: 0}
@@ -872,6 +878,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dfea8c69948ba4fbcf3715d17aa341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectableTag: Selectable
+  gameManager: {fileID: 0}
+  form: {fileID: 0}
+  colorManager: {fileID: 0}
 --- !u!114 &1269835866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01247be18246bd8418cae9f61d6c87a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!114 &1269835868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,12 +904,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1269835859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1efcaa67f34a0ad4d89da19da3331202, type: 3}
+  m_Script: {fileID: 11500000, guid: 28e15ac2f68901143abc6551d462e61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedObject: {fileID: 0}
-  MovementSpeed: 10
-  closestPoint: {x: 0, y: 0, z: 0}
+  gameManager: {fileID: 0}
+  colorManager: {fileID: 1269835866}
+  baseMaterial: {fileID: 2100000, guid: 4aeeb9ce0be126d42a89f218d4c3ff76, type: 2}
+  highlightMat: {fileID: 2100000, guid: bed481b76173c294b89efa0a1a73cb2a, type: 2}
 --- !u!114 &1269835869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,7 +1085,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce4daa22b986ff946a6ee1eb02165b48, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
