@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
         FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
         instantiationManager.Instantiation += AddNewObject;
+        cameraObject = GameObject.Find( "Camera" );
     }
 
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
