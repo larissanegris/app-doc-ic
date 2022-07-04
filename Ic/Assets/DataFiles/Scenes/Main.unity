@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.45142508, g: 0.5008001, b: 0.57167894, a: 1}
+  m_IndirectSpecularColor: {r: 0.45140016, g: 0.5008915, b: 0.57231694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -395,14 +395,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.22475073, y: -0.20793201, z: 0.1541156, w: 0.93941456}
+  m_LocalRotation: {x: 0.2321919, y: -0.2084031, z: 0.15530513, w: 0.9373022}
   m_LocalPosition: {x: 5.39, y: 9.63, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 29.102, y: -21.582, z: 12.969}
+  m_LocalEulerAnglesHint: {x: 30, y: -21.582, z: 12.969}
 --- !u!1 &727830588
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,8 +830,10 @@ MonoBehaviour:
   instantiationManager: {fileID: 0}
   colorManager: {fileID: 1269835866}
   collisionManager: {fileID: 0}
+  selectionManager: {fileID: 0}
   move: {fileID: 1269835868}
   rotate: {fileID: 1269835869}
+  scaleObject: {fileID: 0}
   selectedObject: {fileID: 0}
   selectedObjectForm: {fileID: 0}
   number: 0
@@ -935,8 +937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d74ce3f006eb340940fc5791c2f8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjacencyMatrixSizeX: 0
-  adjacencyMatrixSizeY: 0
 --- !u!1 &1470182494
 GameObject:
   m_ObjectHideFlags: 0

@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01247be18246bd8418cae9f61d6c87a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!114 &1436022637913850413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,9 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc322cbd3a94ba84884a9225d1f396f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
+  radius: 5
   closestObject: {fileID: 0}
   distToClosest: 0
+  dist: 0
 --- !u!114 &3985173842367838522
 MonoBehaviour:
   m_ObjectHideFlags: 0
