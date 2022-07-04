@@ -9,17 +9,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: OpaqueSphere
   m_Shader: {fileID: 4800000, guid: a3e757e63da393f41a29e71d4e1395a1, type: 3}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
   m_ShaderKeywords: 
-=======
   m_ValidKeywords: []
   m_InvalidKeywords: []
->>>>>>> Stashed changes
-=======
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
->>>>>>> master
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -32,14 +24,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Brightness: 0.8
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
     - _Transparency: 0.3
->>>>>>> Stashed changes
-=======
-    - _Transparency: 0.3
->>>>>>> master
     m_Colors:
     - _Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   m_BuildTextureStacks: []

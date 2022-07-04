@@ -41,7 +41,6 @@ public class ObjectCollider : MonoBehaviour
         {
             connectionType = gameManager.GetconnectionType();
             center = transform.position;
-<<<<<<< HEAD
             Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
 
             GameObject closestObject = ClosestObject();
@@ -57,7 +56,6 @@ public class ObjectCollider : MonoBehaviour
                 if ( closestObject != null )
                 {
                     MakeInteractionSphere( closestObject );
-=======
             //Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
             closestObject = nearbyObjects(out closestPoint);
             move.closestPoint = closestPoint;
@@ -68,7 +66,6 @@ public class ObjectCollider : MonoBehaviour
                 if( closestObject != null )
                 {
                     //MakeInteractionCube( closestObject );
->>>>>>> master
                 }
             }
             else if ( form.GetFormType() == FormType.Sphere )
@@ -86,11 +83,7 @@ public class ObjectCollider : MonoBehaviour
     }
     
 
-<<<<<<< HEAD
     private GameObject ClosestObject()
-=======
-    private GameObject nearbyObjects(out Vector3 closestPoint)
->>>>>>> master
     {
         
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
@@ -158,9 +151,6 @@ public class ObjectCollider : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
     private void VerifyInteractionsCube()
     {
 
@@ -173,7 +163,7 @@ public class ObjectCollider : MonoBehaviour
 
             if ( hitCollider.gameObject != gameObject && hitCollider.gameObject.tag != "Floor" )
             {
-                //verifica se é conecao do tipo 1
+                //verifica se ï¿½ conecao do tipo 1
                 Vector3 colliderCenter = hitCollider.transform.position;
 
                 Vector3 hitColliderHalfBox = hitCollider.transform.lossyScale * 0.5f;
@@ -197,7 +187,7 @@ public class ObjectCollider : MonoBehaviour
                     }
                 }
 
-                //Verifica se é do tipo 2
+                //Verifica se ï¿½ do tipo 2
 
                 Vector3 volumeHalfBox = gameObject.transform.GetChild( 0 ).transform.lossyScale * .5f;
 
@@ -250,7 +240,6 @@ public class ObjectCollider : MonoBehaviour
 
     }
 
->>>>>>> Stashed changes
     private void MakeInteractionSphere( GameObject closestObject )
     {
         Vector3 colliderCenter = closestObject.transform.position;
@@ -272,10 +261,8 @@ public class ObjectCollider : MonoBehaviour
         }
     }
 
-    private Vector3 FindNormal( Vector3 vec )
-=======
+
     private void VerifyInteractionsCube()
->>>>>>> master
     {
 
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
@@ -287,7 +274,7 @@ public class ObjectCollider : MonoBehaviour
 
             if ( hitCollider.gameObject != gameObject && hitCollider.gameObject.tag != "Floor" )
             {
-                //verifica se é conecao do tipo 1
+                //verifica se ï¿½ conecao do tipo 1
                 Vector3 colliderCenter = hitCollider.transform.position;
 
                 Vector3 hitColliderHalfBox = hitCollider.transform.lossyScale * 0.5f;
@@ -311,7 +298,7 @@ public class ObjectCollider : MonoBehaviour
                     }
                 }
 
-                //Verifica se é do tipo 2
+                //Verifica se ï¿½ do tipo 2
 
                 Vector3 volumeHalfBox = gameObject.transform.GetChild( 0 ).transform.lossyScale * .5f;
 

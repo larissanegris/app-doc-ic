@@ -13,13 +13,9 @@ GameObject:
   - component: {fileID: 3128437217536295540}
   - component: {fileID: 5344694631523415509}
   - component: {fileID: 250712527244084839}
-<<<<<<< HEAD
   - component: {fileID: 4607015442397708442}
   - component: {fileID: -245878665370236038}
   - component: {fileID: -7131802961262153357}
-=======
-  - component: {fileID: 156405384603034726}
->>>>>>> master
   - component: {fileID: 1436022637913850413}
   - component: {fileID: 3985173842367838522}
   m_Layer: 6
@@ -127,11 +123,7 @@ MonoBehaviour:
   halfBoxVolume: {x: 0, y: 0, z: 0}
   interactions: []
   distances: []
-<<<<<<< HEAD
 --- !u!114 &4607015442397708442
-=======
---- !u!114 &156405384603034726
->>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +132,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3157072259384202465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 100b67869b7f0684292895c74489d7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -171,12 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967710c7c5a062a4d8ceea6ad522da98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
   m_Script: {fileID: 11500000, guid: 01247be18246bd8418cae9f61d6c87a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
->>>>>>> master
 --- !u!114 &1436022637913850413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,9 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc322cbd3a94ba84884a9225d1f396f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
+  radius: 5
   closestObject: {fileID: 0}
   distToClosest: 0
+  dist: 0
 --- !u!114 &3985173842367838522
 MonoBehaviour:
   m_ObjectHideFlags: 0
