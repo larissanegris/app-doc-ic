@@ -53,6 +53,12 @@ public class InputManager : MonoBehaviour
             gameManager.instantiationManager.Spawn( FormType.Sphere, true );
         }
 
+        //Altera modo volume
+        if ( Input.GetKeyDown( KeyCode.T ) )
+        {
+            gameManager.VolumeToggleEvent();
+        }
+
 
 
         //teclas para selecionar os objetos
@@ -276,11 +282,5 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    /*
-    private void SendMoveCommand( Transform objectToMove, Vector3 direction, float distance )
-    {
-        ICommand movement = new Move(objectToMove, direction, distance);
-        target.GetComponent<MoveObject>().AddCommand( movement as Move );
-    }
-    */
+    
 }

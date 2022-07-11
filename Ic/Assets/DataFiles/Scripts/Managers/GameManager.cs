@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,9 +30,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector][SerializeField] public GameObject cameraObject;
 
-
-    //[SerializeField] private bool hasSelectedObject = false;
-    
+    public event Action<bool> VolumeToggle;
 
     private void Awake()
     {
@@ -53,14 +51,12 @@ public class GameManager : MonoBehaviour
     public void ChangeSelectedObject(GameObject newSelectedGameObject)
     {
         //se for o unico objeto, nao precisa modificar o antigo selecionado
-        if(number == 1)
+        if(number == 1 || selectedObject == null)
         {
             //seleciona novo objeto
             selectedObject = newSelectedGameObject;
             selectedObjectForm = selectedObject.GetComponent<Form>();
             selectedObject.GetComponent<Form>().SetToSelected();
-
-
 
             //muda tag
             selectedObject.tag = "Selected";
@@ -80,13 +76,13 @@ public class GameManager : MonoBehaviour
         //seleciona forma nova
         selectedObject = newSelectedGameObject;
         selectedObjectForm = selectedObject.GetComponent<Form>();
-        selectedObjectForm.saveColor();
         selectedObjectForm.SetToSelected();
 
         //muda tag
         selectedObject.tag = "Selected";
         //Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
     }
+
 
 
     public void ChangeMoveCamera()
@@ -177,8 +173,6 @@ public class GameManager : MonoBehaviour
 
     public void DeleteGameObect(Form form )
     {
-        createdForms.Remove( form );
-
         if(selectedObjectForm == form )
         {
             selectedObject = null;
@@ -190,9 +184,18 @@ public class GameManager : MonoBehaviour
         {
             numberCube -= 1;
         }
-        else if(form.GetFormType()== FormType.Sphere )
+        else if(form.GetFormType() == FormType.Sphere )
         {
             numberSphere -= 1;
         }
+
+        createdForms.Remove( form );
+        form.DeleteSelf();
+    }
+
+    public void VolumeToggleEvent()
+    {
+        displayVolume = !displayVolume;
+        VolumeToggle(displayVolume);
     }
 }
