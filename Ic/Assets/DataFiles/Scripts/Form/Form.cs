@@ -10,16 +10,13 @@ public class Form : MonoBehaviour
     [SerializeField] private int id;
     [SerializeField] private FormType type;
     [SerializeField] private Colors cor = Colors.White;
-    [SerializeField] private Colors previousCor = Colors.White;
     [SerializeField] private bool isSelected = false;
     
     private Outline outline;
-    public Vector3 halfBoxVolume ;
+    public Vector3 halfBoxVolume;
+    
+    public GameObject volume;
 
-
-
-    [SerializeField] private List<Form> interactions = new List<Form>();
-    [SerializeField] private List<float> distances = new List<float>();
 
     void Awake()
     {
@@ -27,6 +24,7 @@ public class Form : MonoBehaviour
         colorManager = gameManager.colorManager;
         outline = gameObject.GetComponent<Outline>();
         FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
+        gameManager.VolumeToggle += DisplayVolume;
     }
 
 
@@ -36,18 +34,15 @@ public class Form : MonoBehaviour
         this.type = type;
     }
 
-    public void saveColor()
+    public void DisplayVolume(bool b )
     {
-        previousCor = cor;
-    }
-    public void saveColor(Colors newCor)
-    {
-        previousCor = cor;
-        cor = newCor;
+        volume.SetActive( b );
     }
 
     public void ChangeSelectedObject(GameObject gm)
     {
+        if(gm == null)
+            return;
         if(gm == gameObject ) {
             isSelected = true;
             outline.OutlineMode = Outline.Mode.OutlineVisible;
@@ -73,11 +68,6 @@ public class Form : MonoBehaviour
     public int GetId()
     {
         return id;
-    }
-
-    public List<Form> GetInteractions()
-    {
-        return interactions;
     }
 
     public bool GetIsSelected()

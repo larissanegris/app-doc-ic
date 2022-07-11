@@ -18,7 +18,7 @@ public class InstantiationManager : MonoBehaviour
     [SerializeField]
     private Material transparentSphere;
 
-
+    [SerializeField]
     private Form forma;
     private GameObject parent;
 
@@ -47,6 +47,7 @@ public class InstantiationManager : MonoBehaviour
                 interactionVolume.GetComponent<MeshRenderer>().material = transparentCube;
                 interactionVolume.transform.localScale = 1.5f * Vector3.one;
                 interactionVolume.SetActive( gameManager.displayVolume );
+                forma.volume = interactionVolume;
             }
             
 
@@ -72,6 +73,7 @@ public class InstantiationManager : MonoBehaviour
                 interactionVolume.GetComponent<MeshRenderer>().material = transparentSphere;
                 interactionVolume.transform.localScale = 1.5f * Vector3.one;
                 interactionVolume.SetActive( gameManager.displayVolume );
+                forma.volume = interactionVolume;
             }
 
             return myModelObject;
@@ -106,7 +108,7 @@ public class InstantiationManager : MonoBehaviour
 
         modelObject.SetActive( true );
 
-        if (Instantiation != null )
+        if (Instantiation != null && modelObject != null)
         {
             Instantiation( modelObject );
         }
