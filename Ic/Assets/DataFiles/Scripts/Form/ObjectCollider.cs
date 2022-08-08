@@ -146,7 +146,7 @@ public class ObjectCollider : MonoBehaviour
         foreach ( Collider hitCollider in hitColliders )
         {
 
-            if ( hitCollider.gameObject != gameObject && hitCollider.gameObject.tag != "Floor" )
+            if ( hitCollider.gameObject != gameObject && (hitCollider.gameObject.tag == "Selected" || hitCollider.gameObject.tag == "Selectable" ) )
             {
                 //verifica se é conecao do tipo 1
                 Vector3 colliderCenter = hitCollider.transform.position;
