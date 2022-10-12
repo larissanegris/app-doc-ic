@@ -44,7 +44,7 @@ public class ObjectCollider : MonoBehaviour
             //Debug.DrawLine( closestPoint, center, Color.yellow, 1 );
             closestObject = nearbyObjects( out closestPoint );
             move.closestPoint = closestPoint;
-            Debug.DrawLine( center, closestPoint, Color.yellow, 0.2f );
+            //Debug.DrawLine( center, closestPoint, Color.yellow, 0.2f );
 
             if ( form.GetFormType() == FormType.Cube )
             {

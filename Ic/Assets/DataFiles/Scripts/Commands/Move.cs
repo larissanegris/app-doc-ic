@@ -25,6 +25,7 @@ public class Move : MonoBehaviour
     private void Awake()
     {
         FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
+        FindObjectOfType<TouchSelectionManager>().selectionChange += ChangeSelectedObject;
         gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
     }
 

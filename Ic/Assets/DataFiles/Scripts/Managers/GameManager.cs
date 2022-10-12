@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public InstantiationManager instantiationManager;
     [HideInInspector] public ColorManager colorManager;
     [HideInInspector] public CollisionManager collisionManager;
-    [HideInInspector] public SelectionManager selectionManager;
+    [HideInInspector] public SelectionManager touchSelectionManager;
 
     [HideInInspector] public Move move;
     [HideInInspector] public Rotate rotate;
@@ -37,13 +37,14 @@ public class GameManager : MonoBehaviour
         colorManager = GetComponent<ColorManager>();
         instantiationManager = GetComponent<InstantiationManager>();
         collisionManager = GetComponent<CollisionManager>();
-        selectionManager = GetComponent<SelectionManager>();
+        touchSelectionManager = GetComponent<TouchSelectionManager>();
         
         move = GetComponent<Move>();
         rotate = GetComponent<Rotate>();
         scaleObject = GetComponent<ScaleObject>();
 
         FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
+        FindObjectOfType<TouchSelectionManager>().selectionChange += ChangeSelectedObject;
         instantiationManager.Instantiation += AddNewObject;
         cameraObject = GameObject.Find( "Camera" );
     }
@@ -151,7 +152,7 @@ public class GameManager : MonoBehaviour
             numberCube++;
         else
             numberSphere++;
-        selectionManager.ChangeSelectedObject(gm);
+        touchSelectionManager.ChangeSelectedObject(gm);
         colorManager.ChangeColor( -1, gm );
     }
 

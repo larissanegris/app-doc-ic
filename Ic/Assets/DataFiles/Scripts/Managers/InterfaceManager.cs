@@ -24,14 +24,14 @@ public class InterfaceManager : MonoBehaviour
     private GameManager gameManager;
     private InstantiationManager instantiationManager;
     private ColorManager colorManager;
-    private SelectionManager selectionManager;
+    private TouchSelectionManager selectionManager;
 
     private void Awake()
     {
         gameManager = GetComponent<GameManager>();
         instantiationManager = GetComponent<InstantiationManager>();
         colorManager = GetComponent<ColorManager>();
-        selectionManager = GetComponent<SelectionManager>();
+        selectionManager = GetComponent<TouchSelectionManager>();
 
         areaAberta.onClick.AddListener( () => instantiationManager.Spawn( FormType.Cube, false ) );
         areaFechada.onClick.AddListener( () => instantiationManager.Spawn( FormType.Sphere, false ) );
@@ -43,7 +43,7 @@ public class InterfaceManager : MonoBehaviour
         cor2.onClick.AddListener(() => colorManager.ChangeColor(2, gameManager.selectedObject));
         cor3.onClick.AddListener(() => colorManager.ChangeColor(3, gameManager.selectedObject));
 
-        selectionManager.selectionChange += ChangeBtnColor;
+        //selectionManager.selectionChange += ChangeBtnColor;
 
     }
 

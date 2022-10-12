@@ -1,22 +1,27 @@
 using System;
 using UnityEngine;
 
-public class SelectionManager : MonoBehaviour
+interface selectionManager
 {
-    private GameManager gameManager;
-    private Transform _selection;
+    event Action<GameObject> selectionChange;
+}
 
-    private string selectableTag = "Selectable";
-    private int layerMask = 1 << 6;
+public class SelectionManager : MonoBehaviour, selectionManager 
+{
+    protected GameManager gameManager;
+    protected Transform _selection;
+
+    protected string selectableTag = "Selectable";
+    protected int layerMask = 1 << 6;
 
     public event Action<GameObject> selectionChange;
 
-    private void Start()
+    protected void Start()
     {
         gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
     }
 
-    private void Update()
+    public void RaycastSelection()
     {
         if ( _selection != null )
         {

@@ -23,7 +23,7 @@ public class Form : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         colorManager = gameManager.colorManager;
         outline = gameObject.GetComponent<Outline>();
-        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
+        FindObjectOfType<TouchSelectionManager>().selectionChange += ChangeSelectedObject;
         gameManager.VolumeToggle += DisplayVolume;
     }
 

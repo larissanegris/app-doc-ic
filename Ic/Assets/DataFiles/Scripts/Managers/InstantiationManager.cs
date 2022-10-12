@@ -20,13 +20,14 @@ public class InstantiationManager : MonoBehaviour
 
     [SerializeField]
     private Form forma;
+    [SerializeField]
     private GameObject parent;
 
     public event Action<GameObject> Instantiation;
 
     private void Awake()
     {
-         parent = GameObject.Find("Parent");
+         //parent = GameObject.Find("Parent");
          gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
