@@ -6,15 +6,22 @@ using Lean.Touch;
 public class TouchSelectionManager : SelectionManager
 {
     public event Action<GameObject> selectionChange;
+    public event Action<GameObject> selectionSphereChange;
+    public Action<LeanFinger> FingerUp;
+    public Action<LeanFinger> FingerDown;
 
     private void OnEnable()
     {
-        Lean.Touch.LeanTouch.OnFingerDown += RaycastSelection;
+        LeanTouch.OnFingerDown += RaycastSelection;
+        LeanTouch.OnFingerUp += DeselectControlSphere;
+        LeanTouch.OnFingerUp += LiftFinger;
+        LeanTouch.OnFingerDown += FingerPress;
+        FindObjectOfType<InstantiationManager>().Instantiation += ChangeSelectedObject;
     }
 
     private void RaycastSelection(LeanFinger finger)
     {
-        Debug.Log("Finger Down");
+        Debug.Log("Touch Selection Finger Down");
         if (_selection != null)
         {
             _selection = null;
@@ -24,7 +31,7 @@ public class TouchSelectionManager : SelectionManager
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, layerMask))
-            {
+        {
             var selection = hit.transform;
             if (selection.CompareTag(selectableTag))
             {
@@ -38,19 +45,44 @@ public class TouchSelectionManager : SelectionManager
                     //gameManager.ChangeSelectedObject( selection.gameObject );
                 }
 
-                 _selection = selection;
+                _selection = selection;
+
+            }
+            if (selection.CompareTag("ControlSphere"))
+            {
+                Debug.Log("touch selection - ControlSphere" + hit.transform.name);
+                if (selection.gameObject != gameManager.GetSelectedObject())
+                {
+                    if (selectionChange != null)
+                    {
+                        selectionSphereChange(selection.gameObject);
+                    }
+                    //gameManager.ChangeSelectedObject( selection.gameObject );
+                }
+
+                _selection = selection;
 
             }
         }
     }
 
-    void HandleFingerDown(LeanFinger l )
+    void ChangeSelectedObject(GameObject go)
     {
-        Debug.Log("Finger Down");
+        selectionChange(go);
+    }
+    void DeselectControlSphere(LeanFinger finger)
+    {
+        selectionSphereChange(null);
     }
 
-    public void ChangeSelectedObject(GameObject gm)
+    void FingerPress(LeanFinger finger)
     {
-        selectionChange?.Invoke(gm);
+        FingerDown(finger);
     }
+
+    void LiftFinger(LeanFinger finger)
+    {
+        FingerUp(finger);
+    }
+
 }

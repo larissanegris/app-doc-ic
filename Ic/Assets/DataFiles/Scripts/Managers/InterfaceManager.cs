@@ -33,6 +33,9 @@ public class InterfaceManager : MonoBehaviour
         colorManager = GetComponent<ColorManager>();
         selectionManager = GetComponent<TouchSelectionManager>();
 
+        FindObjectOfType<TouchSelectionManager>().selectionChange += ChangeBtnColor;
+        FindObjectOfType<InstantiationManager>().Instantiation += ChangeBtnColor;
+
         areaAberta.onClick.AddListener( () => instantiationManager.Spawn( FormType.Cube, false ) );
         areaFechada.onClick.AddListener( () => instantiationManager.Spawn( FormType.Sphere, false ) );
         reuniaoAtiva.onClick.AddListener( () => instantiationManager.Spawn( FormType.Cube, true ) );

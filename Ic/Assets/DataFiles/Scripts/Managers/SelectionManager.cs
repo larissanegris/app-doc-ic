@@ -19,6 +19,7 @@ public class SelectionManager : MonoBehaviour, selectionManager
     protected void Start()
     {
         gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
+        FindObjectOfType<InstantiationManager>().Instantiation += ChangeSelectedObject;
     }
 
     public void RaycastSelection()

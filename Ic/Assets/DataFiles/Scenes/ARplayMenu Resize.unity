@@ -294,7 +294,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2049521986}
+  - {fileID: 626742276}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -381,7 +381,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &63850503
 GameObject:
@@ -1717,6 +1717,7 @@ GameObject:
   - component: {fileID: 366991582}
   - component: {fileID: 366991581}
   - component: {fileID: 366991580}
+  - component: {fileID: 366991584}
   m_Layer: 5
   m_Name: Btn_Dimensions(D)
   m_TagString: Untagged
@@ -1842,6 +1843,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366991577}
   m_CullTransparentMesh: 1
+--- !u!114 &366991584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366991577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6629dd653b6dc4428609d1384690c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: {fileID: 366991581}
+  scaleToggle: 1
 --- !u!1 &399805054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,6 +2424,37 @@ MonoBehaviour:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
     - {fileID: 11400000, guid: 405d3b0f966c41a4c836ad9a73b36b2c, type: 2}
+--- !u!21 &626742276
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'Image TargetMaterial
+
+    21086'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 29822eb25d5547644b509f26d987de07, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &627455730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,8 +2480,8 @@ Transform:
   m_GameObject: {fileID: 627455730}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.000091552734, y: 0, z: 28.3922}
-  m_LocalScale: {x: 1.1356881, y: 1.1356881, z: 1.1356881}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -2836,83 +2882,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658892396}
   m_CullTransparentMesh: 1
---- !u!1001 &660538329
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -7518023466721507597, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1389146543790018576, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 42.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194464, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194465, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_Name
-      value: Cube Lean
-      objectReference: {fileID: 0}
-    - target: {fileID: 3482353415707194465, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4749884388914511650, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: _camera
-      value: 
-      objectReference: {fileID: 1656187032}
-    - target: {fileID: 8703398770283425675, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 60ddbaa52499a7b48976f256b4a66cc8, type: 3}
 --- !u!1 &703554195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2933,6 +2902,7 @@ GameObject:
   - component: {fileID: 703554208}
   - component: {fileID: 703554210}
   - component: {fileID: 703554211}
+  - component: {fileID: 703554212}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3127,6 +3097,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25537025b0139ef44a917147f0c6b8ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &703554212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703554195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586590ffcd5a02540bcfc622a39ee143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
+  parent: {fileID: 627455730}
+  sphereControlPrefab: {fileID: 5269112393615326259, guid: 1458feeced8389c44ac76d96f545edfd, type: 3}
+  selectedSphere: {fileID: 0}
+  auxSphere: {fileID: 0}
+  scaleBtn: {fileID: 366991584}
+  spheres: []
 --- !u!1 &751114438
 GameObject:
   m_ObjectHideFlags: 0
@@ -6774,37 +6763,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001119880}
   m_CullTransparentMesh: 1
---- !u!21 &2049521986
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'Image TargetMaterial
-
-    21628'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 29822eb25d5547644b509f26d987de07, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &2119135045
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,6 @@ public class InstantiationManager : MonoBehaviour
 
     private void Awake()
     {
-         //parent = GameObject.Find("Parent");
          gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 

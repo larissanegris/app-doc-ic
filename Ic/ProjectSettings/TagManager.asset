@@ -8,6 +8,7 @@ TagManager:
   - Selected
   - Floor
   - Unselectable
+  - ControlSphere
   layers:
   - Default
   - TransparentFX
