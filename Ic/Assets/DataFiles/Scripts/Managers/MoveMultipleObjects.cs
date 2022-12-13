@@ -31,9 +31,6 @@ public class MoveMultipleObjects : MonoBehaviour
         }
         else
         {
-            
-            target.GetComponent<LeanDragTranslate>().Use.RequiredSelectable = selectable;
-
             foreach (GameObject gm in selectedObjects)
             {
                 LeanSelectableByFinger selectable = gm.GetComponent<LeanSelectableByFinger>();
