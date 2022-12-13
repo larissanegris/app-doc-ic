@@ -114,9 +114,13 @@ public class ScaleManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void ChangeSelectedObject(GameObject go)
+    void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj)
     {
-        selectedObject = go;
+        ToggleShowScaleSphere(!selectMultipleObjects);
+        if (!selectMultipleObjects)
+        {
+            selectedObject = selectedObj[0];
+        }
     }
 
     void ChangeSelectedSphere(GameObject go)

@@ -6,6 +6,7 @@ public class CollisionManager : MonoBehaviour
 {
     [SerializeField] public List<List<Interaction>> adjacencyMatrix = new List<List<Interaction>>() {  };
     GameManager gameManager;
+    TouchSelectionManager touchSelectionManager;
     GameObject selectedObject;
 
     private void Awake()
@@ -22,10 +23,14 @@ public class CollisionManager : MonoBehaviour
 
     public void UpdateAdjacencyMatrix(Form form, Interaction interactionType)
     {
-        selectedObject = gameManager.GetSelectedObject();
-        Form selectedForm = selectedObject.GetComponent<Form>();
-        adjacencyMatrix[selectedForm.GetId()][form.GetId()] = interactionType;
-        adjacencyMatrix[form.GetId()][selectedForm.GetId()] = interactionType;
+        foreach(GameObject gm in touchSelectionManager.selectedObjects)
+        {
+            selectedObject = gm;
+            Form selectedForm = selectedObject.GetComponent<Form>();
+            adjacencyMatrix[selectedForm.GetId()][form.GetId()] = interactionType;
+            adjacencyMatrix[form.GetId()][selectedForm.GetId()] = interactionType;
+        }
+        
 
         //printAdjacencyMatrix();
     }

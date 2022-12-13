@@ -40,15 +40,6 @@ public class TextManager : MonoBehaviour
         }
 
 
-        if (gameManager.GetSelectedObject() != null)
-        {
-            selectedObject.text = "Objeto Selecionado: " + gameManager.GetSelectedObject().name.ToString();
-        }
-        else
-        {
-            selectedObject.text = "Objeto Selecionado: Nenhum";
-        }
-
         conectionType.text = "Conecao: ";
         if (gameManager.connectionType == 0)
         {

@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 820630781547449543}
   - component: {fileID: 1048732011095876706}
   - component: {fileID: 2605206660244261093}
-  m_Layer: 0
+  - component: {fileID: 354185644717106784}
+  m_Layer: 7
   m_Name: Sphere Control
   m_TagString: ControlSphere
   m_Icon: {fileID: 0}
@@ -115,6 +116,7 @@ MonoBehaviour:
   axis: 0
   dir: 0
   selectedObject: {fileID: 0}
+  updatePosition: 0
 --- !u!114 &1048732011095876706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +147,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5269112393615326259}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 479d695282ba6cf4ba3ab3c4848f05e8, type: 3}
   m_Name: 
@@ -168,12 +170,44 @@ MonoBehaviour:
     Method: 0
     Layers:
       serializedVersion: 2
-      m_Bits: 4294967291
+      m_Bits: 128
     Search: 1
     RequiredTag: 
     Camera: {fileID: 0}
     Distance: 50
   deselectWithFingers: 0
   onSelectedFinger:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &354185644717106784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269112393615326259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfSelected: 0
+  onSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  use: 0
+  onSelectedFinger:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelectedFingerUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelectedSelectFinger:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelectedSelectFingerUp:
     m_PersistentCalls:
       m_Calls: []

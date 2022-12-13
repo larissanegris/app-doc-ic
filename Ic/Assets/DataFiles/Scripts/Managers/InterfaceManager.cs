@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class InterfaceManager : MonoBehaviour
 {
     public GameObject parent;
+    public GameObject tgt;
 
     [Header("Botoes Geração")]
     public Button areaAberta;
     public Button areaFechada;
     public Button reuniaoAtiva;
     public Button reuniaoPassiva;
-    
+
 
     [Header("Cores")]
     public Button cor0;
@@ -24,27 +25,27 @@ public class InterfaceManager : MonoBehaviour
     private GameManager gameManager;
     private InstantiationManager instantiationManager;
     private ColorManager colorManager;
-    private TouchSelectionManager selectionManager;
+    private TouchSelectionManager touchSelectionManager;
 
     private void Awake()
     {
         gameManager = GetComponent<GameManager>();
         instantiationManager = GetComponent<InstantiationManager>();
         colorManager = GetComponent<ColorManager>();
-        selectionManager = GetComponent<TouchSelectionManager>();
+        touchSelectionManager = GetComponent<TouchSelectionManager>();
 
-        FindObjectOfType<TouchSelectionManager>().selectionChange += ChangeBtnColor;
-        FindObjectOfType<InstantiationManager>().Instantiation += ChangeBtnColor;
+        touchSelectionManager.selectionChange += ChangeBtnColor;
+        //FindObjectOfType<InstantiationManager>().Instantiation += ChangeBtnColor;
 
-        areaAberta.onClick.AddListener( () => instantiationManager.Spawn( FormType.Cube, false ) );
-        areaFechada.onClick.AddListener( () => instantiationManager.Spawn( FormType.Sphere, false ) );
-        reuniaoAtiva.onClick.AddListener( () => instantiationManager.Spawn( FormType.Cube, true ) );
-        reuniaoPassiva.onClick.AddListener( () => instantiationManager.Spawn( FormType.Sphere, true ) );
+        areaAberta.onClick.AddListener(() => instantiationManager.Spawn(FormType.Cube, false));
+        areaFechada.onClick.AddListener(() => instantiationManager.Spawn(FormType.Sphere, false));
+        reuniaoAtiva.onClick.AddListener(() => instantiationManager.Spawn(FormType.Cube, true));
+        reuniaoPassiva.onClick.AddListener(() => instantiationManager.Spawn(FormType.Sphere, true));
 
-        cor0.onClick.AddListener(() => colorManager.ChangeColor(0, gameManager.selectedObject));
-        cor1.onClick.AddListener(() => colorManager.ChangeColor(1, gameManager.selectedObject));
-        cor2.onClick.AddListener(() => colorManager.ChangeColor(2, gameManager.selectedObject));
-        cor3.onClick.AddListener(() => colorManager.ChangeColor(3, gameManager.selectedObject));
+        cor0.onClick.AddListener(() => colorManager.ChangeColor(0, tgt));
+        cor1.onClick.AddListener(() => colorManager.ChangeColor(1, tgt));
+        cor2.onClick.AddListener(() => colorManager.ChangeColor(2, tgt));
+        cor3.onClick.AddListener(() => colorManager.ChangeColor(3, tgt));
 
         //selectionManager.selectionChange += ChangeBtnColor;
 
@@ -52,14 +53,26 @@ public class InterfaceManager : MonoBehaviour
 
     private void Task(FormType ft, bool isTransparent)
     {
-        instantiationManager.Spawn( FormType.Cube, false );
+        instantiationManager.Spawn(FormType.Cube, false);
     }
 
-    private void ChangeBtnColor(GameObject tgt)
+    private void ChangeBtnColor(bool selectMultipleObjects, List<GameObject> selectedObj)
     {
-        colorManager.ChangeBtnColor(0, cor0.gameObject, tgt.GetComponent<Form>().GetFormType());
-        colorManager.ChangeBtnColor(1, cor1.gameObject, tgt.GetComponent<Form>().GetFormType());
-        colorManager.ChangeBtnColor(2, cor2.gameObject, tgt.GetComponent<Form>().GetFormType());
-        colorManager.ChangeBtnColor(3, cor3.gameObject, tgt.GetComponent<Form>().GetFormType());
+        if (!selectMultipleObjects)
+        {
+            tgt = selectedObj[0];
+            colorManager.ChangeBtnColor(0, cor0.gameObject, tgt.GetComponent<Form>().GetFormType());
+            colorManager.ChangeBtnColor(1, cor1.gameObject, tgt.GetComponent<Form>().GetFormType());
+            colorManager.ChangeBtnColor(2, cor2.gameObject, tgt.GetComponent<Form>().GetFormType());
+            colorManager.ChangeBtnColor(3, cor3.gameObject, tgt.GetComponent<Form>().GetFormType());
+        }
+        else
+        {
+            colorManager.ChangeBtnColor(-1, cor0.gameObject, FormType.Cube);
+            colorManager.ChangeBtnColor(-1, cor1.gameObject, FormType.Cube);
+            colorManager.ChangeBtnColor(-1, cor2.gameObject, FormType.Cube);
+            colorManager.ChangeBtnColor(-1, cor3.gameObject, FormType.Cube);
+        }
+        
     }
 }

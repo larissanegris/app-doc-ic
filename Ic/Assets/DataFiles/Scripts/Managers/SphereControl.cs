@@ -9,15 +9,15 @@ public class SphereControl : MonoBehaviour
     public int dir;
     private string name;
     public GameObject selectedObject;
-    private TouchSelectionManager selectionManager;
+    private TouchSelectionManager touchSelectionManager;
     public bool updatePosition;
 
     private void Awake()
     {
         //LeanTouch.OnFingerUp += UpdatePosition;
-        selectionManager = FindObjectOfType<TouchSelectionManager>();
-        selectionManager.selectionChange += SelectionChange;
-        selectionManager.selectionSphereChange += UpdateSphereStatus;
+        touchSelectionManager = FindObjectOfType<TouchSelectionManager>();
+        touchSelectionManager.selectionChange += SelectionChange;
+        touchSelectionManager.selectionSphereChange += UpdateSphereStatus;
         //selectionManager.FingerUp += UpdatePosition;
         updatePosition = false;
     }
@@ -79,10 +79,13 @@ public class SphereControl : MonoBehaviour
 
     }
 
-    private void SelectionChange(GameObject go)
+    private void SelectionChange(bool selectMultipleObjects, List<GameObject> selectedObj)
     {
-        selectedObject = go;
-        UpdatePosition();
+        if(!selectMultipleObjects)
+        {
+            selectedObject = selectedObj[0];
+            UpdatePosition();
+        }
     }
 
     void UpdateSphereStatus(GameObject go)
