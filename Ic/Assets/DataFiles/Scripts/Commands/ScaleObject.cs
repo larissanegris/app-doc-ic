@@ -12,12 +12,12 @@ public class ScaleObject : MonoBehaviour
 
     private void Awake()
     {
-        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
-        gameManager = GameObject.Find( "GameManager" ).GetComponent<GameManager>();
+        //FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         form = GetComponent<Form>();
     }
 
-    private void ChangeSelectedObject( GameObject gm )
+    private void ChangeSelectedObject(GameObject gm)
     {
         selectedObject = gm;
         form = selectedObject.GetComponent<Form>();
@@ -30,36 +30,36 @@ public class ScaleObject : MonoBehaviour
 
     public void ScaleUp()
     {
-        if ( form.GetFormType() == FormType.Cube )
-            Scale( new Vector3( 0, resizeSpeed, 0 ) );
-        else if ( form.GetFormType() == FormType.Sphere )
-            Scale(Vector3.one * resizeSpeed );
+        if (form.GetFormType() == FormType.Cube)
+            Scale(new Vector3(0, resizeSpeed, 0));
+        else if (form.GetFormType() == FormType.Sphere)
+            Scale(Vector3.one * resizeSpeed);
     }
     public void ScaleDown()
     {
-        if ( form.GetFormType() == FormType.Cube )
-            Scale( new Vector3( 0, -resizeSpeed, 0 ) );
-        else if ( form.GetFormType() == FormType.Sphere )
-            Scale( Vector3.one * -resizeSpeed );
+        if (form.GetFormType() == FormType.Cube)
+            Scale(new Vector3(0, -resizeSpeed, 0));
+        else if (form.GetFormType() == FormType.Sphere)
+            Scale(Vector3.one * -resizeSpeed);
     }
     public void ScaleRight()
     {
-        if ( form.GetFormType() == FormType.Cube )
-            Scale( new Vector3( resizeSpeed, 0, 0 ) );
+        if (form.GetFormType() == FormType.Cube)
+            Scale(new Vector3(resizeSpeed, 0, 0));
     }
     public void ScaleLeft()
     {
-        if ( form.GetFormType() == FormType.Cube )
-            Scale( - new Vector3( resizeSpeed, 0, 0 ) );
+        if (form.GetFormType() == FormType.Cube)
+            Scale(-new Vector3(resizeSpeed, 0, 0));
     }
     public void ScaleForward()
     {
-        if ( form.GetFormType() == FormType.Cube )
-            Scale( new Vector3( 0, 0, resizeSpeed ) );
+        if (form.GetFormType() == FormType.Cube)
+            Scale(new Vector3(0, 0, resizeSpeed));
     }
     public void ScaleBackward()
     {
-        if ( form.GetFormType() == FormType.Cube )
-            Scale( -new Vector3( 0, 0, resizeSpeed ) );
+        if (form.GetFormType() == FormType.Cube)
+            Scale(-new Vector3(0, 0, resizeSpeed));
     }
 }

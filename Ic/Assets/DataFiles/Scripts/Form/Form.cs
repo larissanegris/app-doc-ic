@@ -5,25 +5,25 @@ using UnityEngine;
 public class Form : MonoBehaviour
 {
     private GameManager gameManager;
-    private ColorManager colorManager;
+    private TouchSelectionManager touchSelectionManager;
 
     [SerializeField] private int id;
     [SerializeField] private FormType type;
     [SerializeField] private Colors cor = Colors.White;
     [SerializeField] private bool isSelected = false;
-    
+
     private Outline outline;
     public Vector3 halfBoxVolume;
-    
+
     public GameObject volume;
 
 
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        colorManager = gameManager.colorManager;
+        touchSelectionManager = FindObjectOfType<TouchSelectionManager>();
         outline = gameObject.GetComponent<Outline>();
-        FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
+        touchSelectionManager.selectionChange += ChangeSelectedObject;
         gameManager.VolumeToggle += DisplayVolume;
     }
 
@@ -34,22 +34,23 @@ public class Form : MonoBehaviour
         this.type = type;
     }
 
-    public void DisplayVolume(bool b )
+    public void DisplayVolume(bool b)
     {
-        volume.SetActive( b );
+        volume.SetActive(b);
     }
 
-    public void ChangeSelectedObject(GameObject gm)
+    public void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj)
     {
-        if(gm == null)
-            return;
-        if(gm == gameObject ) {
+        if (selectedObj.Contains(this.gameObject))
             isSelected = true;
+        else
+            isSelected = false;
+        if (isSelected)
+        {
             outline.OutlineMode = Outline.Mode.OutlineVisible;
         }
         else
         {
-            isSelected = false;
             outline.OutlineMode = Outline.Mode.OutlineHidden;
         }
     }
@@ -61,6 +62,7 @@ public class Form : MonoBehaviour
     }
     public void SetToUnselected()
     {
+        Debug.Log(name + "unselected");
         isSelected = false;
         outline.OutlineMode = Outline.Mode.OutlineHidden;
     }
