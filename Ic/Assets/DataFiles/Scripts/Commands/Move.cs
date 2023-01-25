@@ -34,6 +34,10 @@ public class Move : MonoBehaviour
 
     private void Update()
     {
+        if(touchSelectionManager.selectedObjects.Count == 0)
+        {
+            return;
+        }
         selectedObject = touchSelectionManager.selectedObjects[0];
         restrainType = gameManager.connectionType;
         //Debug.DrawLine(center, restrainPoint, Color.cyan, 0.2f);
@@ -41,6 +45,7 @@ public class Move : MonoBehaviour
 
         if (restrainPoint != null)
             distance = Vector3.Distance(transform.position, restrainPoint);
+
     }
     private void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj)
     {

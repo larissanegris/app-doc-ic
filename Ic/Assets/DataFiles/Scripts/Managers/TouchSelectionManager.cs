@@ -26,10 +26,6 @@ public class TouchSelectionManager : MonoBehaviour
     public Action<LeanFinger> FingerUp;
     public Action<LeanFinger> FingerDown;
 
-    private void Awake()
-    {
-        
-    }
 
     private void OnEnable()
     {
@@ -65,16 +61,6 @@ public class TouchSelectionManager : MonoBehaviour
             {
                 Debug.Log("touch selection - ControlSphere" + hit.transform.name);
                 selectionSphereChange(selection.gameObject);
-                /*
-                if (selection.gameObject != gameManager.GetSelectedObject())
-                {
-                    if (selectionChange != null)
-                    {
-                        selectionSphereChange(selection.gameObject);
-                    }
-                    //gameManager.ChangeSelectedObject( selection.gameObject );
-                }
-                */
             }
         }
 
@@ -164,6 +150,7 @@ public class TouchSelectionManager : MonoBehaviour
             ChangeFormMultipleToSingle();
         }
         selectMultipleObjects = !selectMultipleObjects;
+        selectionChangeMultiple(selectMultipleObjects, selectedObjects, selectedObjects[0]);
     }
 
 
