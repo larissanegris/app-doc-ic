@@ -1,10 +1,10 @@
 using UnityEngine;
-using Vuforia;
 using System;
 
 public class InstantiationManager : MonoBehaviour
 {
     private GameManager gameManager;
+    private TouchSelectionManager touchSelectionManager;
 
     [Header("Prefabs")]
     public GameObject cubePrefab;
@@ -20,14 +20,53 @@ public class InstantiationManager : MonoBehaviour
 
     [SerializeField]
     private Form forma;
+    [SerializeField]
     private GameObject parent;
 
     public event Action<GameObject> Instantiation;
 
     private void Awake()
     {
-         parent = GameObject.Find("Parent");
-         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        touchSelectionManager = FindObjectOfType<TouchSelectionManager>();
+    }
+
+    public GameObject Spawn(FormType type, bool isTransparent)
+    {
+
+        GameObject modelObject;
+
+        if (type == FormType.Cube)
+        {
+            modelObject = SpawnCube(parent.gameObject);
+
+            if (isTransparent)
+            {
+                modelObject.GetComponent<MeshRenderer>().material = transparentCube;
+            }
+        }
+        else
+        {
+            modelObject = SpawnSphere(parent.gameObject);
+
+            if (isTransparent)
+            {
+                modelObject.GetComponent<MeshRenderer>().material = transparentSphere;
+            }
+        }
+
+
+        modelObject.SetActive(true);
+
+        if (Instantiation != null && modelObject != null)
+        {
+            Instantiation(modelObject);
+        }
+
+        //selectionManager.ChangeSelectedObject( modelObject );
+
+        return modelObject;
+
     }
 
     public GameObject SpawnCube( GameObject parent )
@@ -81,41 +120,5 @@ public class InstantiationManager : MonoBehaviour
         return null;
     }
 
-    public GameObject Spawn(FormType type, bool isTransparent)
-    {
-        
-        GameObject modelObject;
 
-        if(type == FormType.Cube )
-        {
-            modelObject = SpawnCube( parent.gameObject );
-
-            if ( isTransparent )
-            {
-                modelObject.GetComponent<MeshRenderer>().material = transparentCube;
-            }
-        }
-        else
-        {
-            modelObject = SpawnSphere( parent.gameObject );
-
-            if ( isTransparent )
-            {
-                modelObject.GetComponent<MeshRenderer>().material = transparentSphere;
-            }
-        }
-
-
-        modelObject.SetActive( true );
-
-        if (Instantiation != null && modelObject != null)
-        {
-            Instantiation( modelObject );
-        }
-        
-        //selectionManager.ChangeSelectedObject( modelObject );
-
-        return modelObject;
-        
-    }    
 }

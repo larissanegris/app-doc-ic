@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColorManager : MonoBehaviour
 {
@@ -64,6 +65,60 @@ public class ColorManager : MonoBehaviour
             else if ( newColor == -1 )
             {
                 target.GetComponent<Renderer>().material.color = new Color( 1, 1, 1 );
+            }
+        }
+
+    }
+
+    public void ChangeBtnColor(int newColor, GameObject target, FormType ft)
+    {
+        if (target == null)
+            return;
+
+        if (ft == FormType.Cube)
+        {
+            if (newColor == 0)
+            {
+                target.GetComponent<Image>().color = new Color(0.7960784f, 0.003921569f, 0.372549f);
+            }
+            else if (newColor == 1)
+            {
+                target.GetComponent<Image>().color = new Color(1f, 0.9098039f, 0.1176471f);
+            }
+            else if (newColor == 2)
+            {
+                target.GetComponent<Image>().color = new Color(1f, 0.3335596f, 0f);
+            }
+            else if (newColor == 3)
+            {
+                target.GetComponent<Image>().color = new Color(0.7960784f, 0f, 0f);
+            }
+            else if (newColor == -1)
+            {
+                target.GetComponent<Image>().color = new Color(1, 1, 1);
+            }
+        }
+        if (ft == FormType.Sphere)
+        {
+            if (newColor == 0)
+            {
+                target.GetComponent<Image>().color = new Color(0.4745098039f, 0.7882352941f, 0.6196078431f);
+            }
+            else if (newColor == 1)
+            {
+                target.GetComponent<Image>().color = new Color(0.3411764706f, 0.7215686275f, 1f);
+            }
+            else if (newColor == 2)
+            {
+                target.GetComponent<Image>().color = new Color(0.5411764706f, 0.3098039216f, 1f);
+            }
+            else if (newColor == 3)
+            {
+                target.GetComponent<Image>().color = new Color(0.3450980392f, 0.2941176471f, 0.3254901961f);
+            }
+            else if (newColor == -1)
+            {
+                target.GetComponent<Image>().color = new Color(1, 1, 1);
             }
         }
 

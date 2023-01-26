@@ -83,6 +83,7 @@ public class InputManager : MonoBehaviour
         }
 
         //Movimentacao
+        /*
         if ( !gameManager.moveCamera )
         {
             if ( gameManager.GetSelectedObject() )
@@ -228,7 +229,8 @@ public class InputManager : MonoBehaviour
 
             }
         }
-        else if ( gameManager.moveCamera )
+        */
+        if ( gameManager.moveCamera )
         {
             if ( ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) ) && !Input.GetKey( KeyCode.LeftShift ) )
             {
@@ -275,11 +277,12 @@ public class InputManager : MonoBehaviour
             Debug.Log( "Restart" );
             gameManager.Restart();
         }
-
+        /*
         if(Input.GetKeyDown( KeyCode.Delete ) || Input.GetKeyDown( KeyCode.Backspace ) )
         {
             gameManager.DeleteGameObect(gameManager.GetSelectedObjectForm());
         }
+        */
     }
 
     
