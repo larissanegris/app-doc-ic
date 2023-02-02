@@ -3,7 +3,7 @@ using Lean.Touch;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveMultipleObjects : MonoBehaviour
+public class InteractMultipleObjects : MonoBehaviour
 {
     private GameManager gameManager;
     private TouchSelectionManager touchSelectionManager;
@@ -30,6 +30,7 @@ public class MoveMultipleObjects : MonoBehaviour
             GameObject gm = f.gameObject;
             LeanSelectableByFinger selectable = gm.GetComponent<LeanSelectableByFinger>();
             gm.GetComponent<LeanDragTranslate>().Use.RequiredSelectable = selectable;
+            gm.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
         }
     }
 
@@ -37,10 +38,12 @@ public class MoveMultipleObjects : MonoBehaviour
     {
         LeanSelectableByFinger selectable = target.GetComponent<LeanSelectableByFinger>();
         target.GetComponent<LeanDragTranslate>().Use.RequiredSelectable = selectable;
+        target.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
 
         foreach (GameObject gm in selectedObjects)
         {
             gm.GetComponent<LeanDragTranslate>().Use.RequiredSelectable = selectable;
+            gm.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
         }
     }
 

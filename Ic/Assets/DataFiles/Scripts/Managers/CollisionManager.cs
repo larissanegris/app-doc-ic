@@ -23,7 +23,7 @@ public class CollisionManager : MonoBehaviour
 
     public void UpdateAdjacencyMatrix(Form form, Interaction interactionType)
     {
-        foreach(GameObject gm in touchSelectionManager.selectedObjects)
+        foreach(GameObject gm in touchSelectionManager.selectedObjects) 
         {
             selectedObject = gm;
             Form selectedForm = selectedObject.GetComponent<Form>();
