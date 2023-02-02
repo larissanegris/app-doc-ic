@@ -83,8 +83,14 @@ public class SphereControl : MonoBehaviour
     {
         if(!selectMultipleObjects)
         {
-            selectedObject = selectedObj[0];
-            UpdatePosition();
+            if (selectedObj[0].GetComponent<Form>().GetFormType() == FormType.Sphere)
+                gameObject.SetActive(false);
+            else
+            {
+                selectedObject = selectedObj[0];
+                UpdatePosition();
+            }
+            
         }
     }
 

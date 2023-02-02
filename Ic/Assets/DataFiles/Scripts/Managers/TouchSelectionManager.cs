@@ -123,6 +123,7 @@ public class TouchSelectionManager : MonoBehaviour
         selectedObjects.Add(newSelectedObject);
         newSelectedObject.tag = "Selected";
         newSelectedObject.GetComponent<Form>().SetToSelected();
+        newSelectedObject.GetComponent<LeanPinchScale>().enabled = false;
     }
 
     void RemoveSelectedObject(GameObject unselectedObject)
@@ -131,6 +132,7 @@ public class TouchSelectionManager : MonoBehaviour
         selectedObjects.Remove(unselectedObject);
         unselectedObject.tag = "Selectable";
         unselectedObject.GetComponent<Form>().SetToUnselected();
+        unselectedObject.GetComponent<LeanPinchScale>().enabled = true;
     }
 
 
