@@ -27,7 +27,7 @@ public class Move : MonoBehaviour
     private void Awake()
     {
         //FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
-        FindObjectOfType<TouchSelectionManager>().selectionChange += ChangeSelectedObject;
+        FindObjectOfType<TouchSelectionManager>().selectionChangeMultiple += ChangeSelectedObject;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         touchSelectionManager = FindObjectOfType<TouchSelectionManager>();
     }
@@ -47,13 +47,13 @@ public class Move : MonoBehaviour
             distance = Vector3.Distance(transform.position, restrainPoint);
 
     }
-    private void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj)
+    private void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj, GameObject target)
     {
         if (selectMultipleObjects)
         {
             return;
         }
-        selectedObject = selectedObj[0];
+        selectedObject = target;
         form = selectedObject.GetComponent<Form>();
         UpdateSelectedObjectStats();
     }

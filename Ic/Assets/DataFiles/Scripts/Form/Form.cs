@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Touch;
 
 public class Form : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class Form : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         touchSelectionManager = FindObjectOfType<TouchSelectionManager>();
         outline = gameObject.GetComponent<Outline>();
-        touchSelectionManager.selectionChange += ChangeSelectedObject;
+        touchSelectionManager.selectionChangeMultiple += ChangeSelectedObject;
         gameManager.VolumeToggle += DisplayVolume;
     }
 
@@ -39,12 +39,24 @@ public class Form : MonoBehaviour
         volume.SetActive(b);
     }
 
-    public void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj)
+    public void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj, GameObject target)
     {
         if (selectedObj.Contains(this.gameObject))
             isSelected = true;
         else
             isSelected = false;
+
+        ChangeOutline();
+        ChangePinchEnableStatus(selectMultipleObjects);
+    }
+
+    private void ChangePinchEnableStatus(bool selectMultipleObjects)
+    {
+        GetComponent<LeanPinchScale>().enabled = !selectMultipleObjects;
+    }
+
+    private void ChangeOutline()
+    {
         if (isSelected)
         {
             outline.OutlineMode = Outline.Mode.OutlineVisible;

@@ -19,7 +19,6 @@ public class TouchSelectionManager : MonoBehaviour
     public bool selectMultipleObjects;
     [SerializeField] public List<GameObject> selectedObjects = new List<GameObject>();
 
-    public event Action<bool, List<GameObject>> selectionChange;
     public event Action<bool, List<GameObject>, GameObject> selectionChangeMultiple;
     public event Action<GameObject> selectionSphereChange;
 
@@ -29,17 +28,44 @@ public class TouchSelectionManager : MonoBehaviour
 
     private void OnEnable()
     {
-        LeanTouch.OnFingerDown += RaycastSelection;
+        LeanTouch.OnFingerDown += TouchToObject;
         LeanTouch.OnFingerUp += DeselectControlSphere;
         LeanTouch.OnFingerUp += LiftFinger;
         LeanTouch.OnFingerDown += FingerPress;
         FindObjectOfType<InstantiationManager>().Instantiation += UpdateSelection;
+        FindObjectOfType<DoubleTapHandler>().DoubleTap += DoubleTapToDeselect;
     }
 
-    private void RaycastSelection(LeanFinger finger)
+    private void TouchToObject(LeanFinger finger)
+    {
+        int typeOfObject = RaycastSelection(finger, out GameObject target);
+        if (typeOfObject == 1)
+        {
+            UpdateSelection(target);
+        }
+        else if(typeOfObject == 2)
+        {
+            selectionSphereChange(target);
+        }
+    }
+
+    private void DoubleTapToDeselect(LeanFinger finger)
+    {
+        int typeOfObject = RaycastSelection(finger, out GameObject target);
+        if (typeOfObject == 1)
+        {
+            UpdateSelection(target);
+            if (selectMultipleObjects)
+            {
+                RemoveSelectedObject(target);
+                return;
+            }
+        }
+    }
+
+    private int RaycastSelection(LeanFinger finger, out GameObject target)
     {
         Debug.Log("Touch Selection Finger Down");
-        _selection = null;
 
         Ray ray = finger.GetRay();
         RaycastHit hit;
@@ -49,9 +75,10 @@ public class TouchSelectionManager : MonoBehaviour
             var selection = hit.transform;
             if (selection.CompareTag(selectableTag) || selection.CompareTag(selectedTag))
             {
-                UpdateSelection(selection.gameObject);
+                target = selection.gameObject;
+                //UpdateSelection(selection.gameObject);
+                return 1;
             }
-            _selection = selection;
 
         }
         if (Physics.Raycast(ray, out hit, controlSphereLayerMask))
@@ -60,11 +87,12 @@ public class TouchSelectionManager : MonoBehaviour
             if (selection.CompareTag("ControlSphere"))
             {
                 Debug.Log("touch selection - ControlSphere" + hit.transform.name);
-                selectionSphereChange(selection.gameObject);
+                target = selection.gameObject;
+                return 2;
             }
         }
-
-
+        target = null;
+        return -1;
     }
 
     void UpdateSelection(GameObject target)
@@ -72,50 +100,32 @@ public class TouchSelectionManager : MonoBehaviour
         if (!selectMultipleObjects)
         {
             ChangeSelectedObject(target);
+            return;
         }
-        else
+
+        //Debug.Log(target.name + " - " + selectedObjects.Contains(target));
+        if (!selectedObjects.Contains(target))
         {
-            Debug.Log(target.name + " - " + selectedObjects.Contains(target));
-            if (!selectedObjects.Contains(target))
-            {
-                AddSelectedObject(target);
-            }
-            else
-            {
-                //RemoveSelectedObject(target);
-            }
-            selectionChangeMultiple(selectMultipleObjects, selectedObjects, target);
+            AddSelectedObject(target);
+            return;
         }
-        selectionChange(selectMultipleObjects, selectedObjects);
+        selectionChangeMultiple(selectMultipleObjects, selectedObjects, target);
     }
 
     public void ChangeSelectedObject(GameObject newSelectedObject)
     {
-        //se for o unico objeto, nao precisa modificar o antigo selecionado
         if (selectedObjects.Count == 0)
         {
-            //seleciona novo objeto
             selectedObjects.Add(newSelectedObject);
-
-            //muda tag
             selectedObjects[0].tag = "Selected";
-
             return;
         }
 
-        //tem outras formas criadas
-
-        //muda tag da antiga
         selectedObjects[0].tag = "Selectable";
-
-        //deseleciona forma antiga
-
-        //seleciona forma nova
         selectedObjects[0] = newSelectedObject;
-
-        //muda tag
         selectedObjects[0].tag = "Selected";
         //Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
+        selectionChangeMultiple(selectMultipleObjects, selectedObjects, newSelectedObject);
     }
 
     void AddSelectedObject(GameObject newSelectedObject)
@@ -123,16 +133,23 @@ public class TouchSelectionManager : MonoBehaviour
         selectedObjects.Add(newSelectedObject);
         newSelectedObject.tag = "Selected";
         newSelectedObject.GetComponent<Form>().SetToSelected();
-        newSelectedObject.GetComponent<LeanPinchScale>().enabled = false;
+        selectionChangeMultiple(selectMultipleObjects, selectedObjects, newSelectedObject);
     }
 
     void RemoveSelectedObject(GameObject unselectedObject)
     {
+        if(selectedObjects.Count < 2)
+        {
+            Debug.Log("Nao é possivel, so ha um objeto");
+            return;
+        }
         //deseleciona forma
         selectedObjects.Remove(unselectedObject);
         unselectedObject.tag = "Selectable";
         unselectedObject.GetComponent<Form>().SetToUnselected();
-        unselectedObject.GetComponent<LeanPinchScale>().enabled = true;
+        if (selectedObjects.Count == 1)
+            selectMultipleObjects = false;
+        selectionChangeMultiple(selectMultipleObjects, selectedObjects, selectedObjects[0]);
     }
 
 
