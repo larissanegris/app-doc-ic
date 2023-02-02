@@ -28,7 +28,7 @@ public class ScaleManager : MonoBehaviour
         touchSelectionManager = FindObjectOfType<TouchSelectionManager>();
         camera = Camera.main;
 
-        touchSelectionManager.selectionChange += ChangeSelectedObject;
+        touchSelectionManager.selectionChangeMultiple += ChangeSelectedObject;
         touchSelectionManager.selectionSphereChange += ChangeSelectedSphere;
         touchSelectionManager.FingerDown += UpdateFinger;
         scaleBtn.ToggleControlSphere += ToggleShowScaleSphere;
@@ -113,12 +113,12 @@ public class ScaleManager : MonoBehaviour
         }
     }
 
-    void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj)
+    void ChangeSelectedObject(bool selectMultipleObjects, List<GameObject> selectedObj, GameObject target)
     {
         ToggleShowScaleSphere(!selectMultipleObjects);
         if (!selectMultipleObjects)
         {
-            selectedObject = selectedObj[0];
+            selectedObject = target;
         }
     }
 

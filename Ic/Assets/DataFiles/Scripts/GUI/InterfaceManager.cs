@@ -34,7 +34,7 @@ public class InterfaceManager : MonoBehaviour
         colorManager = GetComponent<ColorManager>();
         touchSelectionManager = GetComponent<TouchSelectionManager>();
 
-        touchSelectionManager.selectionChange += ChangeBtnColor;
+        touchSelectionManager.selectionChangeMultiple += ChangeBtnColor;
         //FindObjectOfType<InstantiationManager>().Instantiation += ChangeBtnColor;
 
         areaAberta.onClick.AddListener(() => instantiationManager.Spawn(FormType.Cube, false));
@@ -56,11 +56,11 @@ public class InterfaceManager : MonoBehaviour
         instantiationManager.Spawn(FormType.Cube, false);
     }
 
-    private void ChangeBtnColor(bool selectMultipleObjects, List<GameObject> selectedObj)
+    private void ChangeBtnColor(bool selectMultipleObjects, List<GameObject> selectedObj, GameObject target)
     {
         if (!selectMultipleObjects)
         {
-            tgt = selectedObj[0];
+            tgt = target;
             colorManager.ChangeBtnColor(0, cor0.gameObject, tgt.GetComponent<Form>().GetFormType());
             colorManager.ChangeBtnColor(1, cor1.gameObject, tgt.GetComponent<Form>().GetFormType());
             colorManager.ChangeBtnColor(2, cor2.gameObject, tgt.GetComponent<Form>().GetFormType());
