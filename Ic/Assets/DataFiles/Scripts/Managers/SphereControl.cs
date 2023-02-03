@@ -16,7 +16,7 @@ public class SphereControl : MonoBehaviour
     {
         //LeanTouch.OnFingerUp += UpdatePosition;
         touchSelectionManager = FindObjectOfType<TouchSelectionManager>();
-        touchSelectionManager.selectionChange += SelectionChange;
+        touchSelectionManager.selectionChangeMultiple += SelectionChange;
         touchSelectionManager.selectionSphereChange += UpdateSphereStatus;
         //selectionManager.FingerUp += UpdatePosition;
         updatePosition = false;
@@ -79,12 +79,18 @@ public class SphereControl : MonoBehaviour
 
     }
 
-    private void SelectionChange(bool selectMultipleObjects, List<GameObject> selectedObj)
+    private void SelectionChange(bool selectMultipleObjects, List<GameObject> selectedObj, GameObject target)
     {
         if(!selectMultipleObjects)
         {
-            selectedObject = selectedObj[0];
-            UpdatePosition();
+            if (target.GetComponent<Form>().GetFormType() == FormType.Sphere)
+                gameObject.SetActive(false);
+            else
+            {
+                selectedObject = target;
+                UpdatePosition();
+            }
+            
         }
     }
 
