@@ -65,8 +65,6 @@ public class TouchSelectionManager : MonoBehaviour
 
     private int RaycastSelection(LeanFinger finger, out GameObject target)
     {
-        Debug.Log("Touch Selection Finger Down");
-
         Ray ray = finger.GetRay();
         RaycastHit hit;
 
@@ -86,7 +84,6 @@ public class TouchSelectionManager : MonoBehaviour
             var selection = hit.transform;
             if (selection.CompareTag("ControlSphere"))
             {
-                Debug.Log("touch selection - ControlSphere" + hit.transform.name);
                 target = selection.gameObject;
                 return 2;
             }
@@ -140,7 +137,7 @@ public class TouchSelectionManager : MonoBehaviour
     {
         if(selectedObjects.Count < 2)
         {
-            Debug.Log("Nao é possivel, so ha um objeto");
+            Debug.LogError("Nao é possivel, so ha um objeto");
             return;
         }
         //deseleciona forma

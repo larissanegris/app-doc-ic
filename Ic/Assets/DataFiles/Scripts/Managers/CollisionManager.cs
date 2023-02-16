@@ -16,22 +16,10 @@ public class CollisionManager : MonoBehaviour
         
     }
 
-    private void Update()
+    public void UpdateAdjacencyMatrixEntry(Form form1, Form form2, Interaction interactionType)
     {
-        
-    }
-
-    public void UpdateAdjacencyMatrix(Form form, Interaction interactionType)
-    {
-        foreach(GameObject gm in touchSelectionManager.selectedObjects) 
-        {
-            selectedObject = gm;
-            Form selectedForm = selectedObject.GetComponent<Form>();
-            adjacencyMatrix[selectedForm.GetId()][form.GetId()] = interactionType;
-            adjacencyMatrix[form.GetId()][selectedForm.GetId()] = interactionType;
-        }
-        
-
+        adjacencyMatrix[form1.GetId()][form2.GetId()] = interactionType;
+        adjacencyMatrix[form2.GetId()][form1.GetId()] = interactionType;
         //printAdjacencyMatrix();
     }
 
