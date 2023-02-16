@@ -17,7 +17,6 @@ public class InteractMultipleObjects : MonoBehaviour
 
     void ChangeRequiredSelectable(bool selectMultipleObjects, List<GameObject> selectedObjects, GameObject target)
     {
-        Debug.Log("ChangeRequiredSelectable");
         if (selectMultipleObjects)
             ChangeRequiredSelectableToTarget(selectedObjects, target);
         else
