@@ -17,7 +17,6 @@ public class InteractMultipleObjects : MonoBehaviour
 
     void ChangeRequiredSelectable(bool selectMultipleObjects, List<GameObject> selectedObjects, GameObject target)
     {
-        Debug.Log("ChangeRequiredSelectable");
         if (selectMultipleObjects)
             ChangeRequiredSelectableToTarget(selectedObjects, target);
         else
@@ -31,7 +30,8 @@ public class InteractMultipleObjects : MonoBehaviour
             GameObject gm = f.gameObject;
             LeanSelectableByFinger selectable = gm.GetComponent<LeanSelectableByFinger>();
             gm.GetComponent<LeanDragTranslate>().Use.RequiredSelectable = selectable;
-            gm.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
+            if(gm.GetComponent<Form>().GetFormType() == FormType.Cube)
+                gm.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
         }
     }
 
@@ -39,12 +39,14 @@ public class InteractMultipleObjects : MonoBehaviour
     {
         LeanSelectableByFinger selectable = target.GetComponent<LeanSelectableByFinger>();
         target.GetComponent<LeanDragTranslate>().Use.RequiredSelectable = selectable;
-        target.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
+        if (target.GetComponent<Form>().GetFormType() == FormType.Cube)
+            target.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
 
         foreach (GameObject gm in selectedObjects)
         {
             gm.GetComponent<LeanDragTranslate>().Use.RequiredSelectable = selectable;
-            gm.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
+            if (gm.GetComponent<Form>().GetFormType() == FormType.Cube)
+                gm.GetComponent<LeanTwistRotateAxis>().Use.RequiredSelectable = selectable;
         }
     }
 

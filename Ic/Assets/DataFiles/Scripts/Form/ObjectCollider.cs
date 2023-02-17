@@ -138,91 +138,77 @@ public class ObjectCollider : MonoBehaviour
 
     private void VerifyInteractionsCube()
     {
-
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         halfBox = transform.lossyScale * 0.5f;
 
+        Vector3 colliderCenter;
+        Vector3 hitColliderHalfBox;
+        Vector3 maxDistance;
 
         foreach ( Collider hitCollider in hitColliders )
         {
-
+            
             if ( hitCollider.gameObject != gameObject && (hitCollider.gameObject.tag == "Selected" || hitCollider.gameObject.tag == "Selectable" ) )
             {
                 //verifica se é conecao do tipo 1
-                Vector3 colliderCenter = hitCollider.transform.position;
+                colliderCenter = hitCollider.transform.position;
 
-                Vector3 hitColliderHalfBox = hitCollider.transform.lossyScale * 0.5f;
-                Vector3 maxDistance = halfBox + hitColliderHalfBox;
+                hitColliderHalfBox = hitCollider.transform.lossyScale * 0.5f;
+                maxDistance = halfBox + hitColliderHalfBox;
 
                 //Verifica contato
-                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                if(IsInsideTheBox(center, colliderCenter, hitColliderHalfBox, maxDistance))
                 {
-                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
-                    {
-                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
-                        {
-                            Debug.Log( "Dentro" );
-                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
-                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
-
-                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Intersection );
-
-                            continue;
-                        }
-                    }
+                    collisionManager.UpdateAdjacencyMatrixEntry(GetComponent<Form>(), hitCollider.GetComponent<Form>(), Interaction.Intersection);
+                    continue;
                 }
 
                 //Verifica se é do tipo 2
 
                 Vector3 volumeHalfBox = gameObject.transform.GetChild( 0 ).transform.lossyScale * .5f;
-
                 maxDistance = volumeHalfBox + hitColliderHalfBox;
 
-                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                if(IsInsideTheBox(center, colliderCenter, hitColliderHalfBox, maxDistance))
                 {
-                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
-                    {
-                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
-                        {
-                            Debug.Log( "Volume e Interior" );
-                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
-                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
-
-                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Parcial );
-
-                            continue;
-                        }
-                    }
+                    collisionManager.UpdateAdjacencyMatrixEntry(GetComponent<Form>(), hitCollider.GetComponent<Form>(), Interaction.Parcial);
+                    continue;
                 }
 
 
                 Vector3 volumeColliderHalfBox = hitCollider.transform.GetChild( 0 ).transform.lossyScale * .5f;
                 maxDistance = volumeHalfBox + volumeColliderHalfBox;
 
-                if ( Mathf.Abs( ( colliderCenter.x - center.x ) ) < maxDistance.x )
+                if(IsInsideTheBox(center, colliderCenter, hitColliderHalfBox, maxDistance))
                 {
-                    if ( Mathf.Abs( ( colliderCenter.y - center.y ) ) < maxDistance.y )
-                    {
-                        if ( Mathf.Abs( ( colliderCenter.z - center.z ) ) < maxDistance.z )
-                        {
-                            Debug.Log( "Intersecacao Volumes" );
-                            Debug.DrawRay( center, colliderCenter, Color.red, 0.1f );
-                            Debug.DrawRay( center, center + halfBox, Color.green, 0.1f );
-
-                            collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), Interaction.Volume );
-
-                            continue;
-                        }
-                    }
+                    collisionManager.UpdateAdjacencyMatrixEntry(GetComponent<Form>(), hitCollider.GetComponent<Form>(), Interaction.Volume);
+                    continue;
                 }
 
-                collisionManager.UpdateAdjacencyMatrix( hitCollider.GetComponent<Form>(), 0 );
-
+                collisionManager.UpdateAdjacencyMatrixEntry(GetComponent<Form>(), hitCollider.GetComponent<Form>(), Interaction.None);
 
             }
 
         }
 
+    }
+
+    private bool IsInsideTheBox(Vector3 center, Vector3 colliderCenter, Vector3 hitColliderHalfBox, Vector3 maxDistance)
+    {
+        if (Mathf.Abs((colliderCenter.x - center.x)) < maxDistance.x)
+        {
+            if (Mathf.Abs((colliderCenter.y - center.y)) < maxDistance.y)
+            {
+                if (Mathf.Abs((colliderCenter.z - center.z)) < maxDistance.z)
+                {
+                    Debug.Log("Volume e Interior");
+                    Debug.DrawRay(center, colliderCenter, Color.blue, 0.1f);
+                    Debug.DrawRay(center, center + halfBox, Color.green, 0.1f);
+
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void MakeInteractionSphere( GameObject closestObject )

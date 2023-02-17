@@ -20,7 +20,7 @@ public class CollisionManagerEditor : Editor
         headFoldout.normal.textColor = Color.white;
 
         showAdjMatrix = EditorGUILayout.Foldout( showAdjMatrix, "Adjacency Matrix", true, headFoldout );
-
+        showAdjMatrix = true;
         if ( showAdjMatrix )
         {
             GUIStyle tableLabelStyle = new GUIStyle();
