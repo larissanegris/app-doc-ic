@@ -58,6 +58,9 @@ public class TouchSelectionManager : MonoBehaviour
             if (selectMultipleObjects)
             {
                 RemoveSelectedObject(target);
+                if (selectedObjects.Count == 1)
+                    selectMultipleObjects = false;
+                selectionChangeMultiple(selectMultipleObjects, selectedObjects, selectedObjects[0]);
                 return;
             }
         }
@@ -144,9 +147,7 @@ public class TouchSelectionManager : MonoBehaviour
         selectedObjects.Remove(unselectedObject);
         unselectedObject.tag = "Selectable";
         unselectedObject.GetComponent<Form>().SetToUnselected();
-        if (selectedObjects.Count == 1)
-            selectMultipleObjects = false;
-        selectionChangeMultiple(selectMultipleObjects, selectedObjects, selectedObjects[0]);
+        
     }
 
 
