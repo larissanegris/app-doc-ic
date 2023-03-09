@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Formas")]
 
-    public bool selectMultipleObjects;
+    //public bool selectMultipleObjects;
 
     public int number = 0;
     public int numberCube = 0;
@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
         //FindObjectOfType<SelectionManager>().selectionChange += ChangeSelectedObject;
         instantiationManager.Instantiation += AddNewObject;
+        //touchSelectionManager.selectionChangeMultiple += ChangeSelectMultiple;
         cameraObject = GameObject.Find("Camera");
     }
 
@@ -145,4 +146,11 @@ public class GameManager : MonoBehaviour
         displayVolume = !displayVolume;
         VolumeToggle(displayVolume);
     }
+
+    /*
+    private void ChangeSelectMultiple(bool select, List<GameObject> selectedObjects, GameObject target)
+    {
+        selectMultipleObjects = select;
+    }
+    */
 }
