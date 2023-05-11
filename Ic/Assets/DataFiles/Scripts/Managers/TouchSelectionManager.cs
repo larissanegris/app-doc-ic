@@ -21,6 +21,7 @@ public class TouchSelectionManager : MonoBehaviour
 
     public event Action<bool, List<GameObject>, GameObject> selectionChangeMultiple;
     public event Action<GameObject> selectionSphereChange;
+    public event Action selectionNone;
 
     public Action<LeanFinger> FingerUp;
     public Action<LeanFinger> FingerDown;
@@ -28,10 +29,10 @@ public class TouchSelectionManager : MonoBehaviour
 
     private void OnEnable()
     {
+        gameManager = GetComponent<GameManager>();
         LeanTouch.OnFingerDown += TouchToObject;
         LeanTouch.OnFingerUp += DeselectControlSphere;
         LeanTouch.OnFingerUp += LiftFinger;
-        LeanTouch.OnFingerDown += FingerPress;
         FindObjectOfType<InstantiationManager>().Instantiation += UpdateSelection;
         FindObjectOfType<DoubleTapHandler>().DoubleTap += DoubleTapToDeselect;
     }
@@ -39,6 +40,8 @@ public class TouchSelectionManager : MonoBehaviour
     private void TouchToObject(LeanFinger finger)
     {
         int typeOfObject = RaycastSelection(finger, out GameObject target);
+        if (target == null)
+            return;
         if (typeOfObject == 1)
         {
             UpdateSelection(target);
@@ -128,6 +131,13 @@ public class TouchSelectionManager : MonoBehaviour
         selectionChangeMultiple(selectMultipleObjects, selectedObjects, newSelectedObject);
     }
 
+    public void ChangeSelectedObjectToNone()
+    {
+        selectedObjects.Clear();
+        //Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
+        selectionChangeMultiple(selectMultipleObjects, selectedObjects, null);
+    }
+
     void AddSelectedObject(GameObject newSelectedObject)
     {
         selectedObjects.Add(newSelectedObject);
@@ -136,18 +146,23 @@ public class TouchSelectionManager : MonoBehaviour
         selectionChangeMultiple(selectMultipleObjects, selectedObjects, newSelectedObject);
     }
 
-    void RemoveSelectedObject(GameObject unselectedObject)
+    bool RemoveSelectedObject(GameObject unselectedObject)
     {
-        if(selectedObjects.Count < 2)
+        if(gameManager.createdForms.Count < 2)
         {
             Debug.LogError("Nao é possivel, so ha um objeto");
-            return;
+            Debug.Log(selectedObjects.Count);
+            for(int i = 0; i < gameManager.createdForms.Count; i++)
+            {
+                Debug.Log(gameManager.createdForms[i].name);
+            }
+            return false;
         }
         //deseleciona forma
         selectedObjects.Remove(unselectedObject);
         unselectedObject.tag = "Selectable";
         unselectedObject.GetComponent<Form>().SetToUnselected();
-        
+        return true;
     }
 
 
@@ -177,16 +192,23 @@ public class TouchSelectionManager : MonoBehaviour
             selectionSphereChange(null);
     }
 
-    void FingerPress(LeanFinger finger)
-    {
-        if (finger != null) ;
-        FingerDown(finger);
-    }
-
     void LiftFinger(LeanFinger finger)
     {
         if (finger != null) ;
         //FingerUp(finger);
     }
 
+    public bool isPossibleToDelete()
+    {
+        return (!selectMultipleObjects && gameManager.createdForms.Count > 1);
+    }
+
+    public bool removeSelection(GameObject gm)
+    {
+        if (!RemoveSelectedObject(gm))
+            return false;
+
+        UpdateSelection(gameManager.createdForms[0].gameObject);
+        return true;
+    }
 }

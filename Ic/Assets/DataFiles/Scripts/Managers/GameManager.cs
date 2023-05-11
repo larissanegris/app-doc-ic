@@ -125,20 +125,30 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void DeleteGameObect(Form form)
+    public bool DeleteGameObect(Form form)
     {
-        number -= 1;
-        if (form.GetFormType() == FormType.Cube)
+        if (!touchSelectionManager.isPossibleToDelete())
         {
-            numberCube -= 1;
+            Debug.LogError("Nao foi possivel deletar");
+            return false;
         }
-        else if (form.GetFormType() == FormType.Sphere)
-        {
-            numberSphere -= 1;
-        }
+        
+        if (!touchSelectionManager.removeSelection(form.gameObject))
+            return false;
 
-        createdForms.Remove(form);
-        form.DeleteSelf();
+        //form.DeleteSelf();
+        form.gameObject.SetActive(false);
+
+        return true;
+        
+    }
+
+    public void DeleteSelectedGameObect()
+    {
+        GameObject gm = touchSelectionManager.selectedObjects[0];
+        Form form = gm.GetComponent<Form>();
+
+        DeleteGameObect(form);
     }
 
     public void VolumeToggleEvent()

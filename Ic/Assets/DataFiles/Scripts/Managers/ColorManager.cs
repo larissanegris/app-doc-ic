@@ -38,6 +38,8 @@ public class ColorManager : MonoBehaviour
         if(target == null)
             return;
 
+
+
         if( target.GetComponent<Form>().GetFormType() == FormType.Cube )
         {
             if ( newColor == 0 )
@@ -60,6 +62,7 @@ public class ColorManager : MonoBehaviour
             {
                 target.GetComponent<Renderer>().material.color = White;
             }
+            target.GetComponent<Form>().pp = (PP) newColor;
         }
         if ( target.GetComponent<Form>().GetFormType() == FormType.Sphere )
         {
@@ -83,7 +86,9 @@ public class ColorManager : MonoBehaviour
             {
                 target.GetComponent<Renderer>().material.color = White;
             }
+            target.GetComponent<Form>().pp = (PP) newColor + 4;
         }
+
 
     }
 

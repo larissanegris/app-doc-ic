@@ -9,7 +9,7 @@ public class Form : MonoBehaviour
 
     [SerializeField] private int id;
     [SerializeField] private FormType type;
-    [SerializeField] private Colors cor = Colors.White;
+    [SerializeField] public PP pp;
     [SerializeField] private bool isSelected = false;
 
     private Outline outline;
@@ -89,10 +89,6 @@ public class Form : MonoBehaviour
         return isSelected;
     }
 
-    public Colors GetCor()
-    {
-        return cor;
-    }
     public FormType GetFormType()
     {
         return type;
