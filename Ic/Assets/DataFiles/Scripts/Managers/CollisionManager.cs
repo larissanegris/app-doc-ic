@@ -21,7 +21,7 @@ public class CollisionManager : MonoBehaviour
 
     public void UpdateAdjacencyMatrixEntry(Form form1, Form form2, Interaction interactionType)
     {
-        if(!form1.gameObject.active || !form2.gameObject.active)
+        if(!form1.gameObject.activeSelf || !form2.gameObject.activeSelf)
         {
             adjacencyMatrix[form1.GetId()][form2.GetId()] = Interaction.Deleted;
             adjacencyMatrix[form2.GetId()][form1.GetId()] = Interaction.Deleted;

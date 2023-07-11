@@ -38,8 +38,6 @@ public class ColorManager : MonoBehaviour
         if(target == null)
             return;
 
-
-
         if( target.GetComponent<Form>().GetFormType() == FormType.Cube )
         {
             if ( newColor == 0 )

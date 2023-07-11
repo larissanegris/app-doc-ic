@@ -21,10 +21,6 @@ public class TouchSelectionManager : MonoBehaviour
 
     public event Action<bool, List<GameObject>, GameObject> selectionChangeMultiple;
     public event Action<GameObject> selectionSphereChange;
-    public event Action selectionNone;
-
-    public Action<LeanFinger> FingerUp;
-    public Action<LeanFinger> FingerDown;
 
 
     private void OnEnable()

@@ -1,16 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Lean.Touch;
+using Newtonsoft.Json;
 
+[System.Serializable]
+[JsonObject(MemberSerialization.OptIn)]
 public class Form : MonoBehaviour
 {
     private GameManager gameManager;
     private TouchSelectionManager touchSelectionManager;
 
-    [SerializeField] private int id;
-    [SerializeField] private FormType type;
-    [SerializeField] public PP pp;
+    [SerializeField] [JsonProperty] public int id;
+    [SerializeField] [JsonProperty] private FormType type;
+    [SerializeField] [JsonProperty] public PP pp;
+    
     [SerializeField] private bool isSelected = false;
+
+
+    [SerializeField] [JsonProperty] private Vector3 pos;
+    [SerializeField] [JsonProperty] private Quaternion rot;
+    [SerializeField] [JsonProperty] private Vector3 scale;
 
     private Outline outline;
     public Vector3 halfBoxVolume;
@@ -97,5 +106,28 @@ public class Form : MonoBehaviour
     public void DeleteSelf()
     {
         GameObject.Destroy(this.gameObject);
+    }
+
+    public void SaveForm()
+    {
+        pos = gameObject.transform.position;
+        rot = gameObject.transform.rotation;
+        scale = gameObject.transform.localScale;
+    }
+
+    public void LoadForm(Form form)
+    {
+        id = form.id;
+        type = form.type;
+        pp = form.pp;
+        pos = form.pos;
+        rot = form.rot;
+        scale = form.scale;
+
+        gameObject.transform.position = pos;
+        gameObject.transform.rotation = rot;
+        gameObject.transform.localScale = scale;
+        //int aux = (int)(type == FormType.Cube);
+        //gameManager.colorManager.ChangeColor((int)pp%4, this.gameObject);
     }
 }
