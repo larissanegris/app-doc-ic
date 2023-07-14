@@ -7,7 +7,7 @@ public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
-    [SerializeField] private bool loadFromSave;
+    [SerializeField] public static bool loadFromSave { get; set; }
 
     private GameData gameData;
 
@@ -28,9 +28,19 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Start()
     {
+        loadFromSave = DontDestroy.LoadFromSave;
+        Debug.Log("Load From Save: " + loadFromSave);
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+        if (loadFromSave)
+        {
+            LoadGame();
+        }
+        else
+        {
+            NewGame();
+        }
+        
     }
 
     public void NewGame()
@@ -39,13 +49,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
 
     public void LoadGame()
-    {
-        if (!loadFromSave)
-        {
-            NewGame();
-            return;
-        }
-            
+    {  
         this.gameData = dataHandler.Load();
         //load saved data
         if(this.gameData == null)
@@ -63,6 +67,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
+        Debug.Log("Data persistance: " + dataPersistenceObjects.Count);
         foreach (IDataPeristence dataPeristenceObj in dataPersistenceObjects)
         {
             dataPeristenceObj.SaveData(ref gameData);
@@ -83,5 +88,10 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPeristence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPeristence>();
 
         return new List<IDataPeristence>(dataPersistenceObjects);
+    }
+
+    public void setLoadFromSave(bool b)
+    {
+        loadFromSave = b;
     }
 }
