@@ -10,6 +10,6 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevel(int level)
     {
         //SceneManager.LoadScene("GameScene");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(level);
     }
 }
