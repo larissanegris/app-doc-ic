@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPeristence
 {
     [HideInInspector] public InstantiationManager instantiationManager;
     [HideInInspector] public ColorManager colorManager;
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     //public bool selectMultipleObjects;
 
-    public int number = 0;
+    public int number;
     public int numberCube = 0;
     public int numberSphere = 0;
     public List<Form> createdForms = new List<Form>();
@@ -50,6 +50,22 @@ public class GameManager : MonoBehaviour
         cameraObject = GameObject.Find("Camera");
     }
 
+    public void LoadData(GameData data)
+    {
+        Debug.Log(data);
+        for (int i = 0; i < data.createdForms.Count; i++)
+            instantiationManager.Load(data.createdForms[i], false);
+
+    }
+    
+    public void SaveData(ref GameData data)
+    {
+        data.numberCreatedObjects = this.number;
+        data.createdForms = createdForms;
+        for(int i = 0; i < number; i++)
+            createdForms[i].SaveForm();
+            
+    }
 
     public void ChangeMoveCamera()
     {
@@ -109,7 +125,6 @@ public class GameManager : MonoBehaviour
         else
             numberSphere++;
         //UpdateSelection(gm);
-        colorManager.ChangeColor(-1, gm);
     }
 
 
@@ -125,20 +140,30 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void DeleteGameObect(Form form)
+    public bool DeleteGameObect(Form form)
     {
-        number -= 1;
-        if (form.GetFormType() == FormType.Cube)
+        if (!touchSelectionManager.isPossibleToDelete())
         {
-            numberCube -= 1;
+            Debug.LogError("Nao foi possivel deletar");
+            return false;
         }
-        else if (form.GetFormType() == FormType.Sphere)
-        {
-            numberSphere -= 1;
-        }
+        
+        if (!touchSelectionManager.removeSelection(form.gameObject))
+            return false;
 
-        createdForms.Remove(form);
-        form.DeleteSelf();
+        //form.DeleteSelf();
+        form.gameObject.SetActive(false);
+
+        return true;
+        
+    }
+
+    public void DeleteSelectedGameObect()
+    {
+        GameObject gm = touchSelectionManager.selectedObjects[0];
+        Form form = gm.GetComponent<Form>();
+
+        DeleteGameObect(form);
     }
 
     public void VolumeToggleEvent()

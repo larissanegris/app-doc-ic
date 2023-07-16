@@ -10,7 +10,6 @@ public class ScaleManager : MonoBehaviour
     public GameObject parent;
     public GameObject sphereControlPrefab;
     public GameObject selectedSphere;
-    public GameObject auxSphere;
 
     public ScaleButton scaleBtn;
 
@@ -30,7 +29,7 @@ public class ScaleManager : MonoBehaviour
 
         touchSelectionManager.selectionChangeMultiple += ChangeSelectedObject;
         touchSelectionManager.selectionSphereChange += ChangeSelectedSphere;
-        touchSelectionManager.FingerDown += UpdateFinger;
+        LeanTouch.OnFingerDown += UpdateFinger;
         scaleBtn.ToggleControlSphere += ToggleShowScaleSphere;
 
         for (int i = 0; i < 6; i++)
@@ -86,7 +85,7 @@ public class ScaleManager : MonoBehaviour
 
     void UpdateObjectSize()
     {
-        if (selectedObject != null && selectedSphere != null)
+        if (selectedObject != null && selectedSphere != null && finger != null)
         {
             Vector3 pos = selectedObject.transform.position;
             Vector3 scale = selectedObject.transform.localScale;

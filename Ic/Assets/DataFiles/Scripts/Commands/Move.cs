@@ -53,6 +53,7 @@ public class Move : MonoBehaviour
         {
             return;
         }
+        Debug.Log("Change Selected Object target:" + target.name);
         selectedObject = target;
         form = selectedObject.GetComponent<Form>();
         UpdateSelectedObjectStats();
