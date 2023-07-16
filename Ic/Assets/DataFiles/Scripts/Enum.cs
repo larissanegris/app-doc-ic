@@ -1,6 +1,8 @@
 public enum Colors { Orange, Pink, Yellow, Red, Grey, White };
 
-public enum Interaction { None, Intersection, Parcial, Volume};
+public enum PP { Social, Cantina, Publico, SalasdeAtividades, Banheiros, AlimentacaoCasual, AreasSujas, Administracao };
+
+public enum Interaction { None, Intersection, Parcial, Volume, Deleted};
 
 public enum FormType { Cube, Sphere };
 

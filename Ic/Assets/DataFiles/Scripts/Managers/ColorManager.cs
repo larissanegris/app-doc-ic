@@ -60,6 +60,7 @@ public class ColorManager : MonoBehaviour
             {
                 target.GetComponent<Renderer>().material.color = White;
             }
+            target.GetComponent<Form>().pp = (PP) newColor;
         }
         if ( target.GetComponent<Form>().GetFormType() == FormType.Sphere )
         {
@@ -83,7 +84,9 @@ public class ColorManager : MonoBehaviour
             {
                 target.GetComponent<Renderer>().material.color = White;
             }
+            target.GetComponent<Form>().pp = (PP) newColor + 4;
         }
+
 
     }
 

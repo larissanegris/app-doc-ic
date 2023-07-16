@@ -15,8 +15,6 @@ public class InputManager : MonoBehaviour
     private Rotate rotate;
     private ScaleObject scale;
 
-    public event Func<GameObject> Move;
-
     private void Awake()
     {
         gameManager = GetComponent<GameManager>();
