@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CommandHandler" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAIAAIAAAAAAAAAABAAg=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Commands\CommandHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputManager" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAAAAACAIAAQAAICAAAAQAAAAAAAAAAAAGA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Commands\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Move" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AU0ABQAAAAABAABAAAEQABCCBFkAAAAIUAABAACAgEE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Commands\Move.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rotate" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUAACCACAAgAAIAAACEQAAAAAAAAAAAAAAAAAACCIEA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Commands\Rotate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScaleObject" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gUAAAQAAAAAIAAQAAAMQAAAAAAAAAAAAAAAACAAgAEI=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Commands\ScaleObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DisableOrEnableObject" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAIAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\DisableOrEnableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Distances" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAAAAAAAAAAAAAIAkCAAAAAAAAHAAAAAEA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Distance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawPlane" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAABCAAAACAgAAAAAABAAACABAABAAAAAQAAEAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\DrawPlane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameData" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Files\Data\GameData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SerializableDictionary&lt;TKey, TValue&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAIAAAAAAAAAAAAAABAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Files\Data\SerializableTypes\SerializableDictionary.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DataPersistenceManager" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAABAAACAQAAAAAAAAAQAgJABAAAAAAEAAIAAEAEE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Files\DataPersistenceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DontDestroy" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Files\DontDestroy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileDataHandler" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIIAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Files\FileDataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelLoader" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Files\LevelLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WriteFile" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAgAAAAAACCAEBAAAAAAAMAEAAAAAAAEA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Files\WriteFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FocusCamera" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\FocusCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EGACAAEQEAABAgAAEAEAAIACAAABIAAAAQABQEICAkE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Form\Form.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectCollider" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AcgCAChQCgQAgBDIAAABAACAAAAACgAAAAAAEAAAAEA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Form\ObjectCollider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InterfaceManager" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBgAAAAAIAAAgBIwAMgAAAAAAAAQKAIAAAABABAAEE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\GUI\InterfaceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScaleButton" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAAAAAAAAAAAAAACAAAAAADAAAAAEAAAAEA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\GUI\ScaleButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextManager" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAACAAAAAAEA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\GUI\TextManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DoubleTapHandler" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAAgAgAEA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\LeanTouch\DoubleTapHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionManager" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAIAAAAAAAAAUAAAAAAIAEAAQAAAAAAAAAEE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\CollisionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ColorManager" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEACAABAACAAAhAAAEgABQAABAAAAACAAAAAoDAAAAM=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\ColorManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>OAAAAJAAAIRQwACgoQIQAKIQAAAAyBEAgAAAAAAAAGE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InstantiationManager" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEAAoAACAAAEAABAAAEACQCAAAAAABAAAAAgACAAAEE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\InstantiationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InteractMultipleObjects" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAICAAAAACAAAAAAAAAAAAAAAAEAAAAAAAAAE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\InteractMultipleObjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScaleManager" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIQAIAACAiAAACBAAAkSAACAAAAAAAQEAAAAAAAAAAU=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\ScaleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SphereControl" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQCAAACAAAAEQAAAAAABEICAAAAAAAAAAAEE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\SphereControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TouchSelectionManager" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAABSAAAAAAAAQRhCEQEABAAAAAABBAAAJQACAEKAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\TouchSelectionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoveCamera" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEEAAAAAAIAAAABAAAAAABAAAAkAAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\MoveCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneTransition" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAgAAAAAAAAAAAAAEAAAQAAAA0AsQgAE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\SceneTransition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lean.Touch.LeanTouchEvents" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABACAAAAAAACggAAAAAIAAAAAAAIAAAAAAAACAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\LeanTouch\LeanTouchEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CopyOfCollisionManager" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="touchSelectionManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAIAAAAAAAAAUAAAAAAIAEAAQAAAAAAAAAEE=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Managers\CollisionManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="touchSelectionManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="ICommand" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Commands\ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IDataPeristence" Collapsed="true">
+    <Position X="2.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Files\Data\IDataPeristence.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Colors" Collapsed="true">
+    <Position X="4" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAhAAAAAABAAABAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PP" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAACAIAAAAAAAAAAAAABIAIQAEAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Interaction" Collapsed="true">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAEABAAAAAAAAAAAIAAAEAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FormType" Collapsed="true">
+    <Position X="5.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Axis" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AxisDir" Collapsed="true">
+    <Position X="2.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\DataFiles\Scripts\Enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

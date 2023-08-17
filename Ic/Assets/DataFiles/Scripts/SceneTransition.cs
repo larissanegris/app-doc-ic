@@ -61,5 +61,8 @@ public class SceneTransition : MonoBehaviour
     {
         SceneManager.LoadScene("Definitions");
     }
-
+    public void LoadGame()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
 }

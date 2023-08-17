@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/DataFiles/Scenes/ARplayMenu.unity
-    guid: 7918681c371d3f24d8e10ff6f2d3690f
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/DataFiles/Scenes/OpenScreen.unity
     guid: b56060765979a424c85ce51b7d4abf9d
@@ -30,9 +30,18 @@ EditorBuildSettings:
     path: Assets/DataFiles/Scenes/Intro_Page6.unity
     guid: a2e971c722e1b364385777af1a2066a3
   - enabled: 1
+    path: Assets/DataFiles/Scenes/MainMenu.unity
+    guid: bc59a6e9cb58935438e7a4b92bc824bd
+  - enabled: 1
     path: Assets/DataFiles/Scenes/GameScene.unity
     guid: 51bd6e1c863d059419a989c6c7df51ef
   - enabled: 1
     path: Assets/DataFiles/Scenes/InitialScene.unity
     guid: d8c2faa198df1f442b5819b273e2c196
+  - enabled: 1
+    path: Assets/DataFiles/Scenes/Instructions.unity
+    guid: 20b382fda766d0f4f994165412792fb0
+  - enabled: 1
+    path: Assets/DataFiles/Scenes/Definitions.unity
+    guid: 997a706ca145d1e4bb9e69a9e235bcc6
   m_configObjects: {}
