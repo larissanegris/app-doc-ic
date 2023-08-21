@@ -153,6 +153,11 @@ public class GameManager : MonoBehaviour, IDataPeristence
 
         //form.DeleteSelf();
         form.gameObject.SetActive(false);
+        number--;
+        if (form.GetFormType() == FormType.Cube)
+            numberCube--;
+        else
+            numberSphere--;
 
         return true;
         

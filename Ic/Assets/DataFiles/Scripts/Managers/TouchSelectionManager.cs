@@ -148,10 +148,6 @@ public class TouchSelectionManager : MonoBehaviour
         {
             Debug.LogError("Nao é possivel, so ha um objeto");
             Debug.Log(selectedObjects.Count);
-            for(int i = 0; i < gameManager.createdForms.Count; i++)
-            {
-                Debug.Log(gameManager.createdForms[i].name);
-            }
             return false;
         }
         //deseleciona forma
@@ -196,7 +192,7 @@ public class TouchSelectionManager : MonoBehaviour
 
     public bool isPossibleToDelete()
     {
-        return (!selectMultipleObjects && gameManager.createdForms.Count > 1);
+        return (!selectMultipleObjects && gameManager.number > 1);
     }
 
     public bool removeSelection(GameObject gm)

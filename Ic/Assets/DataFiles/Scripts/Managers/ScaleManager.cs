@@ -30,7 +30,7 @@ public class ScaleManager : MonoBehaviour
         touchSelectionManager.selectionChangeMultiple += ChangeSelectedObject;
         touchSelectionManager.selectionSphereChange += ChangeSelectedSphere;
         LeanTouch.OnFingerDown += UpdateFinger;
-        scaleBtn.ToggleControlSphere += ToggleShowScaleSphere;
+        //scaleBtn.ToggleControlSphere += ToggleShowScaleSphere;
 
         for (int i = 0; i < 6; i++)
             spheres.Add(GameObject.Instantiate(sphereControlPrefab, parent.transform));

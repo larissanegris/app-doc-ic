@@ -110,6 +110,8 @@ public class Form : MonoBehaviour
 
     public void SaveForm()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
         pos = gameObject.transform.position;
         rot = gameObject.transform.rotation;
         scale = gameObject.transform.localScale;
