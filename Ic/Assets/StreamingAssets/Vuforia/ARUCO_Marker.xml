@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="6-MarcFiducial-Int" size="10.000000 10.000000" />
+    <ImageTarget name="2-MarcFiducial-Ext" size="10.000000 10.000000" />
+  </Tracking>
+</QCARConfig>
