@@ -73,16 +73,17 @@ public class InterfaceManager : MonoBehaviour
         if (!selectMultipleObjects)
         {
             tgt = target;
+            cor3.gameObject.SetActive(true);
             if (target.GetComponent<Form>().GetFormType() == FormType.Cube)
                 colorManager.BtnColorCube(btns);
-            else
+            else {
                 colorManager.BtnColorSphere(btns);
-            /*
-            colorManager.ChangeBtnColor(0, cor0.gameObject, tgt.GetComponent<Form>().GetFormType());
-            colorManager.ChangeBtnColor(1, cor1.gameObject, tgt.GetComponent<Form>().GetFormType());
-            colorManager.ChangeBtnColor(2, cor2.gameObject, tgt.GetComponent<Form>().GetFormType());
-            colorManager.ChangeBtnColor(3, cor3.gameObject, tgt.GetComponent<Form>().GetFormType());
-            */
+                if (target.GetComponent<Form>().transparent)
+                    cor3.gameObject.SetActive(false);
+            }
+                
+
+
         }
         else
         {

@@ -37,31 +37,14 @@ public class InstantiationManager : MonoBehaviour
         GameObject modelObject;
 
         if (type == FormType.Cube)
-        {
-            modelObject = SpawnCube(parent.gameObject);
-
-            if (isTransparent)
-            {
-                modelObject.GetComponent<MeshRenderer>().material = transparentCube;
-            }
-        }
+            modelObject = SpawnCube(parent.gameObject, isTransparent);
         else
-        {
-            modelObject = SpawnSphere(parent.gameObject);
-
-            if (isTransparent)
-            {
-                modelObject.GetComponent<MeshRenderer>().material = transparentSphere;
-            }
-        }
-
+            modelObject = SpawnSphere(parent.gameObject, isTransparent);
 
         modelObject.SetActive(true);
 
         if (Instantiation != null && modelObject != null)
-        {
             Instantiation(modelObject);
-        }
 
         //selectionManager.ChangeSelectedObject( modelObject );
         gameManager.colorManager.ChangeColor(-1, modelObject);
@@ -86,7 +69,7 @@ public class InstantiationManager : MonoBehaviour
         }
         else
         {
-            modelObject = SpawnSphere(parent.gameObject);
+            modelObject = SpawnSphere(parent.gameObject, isTransparent);
 
             if (isTransparent)
             {
@@ -109,12 +92,15 @@ public class InstantiationManager : MonoBehaviour
 
     }
 
-    public GameObject SpawnCube( GameObject parent )
+    public GameObject SpawnCube( GameObject parent, bool isTransparent)
     {
         if ( cubePrefab != null )
         {
             GameObject myModelObject = Instantiate(cubePrefab, parent.transform);
             myModelObject.name = "Cube" + gameManager.numberCube;
+
+            if (isTransparent)
+                myModelObject.GetComponent<MeshRenderer>().material = transparentCube;
 
             forma = myModelObject.GetComponent<Form>();
             forma.CreateForm( gameManager.number, FormType.Cube );
@@ -135,12 +121,15 @@ public class InstantiationManager : MonoBehaviour
         return null;
     }
 
-    public GameObject SpawnSphere(GameObject parent)
+    public GameObject SpawnSphere(GameObject parent, bool isTransparent)
     {
         if (spherePrefab != null)
         {
             GameObject myModelObject = Instantiate(spherePrefab, parent.transform);
             myModelObject.name = "Sphere" + gameManager.numberSphere;
+
+            if (isTransparent)
+                myModelObject.GetComponent<MeshRenderer>().material = transparentSphere;
 
             forma = myModelObject.GetComponent<Form>();
             forma.CreateForm(gameManager.number, FormType.Sphere);

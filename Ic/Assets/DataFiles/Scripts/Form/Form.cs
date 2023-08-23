@@ -12,6 +12,7 @@ public class Form : MonoBehaviour
 
     [SerializeField] [JsonProperty] public int id;
     [SerializeField] [JsonProperty] private FormType type;
+    [SerializeField] [JsonProperty] public bool transparent;
     [SerializeField] [JsonProperty] public PP pp;
     
     [SerializeField] private bool isSelected = false;
@@ -37,10 +38,12 @@ public class Form : MonoBehaviour
     }
 
 
-    public void CreateForm(int id, FormType type)
+    public void CreateForm(int id, FormType type )
     {
         this.id = id;
         this.type = type;
+        this.transparent = (GetComponent<MeshRenderer>().material.name == "TransparentCube (Instance)" 
+            || GetComponent<MeshRenderer>().material.name == "TransparentSphere (Instance)");
     }
 
     public void DisplayVolume(bool b)
