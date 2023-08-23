@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +24,7 @@ public class ColorManager : MonoBehaviour
     List<Color> cubeColors;
     List<Color> sphereColors;
 
+    public event Action<GameObject> colorChanged;
 
     void Start()
     {
@@ -87,7 +88,13 @@ public class ColorManager : MonoBehaviour
             target.GetComponent<Form>().pp = (PP) newColor + 4;
         }
 
+        target.GetComponent<Form>().cor = newColor;
 
+        if (newColor != -1 && colorChanged != null && target != null)
+        {
+            colorChanged(target);
+        }
+            
     }
 
     public void BtnColorCube(List<Button> btns)

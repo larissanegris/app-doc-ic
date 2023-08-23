@@ -13,10 +13,10 @@ public class Form : MonoBehaviour
     [SerializeField] [JsonProperty] public int id;
     [SerializeField] [JsonProperty] private FormType type;
     [SerializeField] [JsonProperty] public bool transparent;
+    [SerializeField] [JsonProperty] public int cor;
     [SerializeField] [JsonProperty] public PP pp;
     
     [SerializeField] private bool isSelected = false;
-
 
     [SerializeField] [JsonProperty] private Vector3 pos;
     [SerializeField] [JsonProperty] private Quaternion rot;
