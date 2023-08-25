@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pagina Inicial
+  m_text: "P\xE1gina Inicial"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 245cfec5d20701c4f956556e7fa09ed5, type: 2}
   m_sharedMaterial: {fileID: 6557044323243358587, guid: 245cfec5d20701c4f956556e7fa09ed5, type: 2}
