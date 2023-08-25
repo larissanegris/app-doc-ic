@@ -11,6 +11,7 @@ public class InstantiationManager : MonoBehaviour
     public GameObject spherePrefab;
     public GameObject cubeVolumePrefab;
     public GameObject sphereVolumePrefab;
+    public Vector3 offset;
 
     [Header("Materials")]
     [SerializeField]
@@ -85,8 +86,6 @@ public class InstantiationManager : MonoBehaviour
             Instantiation(modelObject);
         }
 
-        
-
         Debug.Log("Loaded Cube");
         return modelObject;
 
@@ -98,6 +97,7 @@ public class InstantiationManager : MonoBehaviour
         {
             GameObject myModelObject = Instantiate(cubePrefab, parent.transform);
             myModelObject.name = "Cube" + gameManager.numberCube;
+            myModelObject.transform.position = myModelObject.transform.position + offset;
 
             if (isTransparent)
                 myModelObject.GetComponent<MeshRenderer>().material = transparentCube;
@@ -127,6 +127,7 @@ public class InstantiationManager : MonoBehaviour
         {
             GameObject myModelObject = Instantiate(spherePrefab, parent.transform);
             myModelObject.name = "Sphere" + gameManager.numberSphere;
+            myModelObject.transform.position = myModelObject.transform.position + offset;
 
             if (isTransparent)
                 myModelObject.GetComponent<MeshRenderer>().material = transparentSphere;

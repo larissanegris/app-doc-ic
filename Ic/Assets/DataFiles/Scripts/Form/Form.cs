@@ -42,6 +42,7 @@ public class Form : MonoBehaviour
     {
         this.id = id;
         this.type = type;
+        this.cor = -1;
         this.transparent = (GetComponent<MeshRenderer>().material.name == "TransparentCube (Instance)" 
             || GetComponent<MeshRenderer>().material.name == "TransparentSphere (Instance)");
     }

@@ -90,7 +90,7 @@ public class ColorManager : MonoBehaviour
 
         target.GetComponent<Form>().cor = newColor;
 
-        if (newColor != -1 && colorChanged != null && target != null)
+        if (colorChanged != null && target != null)
         {
             colorChanged(target);
         }
