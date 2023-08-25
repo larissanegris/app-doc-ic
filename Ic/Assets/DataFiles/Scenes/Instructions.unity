@@ -1239,12 +1239,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "As formas t\xEAm suas dimens\xF5es alter\xE1veis.\r\n\r\nOs CUBOIDES podem
-    ter sua altura, largura ou comprimento alterados ao CLICAR e ARRASTAR pontos
-    de intera\xE7\xE3o localizados em suas faces. Eles tamb\xE9m podem ser modificados
-    com um modo de PIN\xC7A. Dessa forma, sua escala ser\xE1 alterada. \r\n\r\nAs
-    ESFERAS s\xE3o modificadas apenas em fun\xE7\xE3o de sua escala, usando o gesto
-    de PIN\xC7A. \r\n\nModifique como quiser!"
+  m_text: "Ao criar as formas: altere suas dimens\xF5es.\n\r\nOs CUBOS podem ter
+    sua altura, largura ou comprimento alterados ao CLICAR e ARRASTAR pontos de intera\xE7\xE3o
+    localizados em suas faces. Com o gesto de PIN\xC7A, sua escala ser\xE1 alterada.
+    \r\n\r\nAs ESFERAS tem sua escala modificada com o gesto de PIN\xC7A. \r\n\nModifique
+    como quiser!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1271,8 +1270,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2786,9 +2785,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Voc\xEA ainda pode rotacionar seus objetos, se sua ideia pedir isso. \r\n\r\nAo
-    fazer o gesto de pin\xE7a e rota\xE7\xE3o dos dedos na tela, seu objeto tamb\xE9m
-    ir\xE1 girar. Encontre a melhor posi\xE7\xE3o para voc\xEA!"
+  m_text: "ROTA\xC7\xC3O: os objetos s\xE3o rotacion\xE1veis com o gesto de PIN\xC7A.
+    \n\nTRANSLA\xC7\xC3O: diferentes pontos de vista s\xE3o poss\xEDveis ao girar
+    ao redor do plano-marcador ou ao rotacionar o pr\xF3prio marcador."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2815,8 +2814,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2923,13 +2922,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Forme \xE9 um aplicativo em Realidade Aumentada para ser usado por arquitetos
-    e arquitetas que estejam desenvolvendo projetos de escolas. \r\n\r\nO objetivo
-    do aplicativo \xE9 auxiliar na elabora\xE7\xE3o do programa de necessidades da
-    arquitetura escolar ao listar e permitir cria\xE7\xE3o e intera\xE7\xE3o com
-    elementos 3D.\r\n \r\nLembre-se: \xE9 importante voc\xEA buscar incluir todos
-    os elementos, mas voc\xEA \xE9 livre para escolher como organizar os objetos
-    na sua tela!"
+  m_text: "O objetivo do aplicativo \xE9 auxiliar na elabora\xE7\xE3o do programa
+    de necessidades da arquitetura escolar pela intera\xE7\xE3o com elementos 3D
+    e ELABORA\xC7\xC3O DE DIAGRAMAS.\n \r\nLembre-se: \xE9 importante voc\xEA buscar
+    incluir todos os elementos, mas voc\xEA \xE9 livre para escolher como organizar
+    os objetos na sua tela!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2956,8 +2953,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3803,13 +3800,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Na tela do jogo, escolha um item no menu lateral. Todos s\xE3o inseridos
-    em um formato espec\xEDfico com cor padr\xE3o (branca).\r\n\r\nAs FORMAS est\xE3o
-    associadas \xE0s subcategorias \xE0s quais os elementos pertencem e s\xE3o cuboides
-    ou esf\xE9ricas e sua altera\xE7\xE3o \xE9 explicada na aba \"Dimens\xF5es\".\r\n\r\nAs
-    CORES podem variar e para modific\xE1-las, de acordo com o significado que voc\xEA
-    quer dar \xE0s formas, CLIQUE UMA VEZ na forma e escolha a cor que deseja no
-    menu de cores superior.\n\nAplique as cores para dar significado \xE0s formas."
+  m_text: "Em FERRAMENTAS na \xE1rea de trabalho: voc\xEA escolhe qual CATEGORIA
+    de EB quer trabalhar (ver em Defini\xE7\xF5es).\n\nOs CUBOS E ESFERAS: est\xE3o
+    associadas \xE0s subcategorias de elementos b\xE1sicos.\n\r\nAs CORES: vari\xE1veis
+    de acordo com o significado desejado \xE0s formas, CLIQUE UMA VEZ na forma e
+    escolha a cor que deseja no menu de cores lateral."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3836,8 +3831,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4290,11 +4285,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Os cubos e esferas s\xE3o inseridos sempre ao centro da tela de jogo.
-    Mas n\xE3o precisam ser mantidos ali!\r\n\r\nVoc\xEA pode alterar sua posi\xE7\xE3o
-    na tela \xE0 vontade. N\xE3o se limite! Aproveite e reflita bastante sobre a
-    essa distribui\xE7\xE3o. Pense no seu contexto e sua ideia de projeto.\r\n\r\nPara
-    isso, basta CLICAR, SEGURAR e ARRASTAR os objetos.\n"
+  m_text: "Os cubos e esferas s\xE3o inseridos sempre sobre o plano do marcador.
+    \n\r\nVoc\xEA pode alterar sua posi\xE7\xE3o na tela pensando em DISTRIBUI\xC7\xD5ES
+    E CONEX\xD5ES dos EBs. Para isso, basta CLICAR, SEGURAR e ARRASTAR os objetos.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4321,8 +4314,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

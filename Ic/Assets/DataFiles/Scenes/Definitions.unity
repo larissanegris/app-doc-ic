@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8766,11 +8766,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Os par\xE2metros podem ser AGRUPADOS, por exemplo, de acordo com seu significado
-    funcional, o que facilita sua aplica\xE7\xE3o. Por isso, foram estabelecidas,
-    nessa pesquisa, 5 CATEGORIAS:\n\r\n1) Aprendizagem formal\r\n2) Aprendizagem
-    informal\r\n3) Suporte\r\n4) Conex\xE3o\r\n5) Humaniza\xE7\xE3o\r\n\r\nAo clicar
-    no BOT\xC3O ABAIXO, voc\xEA identificar\xE1 qual PP est\xE1 inclu\xEDdo por categoria."
+  m_text: "Para ajudar a entender e aplicar os PPs, eles podem ser agrupados pelo
+    seu SIGNIFICADO FUNCIONAL:\r\n\r\n1) Aprendizagem formal\r\n2) Aprendizagem informal\r\n3)
+    Suporte\r\n4) Conex\xE3o\r\n5) Humaniza\xE7\xE3o\r\n\r\nCLIQUE ABAIXO para identificar
+    as CATEGORIAS e seus PPs.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8797,8 +8796,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20957,11 +20956,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Os EBs tamb\xE9m possui caracter\xEDsticas agrup\xE1veis. Suas representa\xE7\xF5es
-    gr\xE1ficas foram pensadas para demonstrar, visualmente, sua fun\xE7\xE3o no
-    diagrama. \r\n\r\nAs 3 categorias criadas s\xE3o:\r\n\r\n1) \xC1reas;\r\n2) Agrupamento;\r\n3)
-    Cuidado e Conforto;\r\n\r\nAo clicar no BOT\xC3O ABAIXO, voc\xEA poder\xE1 ver
-    os EBs com indica\xE7\xE3o de suas CATEGORIAS, o que facilitar\xE1 sua compreens\xE3o.\r"
+  m_text: "Agrupados, os EBs t\xEAm seus significados e representa\xE7\xF5es mais
+    bem definidos. \r\n\r\n1) \xC1reas (formas opacas);\r\n2) Agrupamento (formas
+    transparentes);\r\n3) Cuidado e Conforto (rela\xE7\xE3o de proximidade);\r\n\r\nCLIQUE
+    ABAIXO para ver os EBs com indica\xE7\xE3o de suas CATEGORIAS\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20988,8 +20986,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -21369,13 +21367,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para a constru\xE7\xE3o do programa arquitet\xF4nico, muitas informa\xE7\xF5es
-    s\xE3o levadas em considera\xE7\xE3o pelos arquitetos.\r\n\r\nNo programa arquitet\xF4nico
-    de escolas n\xE3o \xE9 diferente. E, aqui o conceito de Par\xE2metros de Projeto
-    (PPs) \xE9 essencial. \r\n\r\n\xC9 a partir da an\xE1lise aprofundada dos PPs,
-    em suas VERS\xD5ES TRIDIMENSIONAIS que esse estudo se desenvolve. \r\n\r\nNos
-    demais t\xF3picos ao lado existem mais informa\xE7\xF5es sobre o assunto. N\xE3o
-    deixe de ver!\r"
+  m_text: "Os DIAGRAMAS 3D que voc\xEA vai criar nesse app s\xE3o compostos por ELEMENTOS
+    B\xC1SICOS (EBs), representados por geometrias b\xE1sicas (cubos e esferas).\n\r\nSua
+    combina\xE7\xE3o e an\xE1lise \xE9 inspirada em ideias do DIAGRAMAS DE BOLHAS
+    e MATRIZ DE RELACIONAMENTOS.\r\n\r\nPara saber mais: LEIA OS PR\xD3XIMOS T\xD3PICOS.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21402,8 +21397,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -28268,14 +28263,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Os PAR\xC2METROS DE PROJETO para escolas (PPs) foram elaborados por Prakash
-    Nair, Randall Fielding e Jeffery Lackney (2013) e inspirados pelos \"Patterns\"
-    de Christopher Alexander (1973).\n\r\nAlguns pontos devem ser destacados no SEU
-    USO:\r\n- Funcionam como solu\xE7\xF5es gerais projetuais;\n- N\xE3o t\xEAm a
-    inten\xE7\xE3o de indicar formas, por isso usamos geometrias b\xE1sicas;\r\n-
-    S\xE3o aplicados em projetos distintos, sem nunca repetirem o resultado; \r\n\r\nAo
-    clicar no BOT\xC3O ABAIXO, voc\xEA conseguir\xE1 acessar a DEFINI\xC7\xC3O de
-    cada um dos 29 par\xE2metros da arquitetura escolar existentes."
+  m_text: "Os PAR\xC2METROS DE PROJETO para escolas (PPs) (Prakash Nair, Randall
+    Fielding e Jeffery Lackney, 2013) foram inspirados pelos \"Design Patterns\"
+    de Christopher Alexander (1973) e s\xE3o:\n\r\n- Solu\xE7\xF5es gerais\r\n- N\xC3O
+    indicam FORMAIS;\r\n- Replic\xE1veis; \r\n\r\nCLIQUE ABAIXO se quiser ver as
+    defini\xE7\xF5es dos PPs.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -28302,8 +28294,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -29946,14 +29938,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A representa\xE7\xE3o dos Par\xE2metros de Projeto pode ser feita por
-    meio de DIAGRAMAS 3D. Tais desenhos s\xE3o criados a partir da jun\xE7\xE3o de
-    partes seguindo um conjunto de regras e formas com fun\xE7\xF5es bem definidas.
-    \r\n\r\nAs partes desses diagramas em particular foram nomeadas ELEMENTOS B\xC1SICOS
-    (EBs). Eles foram criados a partir de um estudo sistematizado dos PPs e cada
-    um carrega um significado que leva a uma reflex\xE3o de ESPACIALIDADE, HIERARQUIA
-    e ZONEAMENTO.\n\r\nAo clicar no BOT\xC3O ABAIXO, voc\xEA ver\xE1 EXEMPLOS dos
-    EBs criados: seus nomes e suas representa\xE7\xF5es gr\xE1ficas tridimensionais."
+  m_text: "Diagramas com EBs levam a pensar em:\n\n- ESPACIALIDADE, HIERARQUIA e
+    ZONEAMENTO.\r\n\r\nEssa \xE9 a atividade proposta.\r\n\r\nCLIQUE ABAIXO para
+    ver os EBs e as diferentes REPRESENTA\xC7\xD5ES\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -29980,8 +29967,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
