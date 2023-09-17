@@ -14,6 +14,8 @@ public class InterfaceManager : MonoBehaviour
     public Button reuniaoAtiva;
     public Button reuniaoPassiva;
 
+    public Button copy;
+
 
     [Header("Cores")]
     public Button cor0;
@@ -53,6 +55,7 @@ public class InterfaceManager : MonoBehaviour
         areaFechada.onClick.AddListener(() => instantiationManager.Spawn(FormType.Sphere, false));
         reuniaoAtiva.onClick.AddListener(() => instantiationManager.Spawn(FormType.Cube, true));
         reuniaoPassiva.onClick.AddListener(() => instantiationManager.Spawn(FormType.Sphere, true));
+        reuniaoPassiva.onClick.AddListener(() => gameManager.CopySelectedObject());
     }
 
     private void ColorBtnSetup()
@@ -89,6 +92,11 @@ public class InterfaceManager : MonoBehaviour
         {
             colorManager.BtnColorDisable(btns);
         }
+        
+    }
+
+    private void CopySelectedObject()
+    {
         
     }
 }

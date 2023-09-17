@@ -12,7 +12,7 @@ public class SphereControl : MonoBehaviour
     private TouchSelectionManager touchSelectionManager;
     public bool updatePosition;
 
-    private void Awake()
+    private void Start()
     {
         //LeanTouch.OnFingerUp += UpdatePosition;
         touchSelectionManager = FindObjectOfType<TouchSelectionManager>();
@@ -20,6 +20,7 @@ public class SphereControl : MonoBehaviour
         touchSelectionManager.selectionSphereChange += UpdateSphereStatus;
         //selectionManager.FingerUp += UpdatePosition;
         updatePosition = false;
+        selectedObject = null;
     }
 
     private void Update()
@@ -97,13 +98,9 @@ public class SphereControl : MonoBehaviour
     void UpdateSphereStatus(GameObject go)
     {
         if (go == this.gameObject)
-        {
             updatePosition = false;
-        }
         else
-        {
             updatePosition = true;
-        }
     }
 
 }
