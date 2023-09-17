@@ -62,7 +62,6 @@ public class PopupDescription : MonoBehaviour
         int cube = (int)f.GetFormType();
         int transparent = (f.transparent ? 1 : 0);
         int cor = f.cor;
-        Debug.Log(cube.ToString() + " " + transparent.ToString() + " " + cor.ToString());
         if (cor == -1)
             TMP.text = "Nenhum";
         else

@@ -47,6 +47,15 @@ public class Form : MonoBehaviour
             || GetComponent<MeshRenderer>().material.name == "TransparentSphere (Instance)");
     }
 
+    public void CreateForm(int id, FormType type, int c)
+    {
+        this.id = id;
+        this.type = type;
+        this.cor = c;
+        this.transparent = (GetComponent<MeshRenderer>().material.name == "TransparentCube (Instance)"
+            || GetComponent<MeshRenderer>().material.name == "TransparentSphere (Instance)");
+    }
+
     public void DisplayVolume(bool b)
     {
         volume.SetActive(b);
@@ -87,7 +96,6 @@ public class Form : MonoBehaviour
     }
     public void SetToUnselected()
     {
-        Debug.Log(name + "unselected");
         isSelected = false;
         outline.OutlineMode = Outline.Mode.OutlineHidden;
     }

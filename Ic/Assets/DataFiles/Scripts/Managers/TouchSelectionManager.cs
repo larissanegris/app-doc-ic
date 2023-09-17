@@ -13,17 +13,19 @@ public class TouchSelectionManager : MonoBehaviour
 
     protected GameManager gameManager;
     protected Transform _selection;
+    [SerializeField]
+    GameObject target;
 
 
     [Header("Formas")]
     public bool selectMultipleObjects;
-    [SerializeField] public List<GameObject> selectedObjects = new List<GameObject>();
+    [SerializeField] public List<GameObject> selectedObjects;
 
     public event Action<bool, List<GameObject>, GameObject> selectionChangeMultiple;
     public event Action<GameObject> selectionSphereChange;
 
 
-    private void OnEnable()
+    private void Start()
     {
         gameManager = GetComponent<GameManager>();
         LeanTouch.OnFingerDown += TouchToObject;
@@ -31,12 +33,16 @@ public class TouchSelectionManager : MonoBehaviour
         LeanTouch.OnFingerUp += LiftFinger;
         FindObjectOfType<InstantiationManager>().Instantiation += UpdateSelection;
         FindObjectOfType<DoubleTapHandler>().DoubleTap += DoubleTapToDeselect;
+        selectedObjects = new List<GameObject>();
+        target = null;
+        selectMultipleObjects = false;
     }
 
     private void TouchToObject(LeanFinger finger)
     {
-        int typeOfObject = RaycastSelection(finger, out GameObject target);
-        if (target == null)
+        target = null;
+        int typeOfObject = RaycastSelection(finger, out target);
+        if (typeOfObject == -1 || target == null)
             return;
         if (typeOfObject == 1)
         {
@@ -50,7 +56,7 @@ public class TouchSelectionManager : MonoBehaviour
 
     private void DoubleTapToDeselect(LeanFinger finger)
     {
-        int typeOfObject = RaycastSelection(finger, out GameObject target);
+        int typeOfObject = RaycastSelection(finger, out target);
         if (typeOfObject == 1)
         {
             UpdateSelection(target);
@@ -95,36 +101,39 @@ public class TouchSelectionManager : MonoBehaviour
     }
 
     void UpdateSelection(GameObject target)
-    {
+    {   
         if (!selectMultipleObjects)
         {
             ChangeSelectedObject(target);
-            return;
         }
 
-        //Debug.Log(target.name + " - " + selectedObjects.Contains(target));
         if (!selectedObjects.Contains(target))
         {
             AddSelectedObject(target);
-            return;
         }
-        selectionChangeMultiple(selectMultipleObjects, selectedObjects, target);
+        //selectionChangeMultiple(selectMultipleObjects, selectedObjects, target);
     }
 
     public void ChangeSelectedObject(GameObject newSelectedObject)
     {
+        target = newSelectedObject;
         if (selectedObjects.Count == 0)
         {
-            selectedObjects.Add(newSelectedObject);
+            selectedObjects.Add(target);
             selectedObjects[0].tag = "Selected";
+            selectionChangeMultiple(selectMultipleObjects, selectedObjects, newSelectedObject);
             return;
         }
+        //Debug.Log("ChangeSelectedObject from " + selectedObjects[0].name);
+        Debug.Log(" to " + newSelectedObject.name);
 
+        if (selectedObjects[0] == null)
+            Debug.LogError("Selected Objects size" + selectedObjects[0]);
         selectedObjects[0].tag = "Selectable";
         selectedObjects[0] = newSelectedObject;
         selectedObjects[0].tag = "Selected";
-        //Debug.Log("<color=orange>Selecionado: " + selectedObject.name + "</color>");
         selectionChangeMultiple(selectMultipleObjects, selectedObjects, newSelectedObject);
+
     }
 
     public void ChangeSelectedObjectToNone()
@@ -186,7 +195,8 @@ public class TouchSelectionManager : MonoBehaviour
 
     void LiftFinger(LeanFinger finger)
     {
-        if (finger != null) ;
+        if (finger != null)
+            return;
         //FingerUp(finger);
     }
 

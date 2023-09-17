@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour, IDataPeristence
     public event Action<bool> VolumeToggle;
     public event Action<GameObject> selectionChange;
 
-    private void Awake()
+    private void Start()
     {
         colorManager = GetComponent<ColorManager>();
         instantiationManager = GetComponent<InstantiationManager>();
@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour, IDataPeristence
         instantiationManager.Instantiation += AddNewObject;
         //touchSelectionManager.selectionChangeMultiple += ChangeSelectMultiple;
         cameraObject = GameObject.Find("Camera");
+
+        number = 0;
+        numberCube = 0;
+        numberSphere = 0;
     }
 
     public void LoadData(GameData data)
@@ -124,6 +128,7 @@ public class GameManager : MonoBehaviour, IDataPeristence
             numberCube++;
         else
             numberSphere++;
+        Debug.Log("Adding new obj");
         //UpdateSelection(gm);
     }
 
@@ -183,4 +188,12 @@ public class GameManager : MonoBehaviour, IDataPeristence
         selectMultipleObjects = select;
     }
     */
+
+    public void CopySelectedObject()
+    {
+        if (touchSelectionManager.selectMultipleObjects)
+            return;
+        GameObject go = touchSelectionManager.selectedObjects[0];
+        instantiationManager.Copy(go);
+    }
 }

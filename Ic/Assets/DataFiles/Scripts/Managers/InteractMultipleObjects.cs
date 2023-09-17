@@ -20,10 +20,10 @@ public class InteractMultipleObjects : MonoBehaviour
         if (selectMultipleObjects)
             ChangeRequiredSelectableToTarget(selectedObjects, target);
         else
-            ChangeRequiredSeçectableToSelf();
+            ChangeRequiredSelectableToSelf();
     }
 
-    private void ChangeRequiredSeçectableToSelf()
+    private void ChangeRequiredSelectableToSelf()
     {
         foreach (Form f in gameManager.createdForms)
         {
