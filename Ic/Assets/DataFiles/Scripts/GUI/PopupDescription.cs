@@ -31,10 +31,10 @@ public class PopupDescription : MonoBehaviour
         textsDescription[0, 0, 2] = "Áreas para Público";
         textsDescription[0, 0, 3] = "Atividades";
 
-        textsDescription[1, 0, 0] = "Administração";
-        textsDescription[1, 0, 1] = "Áreas Sujas";
-        textsDescription[1, 0, 2] = "Alim. Casual";
-        textsDescription[1, 0, 3] = "Banheiros";
+        textsDescription[1, 0, 0] = "Alim. Casual";
+        textsDescription[1, 0, 1] = "Banheiros";
+        textsDescription[1, 0, 2] = "Áreas Sujas";
+        textsDescription[1, 0, 3] = "Administração";
 
         textsDescription[0, 1, 0] = "Flexibilidade";
         textsDescription[0, 1, 1] = "Ativ. em Grupo";
