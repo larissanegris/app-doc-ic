@@ -55,7 +55,6 @@ public class InterfaceManager : MonoBehaviour
         areaFechada.onClick.AddListener(() => instantiationManager.Spawn(FormType.Sphere, false));
         reuniaoAtiva.onClick.AddListener(() => instantiationManager.Spawn(FormType.Cube, true));
         reuniaoPassiva.onClick.AddListener(() => instantiationManager.Spawn(FormType.Sphere, true));
-        reuniaoPassiva.onClick.AddListener(() => gameManager.CopySelectedObject());
     }
 
     private void ColorBtnSetup()
