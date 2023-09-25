@@ -230,7 +230,6 @@ public class InstantiationManager : MonoBehaviour
             myModelObject.transform.rotation = go.transform.rotation;
             myModelObject.transform.localScale = go.transform.localScale;
 
-
             if (isTransparent)
                 myModelObject.GetComponent<MeshRenderer>().material = transparentCube;
 
@@ -279,7 +278,7 @@ public class InstantiationManager : MonoBehaviour
                 forma.volume = interactionVolume;
             }
 
-
+            gameManager.colorManager.ChangeColor(go.GetComponent<Form>().cor, myModelObject);
             return myModelObject;
         }
         return null;

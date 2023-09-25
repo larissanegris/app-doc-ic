@@ -8,7 +8,7 @@ public class TouchSelectionManager : MonoBehaviour
 {
     protected string selectableTag = "Selectable";
     protected string selectedTag = "Selected";
-    protected int formLayerMask = 3 << 6;
+    protected int formLayerMask = 1 << 6;
     protected int controlSphereLayerMask = 1 << 7;
 
     protected GameManager gameManager;
