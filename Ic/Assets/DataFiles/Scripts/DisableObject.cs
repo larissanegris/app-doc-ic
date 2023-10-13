@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DisableObject : MonoBehaviour
 {
-    //variáveis da seção de parametros de projeto
+    /*//variáveis da seção de parametros de projeto
     public GameObject DPSDetailbtn;
     public GameObject Previouspagedpsbtn;
     public GameObject Nextpagedpsbtn;
@@ -31,12 +31,37 @@ public class DisableObject : MonoBehaviour
 
     //variáveis da seção de categorias de elementos básicos
     public GameObject BESCatdefbtn;
-    public GameObject BESReprscat;
+    public GameObject BESReprscat;*/
 
+    //variáveis da área de trabalho
+    public GameObject FundoBotoesCategoria;
+    public GameObject TextAreas;
+    public GameObject TextReuniao;
+    public GameObject Btn_Areas_Abertas;
+    public GameObject Btn_Areas_Fechadas;
+    public GameObject Btn_Reuniao_Ativa;
+    public GameObject Btn_Reuniao_Passiva;
 
     public void WhenButtonClicked() //pode nomear como quiser
     {
-        //Desativa elementos da seção de parametros de projeto
+        /*//Desativa itens de menu de EBs
+        if (FundoBotoesCategoria.activeInHierarchy == true)
+            FundoBotoesCategoria.SetActive(false);
+        if (TextAreas.activeInHierarchy == true)
+            TextAreas.SetActive(false);
+        if (TextReuniao.activeInHierarchy == true)
+            TextReuniao.SetActive(false);
+        if (Btn_Areas_Abertas.activeInHierarchy == true)
+            Btn_Areas_Abertas.SetActive(false);
+        if (Btn_Areas_Fechadas.activeInHierarchy == true)
+            Btn_Areas_Fechadas.SetActive(false);
+        if (Btn_Reuniao_Ativa.activeInHierarchy == true)
+            Btn_Reuniao_Ativa.SetActive(false);
+        if (Btn_Reuniao_Passiva.activeInHierarchy == true)
+            Btn_Reuniao_Passiva.SetActive(false);*/
+    }    
+        
+        /*//Desativa elementos da seção de parametros de projeto
         if (DPSDetailbtn.activeInHierarchy == true)
             DPSDetailbtn.SetActive(false);
         if (Previouspagedpsbtn.activeInHierarchy == true)
@@ -82,6 +107,6 @@ public class DisableObject : MonoBehaviour
         if (BESCatdefbtn.activeInHierarchy == true)
             BESCatdefbtn.SetActive(false);
         if (BESReprscat.activeInHierarchy == true)
-            BESReprscat.SetActive(false);
-    }
+            BESReprscat.SetActive(false);*/
+
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DisableOrEnableObject : MonoBehaviour
 {
-    //variáveis da seção de parametros de projeto
+    /*//variáveis da seção de parametros de projeto
     public GameObject DPSDetailbtn;
     public GameObject Group1to5;
     public GameObject Previouspagedpsbtn;
@@ -31,19 +31,83 @@ public class DisableOrEnableObject : MonoBehaviour
 
     //variáveis da seção de categorias de elementos básicos
     public GameObject BESCatDefbtn;
-    public GameObject BESReprscat;
+    public GameObject BESReprscat;*/
 
+    //variáveis da área de trabalho
+    public GameObject FundoBotoesCategoria;
+    public GameObject TextAreas;
+    public GameObject TextReuniao;
+    public GameObject Btn_Areas_Abertas;
+    public GameObject Btn_Areas_Fechadas;
+    public GameObject Btn_Reuniao_Ativa;
+    public GameObject Btn_Reuniao_Passiva;
+
+    public void WhenMenuEBbtnCLicked()
+    {
+        if (FundoBotoesCategoria.activeInHierarchy == false)
+            FundoBotoesCategoria.SetActive(true);
+        else
+            FundoBotoesCategoria.SetActive(false);
+
+        if (TextAreas.activeInHierarchy == false)
+            TextAreas.SetActive(true);
+        else
+            TextAreas.SetActive(false);
+
+        if (TextReuniao.activeInHierarchy == false)
+            TextReuniao.SetActive(true);
+        else
+            TextReuniao.SetActive(false);
+
+        if (Btn_Areas_Abertas.activeInHierarchy == true)
+            Btn_Areas_Abertas.SetActive(false);
+
+        if (Btn_Areas_Fechadas.activeInHierarchy == true)
+            Btn_Areas_Fechadas.SetActive(false);
+
+        if (Btn_Reuniao_Ativa.activeInHierarchy == true)
+            Btn_Reuniao_Ativa.SetActive(false);
+
+        if (Btn_Reuniao_Passiva.activeInHierarchy == true)
+            Btn_Reuniao_Passiva.SetActive(false);
+    }
+
+    public void WhenAreasbtnCLicked()
+    {
+        if (Btn_Areas_Abertas.activeInHierarchy == false)
+            Btn_Areas_Abertas.SetActive(true);
+        else
+            Btn_Areas_Abertas.SetActive(false);
+
+        if (Btn_Areas_Fechadas.activeInHierarchy == false)
+            Btn_Areas_Fechadas.SetActive(true);
+        else
+            Btn_Areas_Fechadas.SetActive(false);
+    }
+
+    public void WhenReuniaobtnCLicked()
+    {
+        if (Btn_Reuniao_Ativa.activeInHierarchy == false)
+            Btn_Reuniao_Ativa.SetActive(true);
+        else
+            Btn_Reuniao_Ativa.SetActive(false);
+
+        if (Btn_Reuniao_Passiva.activeInHierarchy == false)
+            Btn_Reuniao_Passiva.SetActive(true);
+        else
+            Btn_Reuniao_Passiva.SetActive(false);
+    }
 
     // Seção parametros de projeto
-    public void WhenDPSbtnClicked() //pode nomear como quiser
+    /*public void WhenDPSbtnClicked() //pode nomear como quiser
     {
         if (DPSDetailbtn.activeInHierarchy == false)
             DPSDetailbtn.SetActive(true);
         else
-           DPSDetailbtn.SetActive(false);
+            DPSDetailbtn.SetActive(false);
     }
 
-    public void WhenDPSDetailbtnClicked() 
+    public void WhenDPSDetailbtnClicked()
     {
         if (Group1to5.activeInHierarchy == false)
             Group1to5.SetActive(true);
@@ -53,7 +117,7 @@ public class DisableOrEnableObject : MonoBehaviour
         if (Nextpagedpsbtn.activeInHierarchy == false)
             Nextpagedpsbtn.SetActive(true);
         else
-           Nextpagedpsbtn.SetActive(false);
+            Nextpagedpsbtn.SetActive(false);
     }
 
     // Seção categoria de parametros de projeto
@@ -151,8 +215,7 @@ public class DisableOrEnableObject : MonoBehaviour
             Category3.SetActive(false);
         if (Category4.activeInHierarchy == true)
             Category4.SetActive(false);
-    }
-
+    }*/
 
     /*// Seção elementos básicos
     public void WhenBEsbtnClicked()
@@ -187,4 +250,7 @@ public class DisableOrEnableObject : MonoBehaviour
       //  else
          //   BESReprscat.SetActive(false);
     }*/
+
+
+
 }
